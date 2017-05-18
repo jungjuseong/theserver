@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="service.contents.ContentsMapper">
+
+   <select id="getListContentsCheckBox" parameterType="hashmap"  resultType="hashmap">
+    	SELECT * FROM tb_contents
+   </select>
+
+  <!--  <select id="getList" para>
+       select this_.template_seq, this_.app_contents_amt, this_.app_contents_gb, this_.chg_dt,this_.chg_user_gb, this_.chg_user_id, this_.chg_user_seq , this_.complet_gb ,this_.description_text , this_.limit_dt , this_.limit_gb, this_.ostype_gb, this_.reg_dt , this_.reg_user_gb, this_.reg_user_id ,this_.reg_user_seq as reg_use16_12_0_, this_.template_name , this_.template_type_gb , this_.upload_org_file, this_.upload_save_file ,this_.use_avail_dt , this_.use_disable_dt , this_.use_gb , this_.use_user_gb , this_.ver_num from pbcms_test.tb_template this_ where this_.template_type_gb='1' and this_.use_gb='1' and this_.limit_gb='2' and (this_.ostype_gb='1' or this_.ostype_gb='3') and (((this_.app_contents_gb='1' or this_.app_contents_gb='2') and this_.app_contents_amt>'50') or this_.app_contents_gb='3') order by this_.reg_dt desc limit 30
+       
+   </select> -->
+</mapper>
