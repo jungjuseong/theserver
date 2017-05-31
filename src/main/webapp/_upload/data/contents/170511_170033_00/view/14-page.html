@@ -1,0 +1,518 @@
+<!doctype html><html>
+<head>
+<style>
+ body {
+    margin-left: 0px;
+    margin-top: 0px;
+        overflow-x:hidden;
+    overflow-y:hidden;
+  }
+</style>
+<meta charset="UTF-8" />
+<title>170511_170033_00</title>
+</head>
+ 
+<script src="./script/jquery.min.js"></script>
+<script src="./script/jquery-ui.min.js"></script>
+<script src="./script/jquery.transit.js"></script>
+<script type="text/javascript" language="javascript" src="./script/cb.js"></script>
+<script type="text/javascript" language="javascript" src="./script/indexedDB.js"></script>
+<script type="text/javascript" src="./script/jquery.touchSwipe.min.js"></script>
+<script type="text/javascript" src="./script/main.js"></script>
+<script>
+var pageNo = 14;
+    var scale = ($(window).height() / 720.000000);
+    window.onresize = function() { scale = ($(window).height() / 720.000000); $("body").css("transform-origin",'0 0'); $("body").css("transform",'scale('+scale+')'); }
+
+    $(document).ready(function(){
+        $("body").css("transform",'scale('+scale+')');
+        $("body").css("transform-origin",'0 0');
+    });
+
+    function changeToggleState(cvs){
+        if(cvs.state == true) {
+            cvs.state = false;
+        }else{
+            cvs.state = true;
+        }
+    }
+    var sound1 = new Audio();
+    var sound2 = new Audio();
+
+
+</script>
+<body id="mybody" oncontextmenu="return false" onselectstart="return false" ondragstart="return false" >
+<section><div id="div_main" style="z-index:1; position:relative; width:1280px; height:720px; overflow:hidden;background-color:#fff; " >
+<img src="14p_0001.png" style="z-index:2; pointer-events:none; position:absolute; left:-1px; top:0px; opacity:1 " width="1280px" height="720px" >
+<canvas id="cvs_1457" style="z-index:3; position:absolute; left:268px; top:313px; opacity:1" width="131px" height="151px" onmousedown="distributeAction(cvs_1457, 'down', 'N', [[{actType:11, actSubType: 'Set Sound', target:[sound2], audioSrc:'13p_0015.mp3', ReadyPlayer:'NO', startTime:0, delay:0, duration:2455 },{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1457], toX:269, toY:303, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:2, waitingTime:0, repeatForever:'N' }]])"></canvas>
+<canvas id="cvs_1454" style="z-index:4; position:absolute; left:183px; top:363px; opacity:1" width="111px" height="196px" onmousedown="distributeAction(cvs_1454, 'down', 'N', [[{actType:11, actSubType: 'Set Sound', target:[sound2], audioSrc:'13p_0012.mp3', ReadyPlayer:'NO', startTime:0, delay:0, duration:1541 },{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1454], toX:184, toY:355, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:2, waitingTime:0, repeatForever:'N' }]])"></canvas>
+<canvas id="cvs_1455" style="z-index:5; position:absolute; left:608px; top:41px; opacity:1" width="203px" height="194px" onmousedown="distributeAction(cvs_1455, 'down', 'N', [[{actType:11, actSubType: 'Set Sound', target:[sound2], audioSrc:'13p_0014.mp3', ReadyPlayer:'NO', startTime:0, delay:0, duration:2168 },{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1455], toX:607, toY:34, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:2, waitingTime:0, repeatForever:'N' }]])"></canvas>
+<canvas id="cvs_1456" style="z-index:6; position:absolute; left:745px; top:259px; opacity:1" width="113px" height="204px" onmousedown="distributeAction(cvs_1456, 'down', 'N', [[{actType:11, actSubType: 'Set Sound', target:[sound2], audioSrc:'13p_0010.mp3', ReadyPlayer:'NO', startTime:0, delay:0, duration:2533 },{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1456], toX:746, toY:250, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:2, waitingTime:0, repeatForever:'N' }]])"></canvas>
+<canvas id="cvs_1453" style="z-index:7; position:absolute; left:366px; top:46px; opacity:1" width="239px" height="428px" onmousedown="distributeAction(cvs_1453, 'down', 'N', [[{actType:11, actSubType: 'Set Sound', target:[sound2], audioSrc:'14p_0008.mp3', ReadyPlayer:'NO', startTime:0, delay:0, duration:349 },{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1453], toX:366, toY:119, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:3, waitingTime:0, repeatForever:'N' },{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1462], toX:216, toY:-75, effectSound:'14p_0009.mp3', startTime:0, delay:0, duration:3000 }]])"></canvas>
+<canvas id="cvs_1452" style="z-index:8; position:absolute; left:620px; top:374px; opacity:1" width="188px" height="210px" onmousedown="distributeAction(cvs_1452, 'down', 'N', [[{actType:11, actSubType: 'Set Sound', target:[sound2], audioSrc:'13p_0013.mp3', ReadyPlayer:'NO', startTime:0, delay:0, duration:2037 },{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1452], toX:657, toY:382, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:2, waitingTime:0, repeatForever:'N' }]])"></canvas>
+<canvas id="cvs_2262" style="z-index:9; position:absolute; left:857px; top:76px; opacity:0.0" width="408px" height="371px"></canvas>
+<canvas id="cvs_1460" style="z-index:10; position:absolute; left:56px; top:-75px; opacity:1" width="62px" height="59px"></canvas>
+<canvas id="cvs_1461" style="z-index:11; position:absolute; left:139px; top:-75px; opacity:1" width="62px" height="59px"></canvas>
+<canvas id="cvs_1462" style="z-index:12; position:absolute; left:216px; top:-75px; opacity:1" width="62px" height="59px"></canvas>
+<canvas id="cvs_1463" style="z-index:13; position:absolute; left:301px; top:-79px; opacity:1" width="62px" height="59px"></canvas>
+<img src="text_14_1464.png" style="z-index:14; pointer-events:none; position:absolute; left:377px; top:-79px; opacity:1 " width="62px" height="59px" >
+<canvas id="cvs_1072" style="z-index:15; position:absolute; left:1169px; top:596px; opacity:1" width="72px" height="85px" onmousedown="distributeAction(cvs_1072, 'down', 'N', [])" onmouseup="distributeAction(cvs_1072, 'up', 'N', [[{actType:12, actSubType: 'Next', goto:'15-page.html', startTime:0, delay:0, duration:0 }]])"></canvas>
+<canvas id="cvs_1073" style="z-index:16; position:absolute; left:37px; top:596px; opacity:1" width="72px" height="85px" onmousedown="distributeAction(cvs_1073, 'down', 'N', [])" onmouseup="distributeAction(cvs_1073, 'up', 'N', [[{actType:12, actSubType: 'Next', goto:'13-page.html', startTime:0, delay:0, duration:0 }]])"></canvas>
+<canvas id="cvs_1074" style="z-index:17; position:absolute; left:25px; top:24px; opacity:1" width="94px" height="95px" onmousedown="distributeAction(cvs_1074, 'down', 'N', [])" onmouseup="distributeAction(cvs_1074, 'up', 'N', [[{actType:12, actSubType: 'Next', goto:'Home' , startTime:0, delay:0, duration:0 }]])"></canvas>
+</div>
+
+<script type="text/javascript">
+  var element_1457;
+  var ctx_1457;
+  var id_1457 = new Image();
+
+  function init_1457() {
+    $(cvs_1457).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1457).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1457).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1457).css({'transform': 'rotate(0deg)'});
+    id_1457.src = "14p_0002.png";
+    id_1457.onload = drawAll_1457;
+    element_1457 = document.getElementById("cvs_1457");
+    jQuery.data(cvs_1457, "touch", "y");
+    jQuery.data(cvs_1457, "tag", []);
+    ctx_1457 = element_1457.getContext("2d");
+  }
+
+  function drawAll_1457() {
+    ctx_1457.clearRect(0, 0, 131, 151);
+    ctx_1457.save();
+    if (!(typeof id_1457.naturalWidth !== "undefined" && id_1457.naturalWidth === 0))
+       drawImage(ctx_1457, id_1457, 0, 0, 131, 151, 0);
+    ctx_1457.restore();
+  }
+ 
+  init_1457();
+</script>
+
+<script type="text/javascript">
+  var element_1454;
+  var ctx_1454;
+  var id_1454 = new Image();
+
+  function init_1454() {
+    $(cvs_1454).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1454).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1454).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1454).css({'transform': 'rotate(0deg)'});
+    id_1454.src = "14p_0003.png";
+    id_1454.onload = drawAll_1454;
+    element_1454 = document.getElementById("cvs_1454");
+    jQuery.data(cvs_1454, "touch", "y");
+    jQuery.data(cvs_1454, "tag", []);
+    ctx_1454 = element_1454.getContext("2d");
+  }
+
+  function drawAll_1454() {
+    ctx_1454.clearRect(0, 0, 111, 196);
+    ctx_1454.save();
+    if (!(typeof id_1454.naturalWidth !== "undefined" && id_1454.naturalWidth === 0))
+       drawImage(ctx_1454, id_1454, 0, 0, 111, 196, 0);
+    ctx_1454.restore();
+  }
+ 
+  init_1454();
+</script>
+
+<script type="text/javascript">
+  var element_1455;
+  var ctx_1455;
+  var id_1455 = new Image();
+
+  function init_1455() {
+    $(cvs_1455).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1455).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1455).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1455).css({'transform': 'rotate(0deg)'});
+    id_1455.src = "14p_0004.png";
+    id_1455.onload = drawAll_1455;
+    element_1455 = document.getElementById("cvs_1455");
+    jQuery.data(cvs_1455, "touch", "y");
+    jQuery.data(cvs_1455, "tag", []);
+    ctx_1455 = element_1455.getContext("2d");
+  }
+
+  function drawAll_1455() {
+    ctx_1455.clearRect(0, 0, 203, 194);
+    ctx_1455.save();
+    if (!(typeof id_1455.naturalWidth !== "undefined" && id_1455.naturalWidth === 0))
+       drawImage(ctx_1455, id_1455, 0, 0, 203, 194, 0);
+    ctx_1455.restore();
+  }
+ 
+  init_1455();
+</script>
+
+<script type="text/javascript">
+  var element_1456;
+  var ctx_1456;
+  var id_1456 = new Image();
+
+  function init_1456() {
+    $(cvs_1456).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1456).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1456).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1456).css({'transform': 'rotate(0deg)'});
+    id_1456.src = "14p_0005.png";
+    id_1456.onload = drawAll_1456;
+    element_1456 = document.getElementById("cvs_1456");
+    jQuery.data(cvs_1456, "touch", "y");
+    jQuery.data(cvs_1456, "tag", []);
+    ctx_1456 = element_1456.getContext("2d");
+  }
+
+  function drawAll_1456() {
+    ctx_1456.clearRect(0, 0, 113, 204);
+    ctx_1456.save();
+    if (!(typeof id_1456.naturalWidth !== "undefined" && id_1456.naturalWidth === 0))
+       drawImage(ctx_1456, id_1456, 0, 0, 113, 204, 0);
+    ctx_1456.restore();
+  }
+ 
+  init_1456();
+</script>
+
+<script type="text/javascript">
+  var element_1453;
+  var ctx_1453;
+  var id_1453 = new Image();
+
+  function init_1453() {
+    $(cvs_1453).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1453).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1453).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1453).css({'transform': 'rotate(0deg)'});
+    id_1453.src = "14p_0006.png";
+    id_1453.onload = drawAll_1453;
+    element_1453 = document.getElementById("cvs_1453");
+    jQuery.data(cvs_1453, "touch", "y");
+    jQuery.data(cvs_1453, "tag", []);
+    ctx_1453 = element_1453.getContext("2d");
+  }
+
+  function drawAll_1453() {
+    ctx_1453.clearRect(0, 0, 239, 428);
+    ctx_1453.save();
+    if (!(typeof id_1453.naturalWidth !== "undefined" && id_1453.naturalWidth === 0))
+       drawImage(ctx_1453, id_1453, 0, 0, 239, 428, 0);
+    ctx_1453.restore();
+  }
+ 
+  init_1453();
+</script>
+
+<script type="text/javascript">
+  var element_1452;
+  var ctx_1452;
+  var id_1452 = new Image();
+
+  function init_1452() {
+    $(cvs_1452).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1452).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1452).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1452).css({'transform': 'rotate(0deg)'});
+    id_1452.src = "14p_0007.png";
+    id_1452.onload = drawAll_1452;
+    element_1452 = document.getElementById("cvs_1452");
+    jQuery.data(cvs_1452, "touch", "y");
+    jQuery.data(cvs_1452, "tag", []);
+    ctx_1452 = element_1452.getContext("2d");
+  }
+
+  function drawAll_1452() {
+    ctx_1452.clearRect(0, 0, 188, 210);
+    ctx_1452.save();
+    ctx_1452.translate(94, 105);
+    if (!(typeof id_1452.naturalWidth !== "undefined" && id_1452.naturalWidth === 0))
+       drawImage(ctx_1452, id_1452, -58, -88, 116, 176, -30);
+    ctx_1452.restore();
+  }
+ 
+  init_1452();
+</script>
+
+<script type="text/javascript">
+  var element_2262;
+  var ctx_2262;
+  var id_2262 = new Image();
+
+  function init_2262() {
+    $(cvs_2262).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_2262).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_2262).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_2262).css({'transform': 'rotate(0deg)'});
+    id_2262.src = "text_14_2262.png";
+    id_2262.onload = drawAll_2262;
+    element_2262 = document.getElementById("cvs_2262");
+    jQuery.data(cvs_2262, "touch", "n");
+    jQuery.data(cvs_2262, "tag", []);
+    ctx_2262 = element_2262.getContext("2d");
+    element_2262.style.opacity=0.00;
+  }
+
+  function drawAll_2262() {
+    ctx_2262.clearRect(0, 0, 408, 371);
+    ctx_2262.save();
+    if (!(typeof id_2262.naturalWidth !== "undefined" && id_2262.naturalWidth === 0))
+       drawImage(ctx_2262, id_2262, 0, 0, 408, 371, 0);
+    ctx_2262.restore();
+  }
+ 
+  init_2262();
+</script>
+
+<script type="text/javascript">
+  var element_1460;
+  var ctx_1460;
+  var id_1460 = new Image();
+
+  function init_1460() {
+    $(cvs_1460).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1460).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1460).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1460).css({'transform': 'rotate(0deg)'});
+    id_1460.src = "text_14_1460.png";
+    id_1460.onload = drawAll_1460;
+    element_1460 = document.getElementById("cvs_1460");
+    jQuery.data(cvs_1460, "touch", "n");
+    jQuery.data(cvs_1460, "tag", []);
+    ctx_1460 = element_1460.getContext("2d");
+    element_1460.style.pointerEvents = "none";
+  }
+
+  function drawAll_1460() {
+    ctx_1460.clearRect(0, 0, 62, 59);
+    ctx_1460.save();
+    if (!(typeof id_1460.naturalWidth !== "undefined" && id_1460.naturalWidth === 0))
+       drawImage(ctx_1460, id_1460, 0, 0, 62, 59, 0);
+    ctx_1460.restore();
+  }
+ 
+  init_1460();
+</script>
+
+<script type="text/javascript">
+  var element_1461;
+  var ctx_1461;
+  var id_1461 = new Image();
+
+  function init_1461() {
+    $(cvs_1461).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1461).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1461).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1461).css({'transform': 'rotate(0deg)'});
+    id_1461.src = "text_14_1461.png";
+    id_1461.onload = drawAll_1461;
+    element_1461 = document.getElementById("cvs_1461");
+    jQuery.data(cvs_1461, "touch", "n");
+    jQuery.data(cvs_1461, "tag", []);
+    ctx_1461 = element_1461.getContext("2d");
+    element_1461.style.pointerEvents = "none";
+  }
+
+  function drawAll_1461() {
+    ctx_1461.clearRect(0, 0, 62, 59);
+    ctx_1461.save();
+    if (!(typeof id_1461.naturalWidth !== "undefined" && id_1461.naturalWidth === 0))
+       drawImage(ctx_1461, id_1461, 0, 0, 62, 59, 0);
+    ctx_1461.restore();
+  }
+ 
+  init_1461();
+</script>
+
+<script type="text/javascript">
+  var element_1462;
+  var ctx_1462;
+  var id_1462 = new Image();
+
+  function init_1462() {
+    $(cvs_1462).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1462).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1462).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1462).css({'transform': 'rotate(0deg)'});
+    id_1462.src = "text_14_1462.png";
+    id_1462.onload = drawAll_1462;
+    element_1462 = document.getElementById("cvs_1462");
+    jQuery.data(cvs_1462, "touch", "n");
+    jQuery.data(cvs_1462, "tag", []);
+    ctx_1462 = element_1462.getContext("2d");
+    element_1462.style.pointerEvents = "none";
+  }
+
+  function drawAll_1462() {
+    ctx_1462.clearRect(0, 0, 62, 59);
+    ctx_1462.save();
+    if (!(typeof id_1462.naturalWidth !== "undefined" && id_1462.naturalWidth === 0))
+       drawImage(ctx_1462, id_1462, 0, 0, 62, 59, 0);
+    ctx_1462.restore();
+  }
+ 
+  init_1462();
+</script>
+
+<script type="text/javascript">
+  var element_1463;
+  var ctx_1463;
+  var id_1463 = new Image();
+
+  function init_1463() {
+    $(cvs_1463).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1463).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1463).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1463).css({'transform': 'rotate(0deg)'});
+    id_1463.src = "text_14_1463.png";
+    id_1463.onload = drawAll_1463;
+    element_1463 = document.getElementById("cvs_1463");
+    jQuery.data(cvs_1463, "touch", "n");
+    jQuery.data(cvs_1463, "tag", []);
+    ctx_1463 = element_1463.getContext("2d");
+    element_1463.style.pointerEvents = "none";
+  }
+
+  function drawAll_1463() {
+    ctx_1463.clearRect(0, 0, 62, 59);
+    ctx_1463.save();
+    if (!(typeof id_1463.naturalWidth !== "undefined" && id_1463.naturalWidth === 0))
+       drawImage(ctx_1463, id_1463, 0, 0, 62, 59, 0);
+    ctx_1463.restore();
+  }
+ 
+  init_1463();
+</script>
+
+<script type="text/javascript">
+  var element_1072;
+  var ctx_1072;
+  var id_1072 = new Image();
+
+  function init_1072() {
+    $(cvs_1072).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1072).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1072).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1072).css({'transform': 'rotate(0deg)'});
+    id_1072.src = "2p_0013.png";
+    id_1072.onload = drawAll_1072;
+    element_1072 = document.getElementById("cvs_1072");
+    jQuery.data(cvs_1072, "touch", "y");
+    jQuery.data(cvs_1072, "tag", []);
+    ctx_1072 = element_1072.getContext("2d");
+  }
+
+  function drawAll_1072() {
+    ctx_1072.clearRect(0, 0, 72, 85);
+    ctx_1072.save();
+    if (!(typeof id_1072.naturalWidth !== "undefined" && id_1072.naturalWidth === 0))
+       drawImage(ctx_1072, id_1072, 0, 0, 72, 85, 0);
+    ctx_1072.restore();
+  }
+ 
+  init_1072();
+</script>
+
+<script type="text/javascript">
+  var element_1073;
+  var ctx_1073;
+  var id_1073 = new Image();
+
+  function init_1073() {
+    $(cvs_1073).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1073).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1073).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1073).css({'transform': 'rotate(0deg)'});
+    id_1073.src = "2p_0013.png";
+    id_1073.onload = drawAll_1073;
+    element_1073 = document.getElementById("cvs_1073");
+    jQuery.data(cvs_1073, "touch", "y");
+    jQuery.data(cvs_1073, "tag", []);
+    ctx_1073 = element_1073.getContext("2d");
+  }
+
+  function drawAll_1073() {
+    ctx_1073.clearRect(0, 0, 72, 85);
+    ctx_1073.save();
+    ctx_1073.translate(36, 42);
+    if (!(typeof id_1073.naturalWidth !== "undefined" && id_1073.naturalWidth === 0))
+       drawImage(ctx_1073, id_1073, -36, -42, 72, 85, 180);
+    ctx_1073.restore();
+  }
+ 
+  init_1073();
+</script>
+
+<script type="text/javascript">
+  var element_1074;
+  var ctx_1074;
+  var id_1074 = new Image();
+
+  function init_1074() {
+    $(cvs_1074).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1074).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1074).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1074).css({'transform': 'rotate(0deg)'});
+    id_1074.src = "2p_0014.png";
+    id_1074.onload = drawAll_1074;
+    element_1074 = document.getElementById("cvs_1074");
+    jQuery.data(cvs_1074, "touch", "y");
+    jQuery.data(cvs_1074, "tag", []);
+    ctx_1074 = element_1074.getContext("2d");
+  }
+
+  function drawAll_1074() {
+    ctx_1074.clearRect(0, 0, 94, 95);
+    ctx_1074.save();
+    if (!(typeof id_1074.naturalWidth !== "undefined" && id_1074.naturalWidth === 0))
+       drawImage(ctx_1074, id_1074, 0, 0, 94, 95, 0);
+    ctx_1074.restore();
+  }
+ 
+  init_1074();
+</script>
+
+<script type="text/javascript">
+  var ConditionalTable = new Object();
+ 
+</script>
+
+<script type="text/javascript">
+  var ActionLibraryTable = new Object();
+ 
+</script>
+
+<script type="text/javascript">
+  var TargetTable = new Object();
+jQuery.data(TargetTable, "B4_S13_콩콩이", cvs_1457);
+jQuery.data(TargetTable, "B4_S13_알림이", cvs_1454);
+jQuery.data(TargetTable, "B4_S13_잼잼이", cvs_1455);
+jQuery.data(TargetTable, "B4_S13_지킴이", cvs_1456);
+jQuery.data(TargetTable, "B4_S13_성장이", cvs_1453);
+jQuery.data(TargetTable, "B4_S13_궁금이", cvs_1452);
+jQuery.data(TargetTable, "텍스트", cvs_2262);
+jQuery.data(TargetTable, "텍스트-1", cvs_1460);
+jQuery.data(TargetTable, "텍스트-2", cvs_1461);
+jQuery.data(TargetTable, "텍스트-3", cvs_1462);
+jQuery.data(TargetTable, "텍스트-4", cvs_1463);
+jQuery.data(TargetTable, "arrow btn", cvs_1072);
+jQuery.data(TargetTable, "arrow btn-1", cvs_1073);
+jQuery.data(TargetTable, "홈버튼", cvs_1074);
+ 
+</script>
+
+<script type="text/javascript">
+ 
+</script>
+
+ <script>
+  function pbonload14() {
+     var key = [];
+     var dataString = [];
+ 	distributeAction(null, 'up', 'N', [[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_2262], opacity:1.00, startTime:0, delay:0, duration:500 },{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1460], toX:57, toY:-75, effectSound:'14p_0012.mp3', startTime:500, delay:0, duration:5000, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1461], toX:139, toY:-75, effectSound:'14p_0011.mp3', startTime:0, delay:0, duration:16000, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1462], toX:216, toY:-75, effectSound:'14p_0009.mp3', startTime:0, delay:0, duration:3000, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1463], toX:301, toY:-79, effectSound:'14p_0010.mp3', startTime:0, delay:0, duration:3000 }] }] }] },{actType:11, actSubType: 'Set Sound', target:[sound1], audioSrc:'2p_0020.mp3', ReadyPlayer:'NO', startTime:0, delay:0, duration:21133, repeatForever:'Y', reverse:'N', aniTiming:0, revDuration:0, repeatCount:0, waitingTime:0, repeatForever:'Y' },{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1455], opacity:1.00, startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1455], toX:607, toY:33, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:5, waitingTime:0, repeatForever:'N', nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1455], toX:607, toY:34, startTime:2000, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:20, waitingTime:0, repeatForever:'N' }] }] },{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1453], opacity:1.00, startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1453], toX:366, toY:37, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:5, waitingTime:0, repeatForever:'N', nextAction:[{actType:3, actSubType:'Curve To', aniTiming:0, target:[cvs_1453], elements:'M486,260 C500,206 379,179 367,261 ', effectSound:'14p_0013.mp3', startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1453], toX:248, toY:35, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:4, waitingTime:0, repeatForever:'N', nextAction:[{actType:3, actSubType:'Curve To', aniTiming:0, target:[cvs_1453], elements:'M367,261 C366,227 462,186 485,260 ', effectSound:'14p_0013.mp3', startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1453], toX:366, toY:36, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:4, waitingTime:0, repeatForever:'N', nextAction:[{actType:3, actSubType:'Curve To', aniTiming:0, target:[cvs_1453], elements:'M485,260 C418,229 342,257 364,352 ', effectSound:'14p_0013.mp3', startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1453], toX:245, toY:126, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:4, waitingTime:0, repeatForever:'N', nextAction:[{actType:3, actSubType:'Curve To', aniTiming:0, target:[cvs_1453], elements:'M364,352 C370,287 485,276 486,346 ', effectSound:'14p_0013.mp3', startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1453], toX:366, toY:119, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:8, waitingTime:0, repeatForever:'N' }] }] }] }] }] }] }] }] }] },{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1454], opacity:1.00, startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1454], toX:183, toY:353, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:5, waitingTime:0, repeatForever:'N', nextAction:[{actType:3, actSubType:'Curve To', aniTiming:0, target:[cvs_1454], elements:'M239,461 C228,378 110,421 127,461 ', startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1454], toX:72, toY:355, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:4, waitingTime:0, repeatForever:'N', nextAction:[{actType:3, actSubType:'Curve To', aniTiming:0, target:[cvs_1454], elements:'M127,461 C122,428 207,373 239,462 ', startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1454], toX:184, toY:355, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:4, waitingTime:0, repeatForever:'N', nextAction:[{actType:3, actSubType:'Curve To', aniTiming:0, target:[cvs_1454], elements:'M239,461 C228,378 110,421 127,461 ', startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1454], toX:72, toY:355, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:4, waitingTime:0, repeatForever:'N', nextAction:[{actType:3, actSubType:'Curve To', aniTiming:0, target:[cvs_1454], elements:'M127,461 C122,428 207,373 239,462 ', startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1454], toX:184, toY:355, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:8, waitingTime:0, repeatForever:'N' }] }] }] }] }] }] }] }] }] },{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1452], opacity:1.00, startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1452], toX:659, toY:381, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:5, waitingTime:0, repeatForever:'N', nextAction:[{actType:3, actSubType:'Curve To', aniTiming:0, target:[cvs_1452], elements:'M715,479 C707,409 610,433 623,478 ', startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1452], toX:565, toY:381, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:4, waitingTime:0, repeatForever:'N', nextAction:[{actType:3, actSubType:'Curve To', aniTiming:0, target:[cvs_1452], elements:'M623,478 C623,413 713,413 715,479 ', startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1452], toX:657, toY:382, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:4, waitingTime:0, repeatForever:'N', nextAction:[{actType:3, actSubType:'Curve To', aniTiming:0, target:[cvs_1452], elements:'M715,479 C707,409 610,433 623,478 ', startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1452], toX:565, toY:381, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:4, waitingTime:0, repeatForever:'N', nextAction:[{actType:3, actSubType:'Curve To', aniTiming:0, target:[cvs_1452], elements:'M623,478 C623,413 713,413 715,479 ', startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1452], toX:657, toY:382, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:8, waitingTime:0, repeatForever:'N' }] }] }] }] }] }] }] }] }] },{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1456], opacity:1.00, startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1456], toX:746, toY:249, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:5, waitingTime:0, repeatForever:'N', nextAction:[{actType:3, actSubType:'Curve To', aniTiming:0, target:[cvs_1456], elements:'M802,361 C802,307 700,279 681,361 ', startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1456], toX:625, toY:250, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:4, waitingTime:0, repeatForever:'N', nextAction:[{actType:3, actSubType:'Curve To', aniTiming:0, target:[cvs_1456], elements:'M681,361 C678,300 785,269 803,361 ', startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1456], toX:746, toY:250, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:4, waitingTime:0, repeatForever:'N', nextAction:[{actType:3, actSubType:'Curve To', aniTiming:0, target:[cvs_1456], elements:'M802,361 C802,307 700,279 681,361 ', startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1456], toX:625, toY:250, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:4, waitingTime:0, repeatForever:'N', nextAction:[{actType:3, actSubType:'Curve To', aniTiming:0, target:[cvs_1456], elements:'M681,361 C678,300 785,269 803,361 ', startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1456], toX:746, toY:250, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:8, waitingTime:0, repeatForever:'N' }] }] }] }] }] }] }] }] }] },{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1457], opacity:1.00, startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1457], toX:268, toY:303, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:5, waitingTime:0, repeatForever:'N', nextAction:[{actType:3, actSubType:'Curve To', aniTiming:0, target:[cvs_1457], elements:'M334,389 C333,345 245,285 201,390 ', startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1457], toX:136, toY:303, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:4, waitingTime:0, repeatForever:'N', nextAction:[{actType:3, actSubType:'Curve To', aniTiming:0, target:[cvs_1457], elements:'M201,390 C203,318 322,290 334,389 ', startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1457], toX:269, toY:303, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:4, waitingTime:0, repeatForever:'N', nextAction:[{actType:3, actSubType:'Curve To', aniTiming:0, target:[cvs_1457], elements:'M334,389 C333,345 245,285 201,390 ', startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1457], toX:136, toY:303, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:4, waitingTime:0, repeatForever:'N', nextAction:[{actType:3, actSubType:'Curve To', aniTiming:0, target:[cvs_1457], elements:'M201,390 C203,318 322,290 334,389 ', startTime:0, delay:0, duration:500, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1457], toX:269, toY:303, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:8, waitingTime:0, repeatForever:'N' }] }] }] }] }] }] }] }] }] }]]);
+  }
+    window.onload=pbonload14();
+</script>
+</section></body></html>

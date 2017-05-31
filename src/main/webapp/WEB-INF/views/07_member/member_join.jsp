@@ -52,7 +52,7 @@ $(document).ready(function() {/* 페이지 로딩이 다 된다음에 이 Functi
 			alert("<spring:message code='member.join.022' />")
 		}
 		else{
-			if($("#email-error:visible").length){
+			if($("#emailㄷ:visible").length){
 				//message : 메일 형식이 적당하지 않습니다
 				alert("<spring:message code='member.join.023' />")
 			}
@@ -91,11 +91,10 @@ $(document).ready(function() {/* 페이지 로딩이 다 된다음에 이 Functi
 			alert("<spring:message code='member.join.027' />")
 		}
 		else{
-			if($("#userId-error:visible").length){
+			if($("#userId-error:visible").length){//1일때 
 				//message : 아이디형식이 적당하지 않습니다.
 				alert("<spring:message code='member.join.028' />")
-			}
-			else{
+			}else{
 				$.ajax({
 					url:"userIdValidation.html",
 					type:"POST",
@@ -448,7 +447,7 @@ function cancelResist(){
 				<input type="hidden" id="preventSubmit" name="preventSubmit" value="0"/>
 				<input type="hidden" name="userStatus" id="userStatus" value="5"/><!-- 5는 사용대기의 의미 -->
 				<input type="hidden" name="emailValidFlag" id="emailValidFlag" value="0"/>
-				<input type="hidden" name="idValidFlag" id="idValidFlag" value="0"/>
+				<input type="hidden" name="-" id="idValidFlag" value="0"/>
 				<input type="hidden" name="userGb" id="userGb" value="127"/>
 				<input type="hidden" name="emailChkGb" id="emailChkGb" value="N"/>
 				<input type="hidden" name="isUseMail" id="isUseMail" value="true"/>

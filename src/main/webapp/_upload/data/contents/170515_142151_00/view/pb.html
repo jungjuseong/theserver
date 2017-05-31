@@ -1,0 +1,103 @@
+<!doctype html><html>
+<head>
+<style>
+  body {
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+
+  div#div_main
+  {
+    margin:0px auto
+  }
+  div#wrap
+  {
+    margin:0px auto
+  }
+</style>
+
+<meta charset="UTF-8" />
+<title>170515_142151_00</title>
+
+<script src="./script/jquery.min.js"></script>
+<script src="./script/jquery-ui.min.js"></script>
+<script src="./script/jquery.transit.js"></script>
+<script type="text/javascript" language="javascript" src="./script/cb.js"></script>
+<script type="text/javascript" language="javascript" src="./script/indexedDB.js"></script>
+
+<script>
+    var scale = ($(window).height() / 720);
+    window.onresize = function() { 
+        scale = ($(window).height() / 720);
+        $("#div_main").css("zoom",scale);
+        $("#wrap").css("width",scale*1280);
+    }
+
+    $(document).ready(function(){
+        $("#div_main").css("zoom",scale);
+        $("#wrap").css("width",scale*1280);
+        $("#contents2").hide();
+    });
+
+    function changeToggleState(cvs){
+        if(cvs.state == true) {
+            cvs.state = false;
+        }else{
+            cvs.state = true;
+        }
+    }
+    var sound1 = new Audio();
+    var sound2 = new Audio();
+
+    var omitformtags=["input", "textarea", "select"];
+
+    omitformtags=omitformtags.join("|");
+
+    function disableselect(e){
+        if (omitformtags.indexOf(e.target.tagName.toLowerCase())==-1)
+            return false;
+    }
+
+    function reEnable(){
+        return true;
+    }
+
+    if (typeof document.onselectstart!="undefined")
+        document.onselectstart=new Function ("return false");
+    else{
+        document.onmousedown=disableselect;
+        document.onmouseup=reEnable;
+    }
+
+</script>
+
+</head><body oncontextmenu="return false" onselectstart="return false" ondragstart="return false" style="background-color:#232323;overflow:hidden;">
+<section><div id="wrap"><div id="div_main" style="z-index:1; position:relative; width:1280px; height:720px; overflow:hidden " >
+<iframe id="contents"  sandbox="allow-same-origin allow-scripts" src="1-page.html" style="z-index:9999; position:absolute; left:0px; top:0px; width:1280px; height:720px; border-style:none;overflow:hidden; background-color:#232323;" > </iframe>
+</div></div>
+
+<script type="text/javascript">
+  var ConditionalTable = new Object();
+ 
+</script>
+
+<script type="text/javascript">
+  var ActionLibraryTable = new Object();
+ 
+</script>
+
+<script type="text/javascript">
+  var TargetTable = new Object();
+ 
+</script>
+
+<script type="text/javascript">
+ 
+</script>
+
+ <script>
+   function pbonload0() {
+  }
+    window.onload=pbonload0();
+</script>
+</section></body></html>

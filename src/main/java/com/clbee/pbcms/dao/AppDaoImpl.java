@@ -107,7 +107,7 @@ public class AppDaoImpl extends AbstractDAO implements AppDao {
 			if(updatedVO.getCouponGb() != null && !"".equals(updatedVO.getCouponGb() ))
 			{appVO.setCouponGb(updatedVO.getCouponGb());}
 	
-			//ÄíÆùÀº ""À» Çã¿ëÇÔ..
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ""ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½..
 			if(updatedVO.getCouponNum() != null)
 			{appVO.setCouponNum(updatedVO.getCouponNum());}
 			if(updatedVO.getDescriptionText() != null && !"".equals(updatedVO.getDescriptionText() ))
@@ -369,7 +369,7 @@ public class AppDaoImpl extends AbstractDAO implements AppDao {
 		
 		try {
 			tx = session.beginTransaction();
-			// ÇØ´ç ¾ÆÀÌµð UserÀÇ ¾Ûµî·Ï °³¼ö
+			// ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ Userï¿½ï¿½ ï¿½Ûµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			number = ((Number) session.createCriteria(AppVO.class).add(Restrictions.eq("user_id", user_id)).
 					setProjection(Projections.rowCount()).uniqueResult());
 			tx.commit();
@@ -432,7 +432,6 @@ public class AppDaoImpl extends AbstractDAO implements AppDao {
 		Transaction t = null;
 		List<BigInteger> appList = null;
 		int appSeq =0;
-		
 		try {
 			t=session.beginTransaction();
 	
@@ -575,7 +574,7 @@ public class AppDaoImpl extends AbstractDAO implements AppDao {
 					);
 				}
 			}
-			if( appList != null) {	/* appList°¡ NullÀÎ°æ¿ì´Â ¾Æ¹«·± Á¶°Ç ¾øÀÌ  */
+			if( appList != null) {	/* appListï¿½ï¿½ Nullï¿½Î°ï¿½ï¿½ï¿½ ï¿½Æ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½  */
 				if(appList.getSearchValue()!=null&&appList.getSearchValue().length()>0){
 					if(appList.getSearchType()!=null&&appList.getSearchType().length()>0){
 						appCr.add(Restrictions.and(Restrictions.like(appList.getSearchType(), "%"+appList.getSearchValue()+"%")));

@@ -79,7 +79,7 @@ public class AppServiceImpl implements AppService {
 			System.out.println(vo.size());
 			
 		}catch(Exception e){
-			System.out.println("¿¡·¯");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½");
 			e.printStackTrace();
 		}
 		return list;
@@ -144,7 +144,7 @@ public class AppServiceImpl implements AppService {
 			System.out.println(vo.size());
 			
 		}catch(Exception e){
-			System.out.println("¿¡·¯");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½");
 			e.printStackTrace();
 		}
 		return appList;
@@ -179,7 +179,7 @@ public class AppServiceImpl implements AppService {
 			System.out.println(vo.size());
 			
 		}catch(Exception e){
-			System.out.println("¿¡·¯");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½");
 			e.printStackTrace();
 		}			
 			return downloadList;
@@ -308,17 +308,17 @@ public class AppServiceImpl implements AppService {
 		
 
 		/* 1. OK
-		 * 2. À¯È¿ ³¯Â¥°¡ Áö³­¾Û.
-		 * 3. ¾Ë¼ö ¾ø´Â ¿¡·¯
-		 * 4. º¸³»ÁØ ostype°ú bundleid¿Í ÀÏÄ¡ÇÏ´Â ¾ÛÀÌ ¾ø½À´Ï´Ù.
-		 * 5. »ç¿ëÁßÁöµÈ ¾ÛÀÔ´Ï´Ù.
-		 * 6. Á¦ÇÑµÈ ¾ÛÀÔ´Ï´Ù.
+		 * 2. ï¿½ï¿½È¿ ï¿½ï¿½Â¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+		 * 3. ï¿½Ë¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		 * 4. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ostypeï¿½ï¿½ bundleidï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
+		 * 5. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
+		 * 6. ï¿½ï¿½ï¿½Ñµï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
 		 * */
 		//appVO.getMemDownStartDt()		
 		int result = 5001;
 		try {
 			if(appVO == null) {
-				/* ½Äº°ÀÚ¿Í, ostypeÀÌ ÀÏÄ¡ÇÏ´Â Á¶°ÇÀÇ Á¸ÀçÇÏ´Â ¾ÛÀÌ ¾ø½À´Ï´Ù. */
+				/* ï¿½Äºï¿½ï¿½Ú¿ï¿½, ostypeï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. */
 				result = 5004;
 			}else {
 				/*Restrictions.eq("useGb", "1"),
@@ -354,11 +354,11 @@ public class AppServiceImpl implements AppService {
 					int endYear = cal.get(Calendar.YEAR);
 				
 		
-					// 1. year(ÇöÀç ³âµµ)°¡ stYearº¸´Ù Å¬°æ¿ì month¿Í day´Â ¾Æ¹«»ó°üÀÌ¾øÀ½
-					// 2. year°¡ stYear¿Í °°À»°æ¿ì month¸¦ ºñ±³ÇÔ
-					// 3. ÀÌ¶§ month°¡ stMonthº¸´Ù Å¬°æ¿ì day´Â ¾Æ¹«»ó°üÀÌ ¾øÀ½
-					// 4. month°¡ stMonth¿Í °°À»°æ¿ì stDay¸¦ ºñ±³ÇÔ
-					// endYearµµ 1, 2, 3, 4 ¿Í °°À½
+					// 1. year(ï¿½ï¿½ï¿½ï¿½ ï¿½âµµ)ï¿½ï¿½ stYearï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ monthï¿½ï¿½ dayï¿½ï¿½ ï¿½Æ¹ï¿½ï¿½ï¿½ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½
+					// 2. yearï¿½ï¿½ stYearï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ monthï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+					// 3. ï¿½Ì¶ï¿½ monthï¿½ï¿½ stMonthï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ dayï¿½ï¿½ ï¿½Æ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+					// 4. monthï¿½ï¿½ stMonthï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ stDayï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+					// endYearï¿½ï¿½ 1, 2, 3, 4 ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 					if(year > stYear || (year == stYear && (month > stMonth || (month == stMonth && day >= stDay)))){
 						if(year < endYear || (year == endYear && (month < endMonth || (month == endMonth && day <= endDay)))){
 							result = 5001;

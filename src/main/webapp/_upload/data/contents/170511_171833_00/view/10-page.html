@@ -1,0 +1,140 @@
+<!doctype html><html>
+<head>
+<style>
+ body {
+    margin-left: 0px;
+    margin-top: 0px;
+        overflow-x:hidden;
+    overflow-y:hidden;
+  }
+</style>
+<meta charset="UTF-8" />
+<title>170511_171833_00</title>
+</head>
+ 
+<script src="./script/jquery.min.js"></script>
+<script src="./script/jquery-ui.min.js"></script>
+<script src="./script/jquery.transit.js"></script>
+<script type="text/javascript" language="javascript" src="./script/cb.js"></script>
+<script type="text/javascript" language="javascript" src="./script/indexedDB.js"></script>
+<script type="text/javascript" src="./script/jquery.touchSwipe.min.js"></script>
+<script type="text/javascript" src="./script/main.js"></script>
+<script>
+var pageNo = 10;
+    var scale = ($(window).width() / 720.000000);
+    window.onresize = function() { scale = ($(window).width() / 720.000000); $("body").css("transform-origin",'0 0'); $("body").css("transform",'scale('+scale+')'); }
+
+    $(document).ready(function(){
+        $("body").css("transform",'scale('+scale+')');
+        $("body").css("transform-origin",'0 0');
+    });
+
+    function changeToggleState(cvs){
+        if(cvs.state == true) {
+            cvs.state = false;
+        }else{
+            cvs.state = true;
+        }
+    }
+    var sound1 = new Audio();
+    var sound2 = new Audio();
+
+
+</script>
+<body id="mybody" oncontextmenu="return false" onselectstart="return false" ondragstart="return false" >
+<section><div id="div_main" style="z-index:1; position:relative; width:720px; height:1280px; overflow:hidden;background-color:#fff; " >
+<div id="cvs_1603" style="z-index:2; opacity:1.00; position:absolute; left:0px; top:0px; width:720px; height:1280px; overflow-x:hidden;  ">
+<div style="z-index:3; position:absolute; left:0px; top:0px; width:720px; height:4020px; "><canvas id="cvs_1591" style="z-index:4; position:absolute; left:0px; top:0px; " width="720px" height="4022px" >></canvas>
+</div>
+</div>
+<canvas id="cvs_1634" style="z-index:5; position:absolute; left:630px; top:30px; opacity:1" width="55px" height="46px" onmousedown="distributeAction(cvs_1634, 'down', 'N', [])" onmouseup="distributeAction(cvs_1634, 'up', 'N', [[{actType:12, actSubType: 'Next', goto:'2-page.html', startTime:0, delay:0, duration:0 }]])"></canvas>
+</div>
+
+<script type="text/javascript">
+  var element_1591;
+  var ctx_1591;
+  var id_1592 = new Image();
+  var id_1591 = new Image();
+
+  function init_1591() {
+    id_1592.src = "10p_0001.png";
+    id_1592.onload = drawAll_1591;
+    id_1591.src = "10p_0002.png";
+    id_1591.onload = drawAll_1591;
+    element_1591 = document.getElementById("cvs_1591");
+    ctx_1591 = element_1591.getContext("2d");
+    element_1591.style.pointerEvents = "none";
+
+  }
+
+  function drawAll_1591() {
+
+    ctx_1591.clearRect(0, 0, 720, 4022);
+    ctx_1591.save();
+    if (!(typeof id_1592.naturalWidth !== "undefined" && id_1592.naturalWidth === 0))
+       drawImage(ctx_1591, id_1592, 0, 2010, 720, 2012, 0);
+    ctx_1591.restore();
+    ctx_1591.save();
+    if (!(typeof id_1591.naturalWidth !== "undefined" && id_1591.naturalWidth === 0))
+       drawImage(ctx_1591, id_1591, 0, 0, 720, 2012, 0);
+    ctx_1591.restore();
+
+  }
+  init_1591();
+</script>
+<script type="text/javascript">
+  var element_1634;
+  var ctx_1634;
+  var id_1634 = new Image();
+
+  function init_1634() {
+    $(cvs_1634).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1634).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1634).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1634).css({'transform': 'rotate(0deg)'});
+    id_1634.src = "3p_0001.png";
+    id_1634.onload = drawAll_1634;
+    element_1634 = document.getElementById("cvs_1634");
+    jQuery.data(cvs_1634, "touch", "y");
+    jQuery.data(cvs_1634, "tag", []);
+    ctx_1634 = element_1634.getContext("2d");
+  }
+
+  function drawAll_1634() {
+    ctx_1634.clearRect(0, 0, 55, 46);
+    ctx_1634.save();
+    if (!(typeof id_1634.naturalWidth !== "undefined" && id_1634.naturalWidth === 0))
+       drawImage(ctx_1634, id_1634, 0, 0, 55, 46, 0);
+    ctx_1634.restore();
+  }
+ 
+  init_1634();
+</script>
+
+<script type="text/javascript">
+  var ConditionalTable = new Object();
+ 
+</script>
+
+<script type="text/javascript">
+  var ActionLibraryTable = new Object();
+ 
+</script>
+
+<script type="text/javascript">
+  var TargetTable = new Object();
+jQuery.data(TargetTable, "스크롤박스", cvs_1603);
+jQuery.data(TargetTable, "menu", cvs_1634);
+ 
+</script>
+
+<script type="text/javascript">
+ 
+</script>
+
+ <script>
+   function pbonload10() {
+  }
+    window.onload=pbonload10();
+</script>
+</section></body></html>

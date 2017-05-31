@@ -1,0 +1,147 @@
+<!doctype html><html>
+<head>
+<style>
+ body {
+    margin-left: 0px;
+    margin-top: 0px;
+        overflow-x:hidden;
+    overflow-y:hidden;
+  }
+</style>
+<meta charset="UTF-8" />
+<title>170515_160656_00</title>
+</head>
+ 
+<script src="./script/jquery.min.js"></script>
+<script src="./script/jquery-ui.min.js"></script>
+<script src="./script/jquery.transit.js"></script>
+<script type="text/javascript" language="javascript" src="./script/cb.js"></script>
+<script type="text/javascript" language="javascript" src="./script/indexedDB.js"></script>
+<script type="text/javascript" src="./script/jquery.touchSwipe.min.js"></script>
+<script type="text/javascript" src="./script/main.js"></script>
+<script>
+var pageNo = 7;
+    var scale = ($(window).width() / 720.000000);
+    window.onresize = function() { scale = ($(window).width() / 720.000000); $("body").css("transform-origin",'0 0'); $("body").css("transform",'scale('+scale+')'); }
+
+    $(document).ready(function(){
+        $("body").css("transform",'scale('+scale+')');
+        $("body").css("transform-origin",'0 0');
+    });
+
+    function changeToggleState(cvs){
+        if(cvs.state == true) {
+            cvs.state = false;
+        }else{
+            cvs.state = true;
+        }
+    }
+    var sound1 = new Audio();
+    var sound2 = new Audio();
+
+
+</script>
+<body id="mybody" oncontextmenu="return false" onselectstart="return false" ondragstart="return false" >
+<section><div id="div_main" style="z-index:1; position:relative; width:720px; height:1280px; overflow:hidden;background-color:#fff; " >
+<div id="cvs_1600" style="z-index:2; opacity:1.00; position:absolute; left:0px; top:0px; width:720px; height:1280px; overflow-x:hidden;  ">
+<div style="z-index:3; position:absolute; left:0px; top:0px; width:720px; height:4090px; "><canvas id="cvs_1579" style="z-index:4; position:absolute; left:0px; top:0px; " width="720px" height="4089px" >></canvas>
+</div>
+</div>
+<canvas id="cvs_1631" style="z-index:5; position:absolute; left:630px; top:30px; opacity:1" width="55px" height="46px" onmousedown="distributeAction(cvs_1631, 'down', 'N', [])" onmouseup="distributeAction(cvs_1631, 'up', 'N', [[{actType:12, actSubType: 'Next', goto:'2-page.html', startTime:0, delay:0, duration:0 }]])"></canvas>
+</div>
+
+<script type="text/javascript">
+  var element_1579;
+  var ctx_1579;
+  var id_1581 = new Image();
+  var id_1580 = new Image();
+  var id_1579 = new Image();
+
+  function init_1579() {
+    id_1581.src = "7p_0001.png";
+    id_1581.onload = drawAll_1579;
+    id_1580.src = "7p_0002.png";
+    id_1580.onload = drawAll_1579;
+    id_1579.src = "7p_0003.png";
+    id_1579.onload = drawAll_1579;
+    element_1579 = document.getElementById("cvs_1579");
+    ctx_1579 = element_1579.getContext("2d");
+    element_1579.style.pointerEvents = "none";
+
+  }
+
+  function drawAll_1579() {
+
+    ctx_1579.clearRect(0, 0, 720, 4089);
+    ctx_1579.save();
+    if (!(typeof id_1581.naturalWidth !== "undefined" && id_1581.naturalWidth === 0))
+       drawImage(ctx_1579, id_1581, 0, 2667, 720, 1422, 0);
+    ctx_1579.restore();
+    ctx_1579.save();
+    if (!(typeof id_1580.naturalWidth !== "undefined" && id_1580.naturalWidth === 0))
+       drawImage(ctx_1579, id_1580, 0, 1273, 720, 1397, 0);
+    ctx_1579.restore();
+    ctx_1579.save();
+    if (!(typeof id_1579.naturalWidth !== "undefined" && id_1579.naturalWidth === 0))
+       drawImage(ctx_1579, id_1579, 0, 0, 720, 1253, 0);
+    ctx_1579.restore();
+
+  }
+  init_1579();
+</script>
+<script type="text/javascript">
+  var element_1631;
+  var ctx_1631;
+  var id_1631 = new Image();
+
+  function init_1631() {
+    $(cvs_1631).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1631).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1631).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1631).css({'transform': 'rotate(0deg)'});
+    id_1631.src = "3p_0001.png";
+    id_1631.onload = drawAll_1631;
+    element_1631 = document.getElementById("cvs_1631");
+    jQuery.data(cvs_1631, "touch", "y");
+    jQuery.data(cvs_1631, "tag", []);
+    ctx_1631 = element_1631.getContext("2d");
+  }
+
+  function drawAll_1631() {
+    ctx_1631.clearRect(0, 0, 55, 46);
+    ctx_1631.save();
+    if (!(typeof id_1631.naturalWidth !== "undefined" && id_1631.naturalWidth === 0))
+       drawImage(ctx_1631, id_1631, 0, 0, 55, 46, 0);
+    ctx_1631.restore();
+  }
+ 
+  init_1631();
+</script>
+
+<script type="text/javascript">
+  var ConditionalTable = new Object();
+ 
+</script>
+
+<script type="text/javascript">
+  var ActionLibraryTable = new Object();
+ 
+</script>
+
+<script type="text/javascript">
+  var TargetTable = new Object();
+jQuery.data(TargetTable, "스크롤박스", cvs_1600);
+jQuery.data(TargetTable, "menu", cvs_1631);
+ 
+</script>
+
+<script type="text/javascript">
+ 
+</script>
+
+ <script>
+   function pbonload7() {
+  }
+    window.onload=pbonload7();
+</script>
+</section></body></html>

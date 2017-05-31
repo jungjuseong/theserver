@@ -91,10 +91,10 @@ $(document).ready(function(){
 	$('.downloadGo').click(function () {
 		var thisVal = $(this).attr("alt");
 		var spVal = thisVal.split("|&|");
-		
-		if("<c:out value='${userRole}'/>" == "[ROLE_COMPANY_DISTRIBUTOR]"){
-			if(!(/Android|iPhone|iPad/i.test(navigator.userAgent))){
 
+		if("<c:out value='${userRole}'/>" == "[ROLE_COMPANY_DISTRIBUTOR]" || "<c:out value='${userRole}'/>" == "[ROLE_COMPANY_MIDDLEADMIN]"){
+			if(!(/Android|iPhone|iPad/i.test(navigator.userAgent))){
+				//데스크탑일때
 				/* if(spVal[0] == "APP" && spVal[7] != "AppStore"){
 					alert("<spring:message code='down.list.029' />");
 					return;
@@ -135,9 +135,18 @@ $(document).ready(function(){
 				}
 				if("Android" == spVal[5]){
 					//앱인 경우
+					
 					//2는 현재 일반다운로드
 					downloadCounting('2', spVal);
-					window.location.href="${path}android/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".apk";
+					if("apk" == spVal[13]){
+						window.location.href="${path}android/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".apk";
+						console.log("${path}android/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".apk")
+					}
+					else{ 
+						window.location.href="${path}contents/"+spVal[1]+"/contents.zip";
+						console.log("${path}contents/"+spVal[1]+"/contents.zip")
+					}
+
 				}else {
 					//2는 현재 일반다운로드 라는 뜻
 					downloadCounting('2', spVal);
@@ -433,7 +442,22 @@ function goToViewScreen(path){
 											<td><a href="javascript:goToViewScreen('${fn:substring(result.FILENAME, 0, fn:indexOf(result.FILENAME, '.'))}');" class="btn btnXS view">view</a></td>
 										</c:when>
 										<c:otherwise>
-											<td><a href="#1" class="btn btnXS downloadGo" alt="${result.GUBUN}|&|${result.KEYVAL}|&|${result.NAME}|&|${result.VERNUM}|&|${result.SEQ}|&|${result.OSTYPE}|&|${result.FILENAME}|&|${result.PROVISION_GUBUN}|&|${result.DOWNCNT}|&|${result.DOWNYN}|&|${result.MEMDOWNSTDT}|&|${result.MEMDOWNENDT}|&|${result.ICON_NAME }" >download</a></td>
+											<sec:authorize access="hasRole('ROLE_COMPANY_DISTRIBUTOR')">
+												<td>
+													<c:choose>
+														<c:when test="${result.OSTYPE == 'Android'}">
+															<a href="#1" style="text-decoration:none !important; margin-right:5px;" class="btnXS downloadGo" alt="${result.GUBUN}|&|${result.KEYVAL}|&|${result.NAME}|&|${result.VERNUM}|&|${result.SEQ}|&|${result.OSTYPE}|&|${result.FILENAME}|&|${result.PROVISION_GUBUN}|&|${result.DOWNCNT}|&|${result.DOWNYN}|&|${result.MEMDOWNSTDT}|&|${result.MEMDOWNENDT}|&|${result.ICON_NAME }|&|apk" >apk</a><a href="#1" style="text-decoration:none !important;" class="btnXS downloadGo" alt="${result.GUBUN}|&|${result.KEYVAL}|&|${result.NAME}|&|${result.VERNUM}|&|${result.SEQ}|&|${result.OSTYPE}|&|${result.FILENAME}|&|${result.PROVISION_GUBUN}|&|${result.DOWNCNT}|&|${result.DOWNYN}|&|${result.MEMDOWNSTDT}|&|${result.MEMDOWNENDT}|&|${result.ICON_NAME }|&|zip" >zip</a>
+														</c:when>
+														<c:otherwise>
+															<a href="#1" style="text-decoration:none !important; margin-right:5px;" class="btnXS downloadGo" alt="${result.GUBUN}|&|${result.KEYVAL}|&|${result.NAME}|&|${result.VERNUM}|&|${result.SEQ}|&|${result.OSTYPE}|&|${result.FILENAME}|&|${result.PROVISION_GUBUN}|&|${result.DOWNCNT}|&|${result.DOWNYN}|&|${result.MEMDOWNSTDT}|&|${result.MEMDOWNENDT}|&|${result.ICON_NAME }|&|ipa" >ipa</a>
+														</c:otherwise>
+													</c:choose>
+													
+												</td>
+											</sec:authorize>
+											<sec:authorize access="!hasRole('ROLE_COMPANY_DISTRIBUTOR')">
+												<td><a href="#1" class="btn btnXS downloadGo" alt="${result.GUBUN}|&|${result.KEYVAL}|&|${result.NAME}|&|${result.VERNUM}|&|${result.SEQ}|&|${result.OSTYPE}|&|${result.FILENAME}|&|${result.PROVISION_GUBUN}|&|${result.DOWNCNT}|&|${result.DOWNYN}|&|${result.MEMDOWNSTDT}|&|${result.MEMDOWNENDT}|&|${result.ICON_NAME }" >download</a></td>
+											</sec:authorize>
 										</c:otherwise>
 									</c:choose>
 								</tr>

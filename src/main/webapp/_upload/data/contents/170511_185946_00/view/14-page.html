@@ -1,0 +1,423 @@
+<!doctype html><html>
+<head>
+<style>
+ body {
+    margin-left: 0px;
+    margin-top: 0px;
+        overflow-x:hidden;
+    overflow-y:hidden;
+  }
+</style>
+<meta charset="UTF-8" />
+<title>170511_185946_00</title>
+</head>
+ 
+<script src="./script/jquery.min.js"></script>
+<script src="./script/jquery-ui.min.js"></script>
+<script src="./script/jquery.transit.js"></script>
+<script type="text/javascript" language="javascript" src="./script/cb.js"></script>
+<script type="text/javascript" language="javascript" src="./script/indexedDB.js"></script>
+<script type="text/javascript" src="./script/jquery.touchSwipe.min.js"></script>
+<script type="text/javascript" src="./script/main.js"></script>
+<script>
+var pageNo = 14;
+    var scale = ($(window).height() / 720.000000);
+    window.onresize = function() { scale = ($(window).height() / 720.000000); $("body").css("transform-origin",'0 0'); $("body").css("transform",'scale('+scale+')'); }
+
+    $(document).ready(function(){
+        $("body").css("transform",'scale('+scale+')');
+        $("body").css("transform-origin",'0 0');
+    });
+
+    function changeToggleState(cvs){
+        if(cvs.state == true) {
+            cvs.state = false;
+        }else{
+            cvs.state = true;
+        }
+    }
+    var sound1 = new Audio();
+    var sound2 = new Audio();
+
+
+</script>
+<body id="mybody" oncontextmenu="return false" onselectstart="return false" ondragstart="return false" >
+<section><div id="div_main" style="z-index:1; position:relative; width:1280px; height:720px; overflow:hidden;background-color:#fff; " >
+<canvas id="cvs_1707" style="z-index:2; position:absolute; left:-59px; top:-31px; opacity:1" width="1391px" height="782px"></canvas>
+<canvas id="cvs_1690" style="z-index:3; position:absolute; left:132px; top:29px; opacity:0.0" width="718px" height="491px"></canvas>
+<canvas id="cvs_1691" style="z-index:4; position:absolute; left:158px; top:468px; opacity:0.0" width="422px" height="203px" onmousedown="distributeAction(cvs_1691, 'down', 'N', [[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1691], opacity:0.00, startTime:0, delay:0, duration:200, nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1691], opacity:1.00, startTime:500, delay:0, duration:200, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1691], opacity:0.00, startTime:400, delay:0, duration:200, nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1691], opacity:1.00, startTime:400, delay:0, duration:200 }] }] }] },{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1692], opacity:1.00, startTime:0, delay:0, duration:200, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1692], opacity:0.00, startTime:500, delay:0, duration:200, nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1692], opacity:1.00, startTime:400, delay:0, duration:200, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1692], opacity:0.00, startTime:400, delay:0, duration:200 }] }] }] },{actType:11, actSubType: 'Set Sound', target:[sound2], audioSrc:'14p_0007.mp3', ReadyPlayer:'NO', startTime:0, delay:0, duration:2795 }]])"></canvas>
+<canvas id="cvs_1692" style="z-index:5; position:absolute; left:176px; top:400px; opacity:0.0" width="398px" height="241px"></canvas>
+<canvas id="cvs_1693" style="z-index:6; position:absolute; left:590px; top:272px; opacity:1" width="163px" height="306px" onmousedown="distributeAction(cvs_1693, 'down', 'N', [[{actType:11, actSubType: 'Set Sound', target:[sound2], audioSrc:'14p_0008.mp3', ReadyPlayer:'NO', startTime:0, delay:0, duration:2951 },{context:ctx_1693, image:id_1693, actType:4, actSubType:'', aniTiming:0, target:[cvs_1693], toX:597, toY:257, scaleWidth: '173px', scaleHeight: '324px', originWidth: '0px', originHeight: '0px', startTime:0, delay:200, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:2, waitingTime:0, repeatForever:'N' }]])"></canvas>
+<canvas id="cvs_1694" style="z-index:7; position:absolute; left:740px; top:474px; opacity:1" width="430px" height="206px" onmousedown="distributeAction(cvs_1694, 'down', 'N', [[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1694], opacity:0.00, startTime:6, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1694], opacity:1.00, startTime:300, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1694], opacity:0.00, startTime:300, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1694], opacity:1.00, startTime:300, delay:0, duration:500 }] }] }] },{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1695], opacity:1.00, startTime:6, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1695], opacity:0.00, startTime:300, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1695], opacity:1.00, startTime:300, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1695], opacity:0.00, startTime:300, delay:0, duration:500 }] }] }] },{actType:11, actSubType: 'Set Sound', target:[sound2], audioSrc:'14p_0007.mp3', ReadyPlayer:'NO', startTime:0, delay:0, duration:2795 }]])"></canvas>
+<canvas id="cvs_1695" style="z-index:8; position:absolute; left:709px; top:416px; opacity:0.0" width="443px" height="268px"></canvas>
+<canvas id="cvs_1696" style="z-index:9; position:absolute; left:1167px; top:596px; opacity:1" width="72px" height="85px" onmousedown="distributeAction(cvs_1696, 'down', 'N', [])" onmouseup="distributeAction(cvs_1696, 'up', 'N', [[{actType:12, actSubType: 'Next', goto:'15-page.html', startTime:0, delay:0, duration:0 }]])"></canvas>
+<canvas id="cvs_1697" style="z-index:10; position:absolute; left:44px; top:596px; opacity:1" width="72px" height="85px" onmousedown="distributeAction(cvs_1697, 'down', 'N', [])" onmouseup="distributeAction(cvs_1697, 'up', 'N', [[{actType:12, actSubType: 'Next', goto:'13-page.html', startTime:0, delay:0, duration:0 }]])"></canvas>
+<canvas id="cvs_1698" style="z-index:11; position:absolute; left:25px; top:25px; opacity:1" width="94px" height="95px" onmousedown="distributeAction(cvs_1698, 'down', 'N', [])" onmouseup="distributeAction(cvs_1698, 'up', 'N', [[{actType:12, actSubType: 'Next', goto:'Home' , startTime:0, delay:0, duration:0 }]])"></canvas>
+<canvas id="cvs_1699" style="z-index:12; position:absolute; left:29px; top:-43px; opacity:1" width="40px" height="39px"></canvas>
+</div>
+
+<script type="text/javascript">
+  var element_1707;
+  var ctx_1707;
+  var id_1707 = new Image();
+
+  function init_1707() {
+    $(cvs_1707).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1707).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1707).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1707).css({'transform': 'rotate(0deg)'});
+    id_1707.src = "14p_0001.png";
+    id_1707.onload = drawAll_1707;
+    element_1707 = document.getElementById("cvs_1707");
+    jQuery.data(cvs_1707, "touch", "n");
+    jQuery.data(cvs_1707, "tag", []);
+    ctx_1707 = element_1707.getContext("2d");
+    element_1707.style.pointerEvents = "none";
+  }
+
+  function drawAll_1707() {
+    ctx_1707.clearRect(0, 0, 1391, 782);
+    ctx_1707.save();
+    if (!(typeof id_1707.naturalWidth !== "undefined" && id_1707.naturalWidth === 0))
+       drawImage(ctx_1707, id_1707, 0, 0, 1391, 782, 0);
+    ctx_1707.restore();
+  }
+ 
+  init_1707();
+</script>
+
+<script type="text/javascript">
+  var element_1690;
+  var ctx_1690;
+  var id_1690 = new Image();
+
+  function init_1690() {
+    $(cvs_1690).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1690).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1690).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1690).css({'transform': 'rotate(0deg)'});
+    id_1690.src = "text_14_1690.png";
+    id_1690.onload = drawAll_1690;
+    element_1690 = document.getElementById("cvs_1690");
+    jQuery.data(cvs_1690, "touch", "n");
+    jQuery.data(cvs_1690, "tag", []);
+    ctx_1690 = element_1690.getContext("2d");
+    element_1690.style.opacity=0.00;
+  }
+
+  function drawAll_1690() {
+    ctx_1690.clearRect(0, 0, 718, 491);
+    ctx_1690.save();
+    if (!(typeof id_1690.naturalWidth !== "undefined" && id_1690.naturalWidth === 0))
+       drawImage(ctx_1690, id_1690, 0, 0, 718, 491, 0);
+    ctx_1690.restore();
+  }
+ 
+  init_1690();
+</script>
+
+<script type="text/javascript">
+  var element_1691;
+  var ctx_1691;
+  var id_1691 = new Image();
+
+  function init_1691() {
+    $(cvs_1691).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1691).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1691).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1691).css({'transform': 'rotate(0deg)'});
+    id_1691.src = "14p_0002.png";
+    id_1691.onload = drawAll_1691;
+    element_1691 = document.getElementById("cvs_1691");
+    jQuery.data(cvs_1691, "touch", "y");
+    jQuery.data(cvs_1691, "tag", []);
+    ctx_1691 = element_1691.getContext("2d");
+    element_1691.style.opacity=0.00;
+  }
+
+  function drawAll_1691() {
+    ctx_1691.clearRect(0, 0, 422, 203);
+    ctx_1691.save();
+    if (!(typeof id_1691.naturalWidth !== "undefined" && id_1691.naturalWidth === 0))
+       drawImage(ctx_1691, id_1691, 0, 0, 422, 203, 0);
+    ctx_1691.restore();
+  }
+ 
+  init_1691();
+</script>
+
+<script type="text/javascript">
+  var element_1692;
+  var ctx_1692;
+  var id_1692 = new Image();
+
+  function init_1692() {
+    $(cvs_1692).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1692).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1692).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1692).css({'transform': 'rotate(0deg)'});
+    id_1692.src = "14p_0003.png";
+    id_1692.onload = drawAll_1692;
+    element_1692 = document.getElementById("cvs_1692");
+    jQuery.data(cvs_1692, "touch", "n");
+    jQuery.data(cvs_1692, "tag", []);
+    ctx_1692 = element_1692.getContext("2d");
+    element_1692.style.opacity=0.00;
+  }
+
+  function drawAll_1692() {
+    ctx_1692.clearRect(0, 0, 398, 241);
+    ctx_1692.save();
+    if (!(typeof id_1692.naturalWidth !== "undefined" && id_1692.naturalWidth === 0))
+       drawImage(ctx_1692, id_1692, 0, 0, 398, 241, 0);
+    ctx_1692.restore();
+  }
+ 
+  init_1692();
+</script>
+
+<script type="text/javascript">
+  var element_1693;
+  var ctx_1693;
+  var id_1693 = new Image();
+
+  function init_1693() {
+    $(cvs_1693).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1693).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1693).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1693).css({'transform': 'rotate(0deg)'});
+    id_1693.src = "14p_0004.png";
+    id_1693.onload = drawAll_1693;
+    element_1693 = document.getElementById("cvs_1693");
+    jQuery.data(cvs_1693, "touch", "y");
+    jQuery.data(cvs_1693, "tag", []);
+    ctx_1693 = element_1693.getContext("2d");
+  }
+
+  function drawAll_1693() {
+    ctx_1693.clearRect(0, 0, 163, 306);
+    ctx_1693.save();
+    if (!(typeof id_1693.naturalWidth !== "undefined" && id_1693.naturalWidth === 0))
+       drawImage(ctx_1693, id_1693, 0, 0, 163, 306, 0);
+    ctx_1693.restore();
+  }
+ 
+  init_1693();
+</script>
+
+<script type="text/javascript">
+  var element_1694;
+  var ctx_1694;
+  var id_1694 = new Image();
+
+  function init_1694() {
+    $(cvs_1694).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1694).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1694).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1694).css({'transform': 'rotate(0deg)'});
+    id_1694.src = "14p_0005.png";
+    id_1694.onload = drawAll_1694;
+    element_1694 = document.getElementById("cvs_1694");
+    jQuery.data(cvs_1694, "touch", "y");
+    jQuery.data(cvs_1694, "tag", []);
+    ctx_1694 = element_1694.getContext("2d");
+  }
+
+  function drawAll_1694() {
+    ctx_1694.clearRect(0, 0, 430, 206);
+    ctx_1694.save();
+    if (!(typeof id_1694.naturalWidth !== "undefined" && id_1694.naturalWidth === 0))
+       drawImage(ctx_1694, id_1694, 0, 0, 430, 206, 0);
+    ctx_1694.restore();
+  }
+ 
+  init_1694();
+</script>
+
+<script type="text/javascript">
+  var element_1695;
+  var ctx_1695;
+  var id_1695 = new Image();
+
+  function init_1695() {
+    $(cvs_1695).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1695).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1695).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1695).css({'transform': 'rotate(0deg)'});
+    id_1695.src = "14p_0006.png";
+    id_1695.onload = drawAll_1695;
+    element_1695 = document.getElementById("cvs_1695");
+    jQuery.data(cvs_1695, "touch", "n");
+    jQuery.data(cvs_1695, "tag", []);
+    ctx_1695 = element_1695.getContext("2d");
+    element_1695.style.opacity=0.00;
+  }
+
+  function drawAll_1695() {
+    ctx_1695.clearRect(0, 0, 443, 268);
+    ctx_1695.save();
+    if (!(typeof id_1695.naturalWidth !== "undefined" && id_1695.naturalWidth === 0))
+       drawImage(ctx_1695, id_1695, 0, 0, 443, 268, 0);
+    ctx_1695.restore();
+  }
+ 
+  init_1695();
+</script>
+
+<script type="text/javascript">
+  var element_1696;
+  var ctx_1696;
+  var id_1696 = new Image();
+
+  function init_1696() {
+    $(cvs_1696).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1696).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1696).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1696).css({'transform': 'rotate(0deg)'});
+    id_1696.src = "2p_0015.png";
+    id_1696.onload = drawAll_1696;
+    element_1696 = document.getElementById("cvs_1696");
+    jQuery.data(cvs_1696, "touch", "y");
+    jQuery.data(cvs_1696, "tag", []);
+    ctx_1696 = element_1696.getContext("2d");
+  }
+
+  function drawAll_1696() {
+    ctx_1696.clearRect(0, 0, 72, 85);
+    ctx_1696.save();
+    if (!(typeof id_1696.naturalWidth !== "undefined" && id_1696.naturalWidth === 0))
+       drawImage(ctx_1696, id_1696, 0, 0, 72, 85, 0);
+    ctx_1696.restore();
+  }
+ 
+  init_1696();
+</script>
+
+<script type="text/javascript">
+  var element_1697;
+  var ctx_1697;
+  var id_1697 = new Image();
+
+  function init_1697() {
+    $(cvs_1697).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1697).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1697).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1697).css({'transform': 'rotate(0deg)'});
+    id_1697.src = "2p_0015.png";
+    id_1697.onload = drawAll_1697;
+    element_1697 = document.getElementById("cvs_1697");
+    jQuery.data(cvs_1697, "touch", "y");
+    jQuery.data(cvs_1697, "tag", []);
+    ctx_1697 = element_1697.getContext("2d");
+  }
+
+  function drawAll_1697() {
+    ctx_1697.clearRect(0, 0, 72, 85);
+    ctx_1697.save();
+    ctx_1697.translate(36, 42);
+    if (!(typeof id_1697.naturalWidth !== "undefined" && id_1697.naturalWidth === 0))
+       drawImage(ctx_1697, id_1697, -36, -42, 72, 85, 180);
+    ctx_1697.restore();
+  }
+ 
+  init_1697();
+</script>
+
+<script type="text/javascript">
+  var element_1698;
+  var ctx_1698;
+  var id_1698 = new Image();
+
+  function init_1698() {
+    $(cvs_1698).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1698).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1698).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1698).css({'transform': 'rotate(0deg)'});
+    id_1698.src = "2p_0016.png";
+    id_1698.onload = drawAll_1698;
+    element_1698 = document.getElementById("cvs_1698");
+    jQuery.data(cvs_1698, "touch", "y");
+    jQuery.data(cvs_1698, "tag", []);
+    ctx_1698 = element_1698.getContext("2d");
+  }
+
+  function drawAll_1698() {
+    ctx_1698.clearRect(0, 0, 94, 95);
+    ctx_1698.save();
+    if (!(typeof id_1698.naturalWidth !== "undefined" && id_1698.naturalWidth === 0))
+       drawImage(ctx_1698, id_1698, 0, 0, 94, 95, 0);
+    ctx_1698.restore();
+  }
+ 
+  init_1698();
+</script>
+
+<script type="text/javascript">
+  var element_1699;
+  var ctx_1699;
+  var id_1699 = new Image();
+
+  function init_1699() {
+    $(cvs_1699).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1699).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1699).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1699).css({'transform': 'rotate(0deg)'});
+    id_1699.src = "text_14_1699.png";
+    id_1699.onload = drawAll_1699;
+    element_1699 = document.getElementById("cvs_1699");
+    jQuery.data(cvs_1699, "touch", "n");
+    jQuery.data(cvs_1699, "tag", []);
+    ctx_1699 = element_1699.getContext("2d");
+    element_1699.style.pointerEvents = "none";
+  }
+
+  function drawAll_1699() {
+    ctx_1699.clearRect(0, 0, 40, 39);
+    ctx_1699.save();
+    if (!(typeof id_1699.naturalWidth !== "undefined" && id_1699.naturalWidth === 0))
+       drawImage(ctx_1699, id_1699, 0, 0, 40, 39, 0);
+    ctx_1699.restore();
+  }
+ 
+  init_1699();
+</script>
+
+<script type="text/javascript">
+  var ConditionalTable = new Object();
+ 
+</script>
+
+<script type="text/javascript">
+  var ActionLibraryTable = new Object();
+ 
+</script>
+
+<script type="text/javascript">
+  var TargetTable = new Object();
+jQuery.data(TargetTable, "7화_13,14", cvs_1707);
+jQuery.data(TargetTable, "텍스트", cvs_1690);
+jQuery.data(TargetTable, "7화_13_다리들기 전 성장이", cvs_1691);
+jQuery.data(TargetTable, "7화_13_다리들기 후 성장이", cvs_1692);
+jQuery.data(TargetTable, "7화_13_운동알려주는 지킴이", cvs_1693);
+jQuery.data(TargetTable, "7화_13_윗몸일으키기 전 성장이", cvs_1694);
+jQuery.data(TargetTable, "7화_13_윗몸일으키기 후 성장이", cvs_1695);
+jQuery.data(TargetTable, "arrow btn", cvs_1696);
+jQuery.data(TargetTable, "arrow btn-1", cvs_1697);
+jQuery.data(TargetTable, "홈버튼", cvs_1698);
+jQuery.data(TargetTable, "나레이션", cvs_1699);
+ 
+</script>
+
+<script type="text/javascript">
+ 
+</script>
+
+ <script>
+  function pbonload14() {
+     var key = [];
+     var dataString = [];
+ 	distributeAction(null, 'up', 'N', [[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1690], opacity:1.00, startTime:0, delay:0, duration:500 },{actType:1, actSubType:'Show', aniTiming:0, target:[cvs_1697], callfunc:'drawAll_1697', startTime:0, delay:0, duration:0 },{actType:1, actSubType:'Show', aniTiming:0, target:[cvs_1696], callfunc:'drawAll_1696', startTime:0, delay:0, duration:0 },{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1699], toX:30, toY:-43, effectSound:'14p_0011.mp3', startTime:500, delay:0, duration:16000, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1699], toX:30, toY:-43, effectSound:'14p_0010.mp3', startTime:0, delay:0, duration:10000, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1699], toX:30, toY:-43, effectSound:'14p_0009.mp3', startTime:0, delay:0, duration:10000 }] }] },{context:ctx_1693, image:id_1693, actType:4, actSubType:'', aniTiming:0, target:[cvs_1693], toX:586, toY:256, scaleWidth: '170px', scaleHeight: '319px', originWidth: '0px', originHeight: '0px', startTime:500, delay:0, duration:600, reverse:'Y', aniTiming:0, revDuration:600, repeatCount:15, waitingTime:0, repeatForever:'N' },{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1694], opacity:0.00, startTime:1001, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1694], opacity:1.00, startTime:300, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1694], opacity:0.00, startTime:300, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1694], opacity:1.00, startTime:300, delay:0, duration:500 }] }] }] },{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1695], opacity:1.00, startTime:1001, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1695], opacity:0.00, startTime:300, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1695], opacity:1.00, startTime:300, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1695], opacity:0.00, startTime:300, delay:0, duration:500 }] }] }] },{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1691], opacity:1.00, startTime:12000, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1691], opacity:0.00, startTime:0, delay:0, duration:200, nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1691], opacity:1.00, startTime:500, delay:0, duration:200, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1691], opacity:0.00, startTime:400, delay:0, duration:200, nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1691], opacity:1.00, startTime:400, delay:0, duration:200 }] }] }] },{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1692], opacity:1.00, startTime:0, delay:0, duration:200, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1692], opacity:0.00, startTime:500, delay:0, duration:200, nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1692], opacity:1.00, startTime:400, delay:0, duration:200, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1692], opacity:0.00, startTime:400, delay:0, duration:200 }] }] }] }] },{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1694], opacity:0.00, startTime:4508, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1694], opacity:1.00, startTime:300, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1694], opacity:0.00, startTime:300, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1694], opacity:1.00, startTime:300, delay:0, duration:500 }] }] }] },{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1695], opacity:1.00, startTime:4508, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1695], opacity:0.00, startTime:300, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1695], opacity:1.00, startTime:300, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1695], opacity:0.00, startTime:300, delay:0, duration:500 }] }] }] },{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1694], opacity:0.00, startTime:8005, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1694], opacity:1.00, startTime:300, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1694], opacity:0.00, startTime:300, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1694], opacity:1.00, startTime:300, delay:0, duration:500 }] }] }] },{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1695], opacity:1.00, startTime:8005, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1695], opacity:0.00, startTime:300, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1695], opacity:1.00, startTime:300, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1695], opacity:0.00, startTime:300, delay:0, duration:500 }] }] }] },{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1691], opacity:1.00, startTime:15300, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1691], opacity:0.00, startTime:0, delay:0, duration:200, nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1691], opacity:1.00, startTime:500, delay:0, duration:200, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1691], opacity:0.00, startTime:400, delay:0, duration:200, nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1691], opacity:1.00, startTime:400, delay:0, duration:200 }] }] }] },{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1692], opacity:1.00, startTime:0, delay:0, duration:200, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1692], opacity:0.00, startTime:500, delay:0, duration:200, nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1692], opacity:1.00, startTime:400, delay:0, duration:200, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1692], opacity:0.00, startTime:400, delay:0, duration:200 }] }] }] }] },{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1691], opacity:1.00, startTime:18600, delay:0, duration:500, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1691], opacity:0.00, startTime:0, delay:0, duration:200, nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1691], opacity:1.00, startTime:500, delay:0, duration:200, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1691], opacity:0.00, startTime:400, delay:0, duration:200, nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1691], opacity:1.00, startTime:400, delay:0, duration:200 }] }] }] },{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1692], opacity:1.00, startTime:0, delay:0, duration:200, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1692], opacity:0.00, startTime:500, delay:0, duration:200, nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1692], opacity:1.00, startTime:400, delay:0, duration:200, nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1692], opacity:0.00, startTime:400, delay:0, duration:200 }] }] }] }] },{context:ctx_1707, image:id_1707, actType:4, actSubType:'', aniTiming:0, target:[cvs_1707], toX:-7, toY:-5, scaleWidth: '1289px', scaleHeight: '725px', originWidth: '0px', originHeight: '0px', startTime:0, delay:0, duration:2000, reverse:'Y', aniTiming:0, revDuration:2000, repeatCount:0, waitingTime:0, repeatForever:'Y' },{actType:11, actSubType: 'Set Sound', target:[sound1], audioSrc:'2p_0021.mp3', ReadyPlayer:'NO', startTime:0, delay:0, duration:93204, repeatForever:'Y', reverse:'N', aniTiming:0, revDuration:0, repeatCount:0, waitingTime:0, repeatForever:'Y' }]]);
+  }
+    window.onload=pbonload14();
+</script>
+</section></body></html>

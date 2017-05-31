@@ -47,16 +47,16 @@ public class MemberServiceImpl implements MemberService/*, UserDetailsService*/ 
 
 			MemberVO memberVO =  (MemberVO)iter.next();
 			if("1".equals(memberVO.getUserStatus())){
-				// Å»Åð
+				// Å»ï¿½ï¿½
 				return 3;
 			}else if("2".equals(memberVO.getUserStatus())) {
-				// Á¤Áö
+				// ï¿½ï¿½ï¿½ï¿½
 				return 4;
 			}else if("3".equals(memberVO.getUserStatus())) {
-				// °­Á¦ Å»Åð
+				// ï¿½ï¿½ï¿½ï¿½ Å»ï¿½ï¿½
 				return 5;
 			}else if("5".equals(memberVO.getUserStatus())) {
-				// »ç¿ë ´ë±â
+				// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 				return 6;
 			}else if("4".equals(memberVO.getUserStatus())) {
 			
@@ -97,13 +97,11 @@ public class MemberServiceImpl implements MemberService/*, UserDetailsService*/ 
 							int endDay = cal.get(Calendar.DAY_OF_MONTH);
 							int endYear = cal.get(Calendar.YEAR);
 							
-			
-	
-							// 1. year(ÇöÀç ³âµµ)°¡ stYearº¸´Ù Å¬°æ¿ì month¿Í day´Â ¾Æ¹«»ó°üÀÌ¾øÀ½
-							// 2. year°¡ stYear¿Í °°À»°æ¿ì month¸¦ ºñ±³ÇÔ
-							// 3. ÀÌ¶§ month°¡ stMonthº¸´Ù Å¬°æ¿ì day´Â ¾Æ¹«»ó°üÀÌ ¾øÀ½
-							// 4. month°¡ stMonth¿Í °°À»°æ¿ì stDay¸¦ ºñ±³ÇÔ
-							// endYearµµ 1, 2, 3, 4 ¿Í °°À½
+							// 1. year(ï¿½ï¿½ï¿½ï¿½ ï¿½âµµ)ï¿½ï¿½ stYearï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ monthï¿½ï¿½ dayï¿½ï¿½ ï¿½Æ¹ï¿½ï¿½ï¿½ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½
+							// 2. yearï¿½ï¿½ stYearï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ monthï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+							// 3. ï¿½Ì¶ï¿½ monthï¿½ï¿½ stMonthï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ dayï¿½ï¿½ ï¿½Æ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+							// 4. monthï¿½ï¿½ stMonthï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ stDayï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+							// endYearï¿½ï¿½ 1, 2, 3, 4 ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 							if(year > stYear || (year == stYear && (month > stMonth || (month == stMonth && day >= stDay)))){
 								if(year < endYear || (year == endYear && (month < endMonth || (month == endMonth && day <= endDay)))){
 									return 1;
@@ -235,7 +233,7 @@ public class MemberServiceImpl implements MemberService/*, UserDetailsService*/ 
 				System.out.println("selectList[] " + vo.size());
 				System.out.println(vo.size());
 			}catch(Exception e){
-				System.out.println("¿¡·¯");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½");
 				e.printStackTrace();
 			}
 		return list;

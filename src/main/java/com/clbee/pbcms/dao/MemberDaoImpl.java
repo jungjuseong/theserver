@@ -68,7 +68,7 @@ public class MemberDaoImpl implements MemberDao {
 			if(updatedVO.getCompanySeq() != 0 ) 
 				memberVO.setCompanySeq(updatedVO.getCompanySeq());
 			
-			//¸ÞÀÏÀº ºóÄ­À¸·Î ¼öÁ¤µÉ ¼ö ÀÖÀ½.
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 			if(updatedVO.getEmail() != null )
 				memberVO.setEmail(updatedVO.getEmail());	
 			if(updatedVO.getEmailChkDt() != null )
@@ -92,7 +92,7 @@ public class MemberDaoImpl implements MemberDao {
 			if(updatedVO.getUserGb() != null && !"".equals(updatedVO.getUserGb()))
 				memberVO.setUserGb(updatedVO.getUserGb());
 			if(updatedVO.getUserId() != null && !"".equals(updatedVO.getUserId()))
-				memberVO.setUserId(updatedVO.getUserId());										/*ºó°ø°£ÀÏ°æ¿ìÀÇ ÇØ½¬°ª*/
+				memberVO.setUserId(updatedVO.getUserId());										/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½ï¿½ï¿½*/
 			if(updatedVO.getUserPw() != null && !"".equals(updatedVO.getUserPw()) && !"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855".equals(updatedVO.getUserPw()))
 				memberVO.setUserPw(updatedVO.getUserPw());
 			if(updatedVO.getUserStatus() != null && !"".equals(updatedVO.getUserStatus()))
@@ -137,16 +137,18 @@ public class MemberDaoImpl implements MemberDao {
 		try {
 			tx = session.beginTransaction();
 			Criteria cr = session.createCriteria(MemberVO.class);
-			cr.add(Restrictions.eq( DBname, itSelf));
-
+			cr.add(Restrictions.eq( DBname, itSelf)); // where
+			
 			MemberVO memberVO = (MemberVO)cr.uniqueResult();
 			tx.commit();
+			
 			if(memberVO == null){
 				return 0;
 			}else{
 				return 1;
 			}
 		}catch (Exception e) {
+			System.out.println("ì—¬ê¸°6 ");
 			if(tx != null) tx.rollback();
 			e.printStackTrace();
 			return 2;
@@ -198,7 +200,7 @@ public class MemberDaoImpl implements MemberDao {
 			cr.add(user);
 			memberVO = (MemberVO) cr.uniqueResult();
 	
-			/*	ÀÌ ¿¹Á¦´Â username¿¡ ÇØ´çÇÏ´Â ºÎºÐÀÌ idÀÏ°æ¿ì¿¡ °¡´É
+			/*	ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ usernameï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½Îºï¿½ï¿½ï¿½ idï¿½Ï°ï¿½ì¿¡ ï¿½ï¿½ï¿½ï¿½
 				MemberVO memberVO = (MemberVO) session.load(MemberVO.class, username); 
 			*/
 			tx.commit();
@@ -250,7 +252,7 @@ public class MemberDaoImpl implements MemberDao {
 		try {
 			tx = session.beginTransaction();
 			Criteria cr = session.createCriteria(MemberVO.class);
-			/* °³ÀÎÈ¸¿ø ÀÏ°æ¿ì nullÀ» ¸®ÅÏÇÑ´Ù.*/
+			/* ï¿½ï¿½ï¿½ï¿½È¸ï¿½ï¿½ ï¿½Ï°ï¿½ï¿½ nullï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.*/
 			if(companySeq == 0)return null;
 			else{
 				cr.add(
@@ -432,14 +434,14 @@ public class MemberDaoImpl implements MemberDao {
 	
 	
 	/**
-     * ±â¾÷ È¸¿ø, ¼­ºñ½º °ü¸®ÀÚÀÏ¶§ °¢°¢ ListMember¸¦ ºÒ·¯¿Â´Ù
+     * ï¿½ï¿½ï¿½ È¸ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ListMemberï¿½ï¿½ ï¿½Ò·ï¿½ï¿½Â´ï¿½
      *
-     * @param startNo ¾îµð¼­ºÎÅÍ °¡Á®¿ÃÁö
-     * @param companySeq ¾î´À ±â¾÷Á¤º¸¸¦ °¡Á®¿ÃÁö ( ±â¾÷ È¸¿ø )
-     * @param MaxResult ÇÑ¹ø¿¡ °¡Á®¿Ã ÃÖ´ë ¸®½ºÆ® Á¦ÇÑ
-     * @param searchType °Ë»öÇÒ¶§ searchTypeÀÌ ÀÌ¸§ÀÎÁö ¾ÆÀÌµðÀÎÁö µî
-     * @param searchValue °Ë»ö String°ª
-     * @param isMember ÀÌ ±â´ÉÀ» ¾²´Â»ç¶÷ÀÇ ±ÇÇÑÀÌ MemberÀÎÁö Admin_ServiceÀÎÁö
+     * @param startNo ï¿½ï¿½ð¼­ºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+     * @param companySeq ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ( ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ )
+     * @param MaxResult ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+     * @param searchType ï¿½Ë»ï¿½ï¿½Ò¶ï¿½ searchTypeï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+     * @param searchValue ï¿½Ë»ï¿½ Stringï¿½ï¿½
+     * @param isMember ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Memberï¿½ï¿½ï¿½ï¿½ Admin_Serviceï¿½ï¿½ï¿½ï¿½
      * @return List<MemberVO>
      */
 	
@@ -566,7 +568,7 @@ public class MemberDaoImpl implements MemberDao {
 								.setParameter("companySeq", companySeq);
 					}
 				}
-			}else{/* ¸¸¾à isMember°¡ false ÀÌ¸é => ¼­ºñ½º °ü¸®ÀÚ*/
+			}else{/* ï¿½ï¿½ï¿½ï¿½ isMemberï¿½ï¿½ false ï¿½Ì¸ï¿½ => ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 				if("userId".equals(searchType)) {
 					System.out.println("searchType Is userId");
 					if(isAvailable != null && "false".equals(isAvailable)){
@@ -575,7 +577,7 @@ public class MemberDaoImpl implements MemberDao {
 							+ " ORDER BY E.regDt DESC ")
 							.setFirstResult(startNo)
 							.setMaxResults(10)
-							.setParameter("userGb", "127")		/* userGb°¡ È¸¿øÀÌ¸é ¸ðµÎ °¡Á®¿È */
+							.setParameter("userGb", "127")		/* userGbï¿½ï¿½ È¸ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 							.setParameter("userId", "%"+searchValue+"%")
 							.setParameter("userStatus1", "4")
 							.setParameter("userStatus2", "5");
@@ -585,7 +587,7 @@ public class MemberDaoImpl implements MemberDao {
 								+ " ORDER BY E.regDt DESC ")
 								.setFirstResult(startNo)
 								.setMaxResults(10)
-								.setParameter("userGb", "127")		/* userGb°¡ È¸¿øÀÌ¸é ¸ðµÎ °¡Á®¿È */
+								.setParameter("userGb", "127")		/* userGbï¿½ï¿½ È¸ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 								.setParameter("userId", "%"+searchValue+"%");
 					}
 				}else if("userName".equals(searchType)) {
@@ -597,7 +599,7 @@ public class MemberDaoImpl implements MemberDao {
 							.setString("fullName", "%"+searchValue+"%")
 							.setFirstResult(startNo)
 							.setMaxResults(10)
-							.setParameter("userGb", "127")		/* userGb°¡ È¸¿øÀÌ¸é ¸ðµÎ °¡Á®¿È */
+							.setParameter("userGb", "127")		/* userGbï¿½ï¿½ È¸ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 							.setParameter("userStatus1", "4")
 							.setParameter("userStatus2", "5");
 					}else {
@@ -607,7 +609,7 @@ public class MemberDaoImpl implements MemberDao {
 								.setString("fullName", "%"+searchValue+"%")
 								.setFirstResult(startNo)
 								.setMaxResults(10)
-								.setParameter("userGb", "127");		/* userGb°¡ È¸¿øÀÌ¸é ¸ðµÎ °¡Á®¿È */
+								.setParameter("userGb", "127");		/* userGbï¿½ï¿½ È¸ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 					}
 				}else {
 					System.out.println("searchType Is Anonymous");
@@ -617,7 +619,7 @@ public class MemberDaoImpl implements MemberDao {
 							+ " ORDER BY E.regDt DESC ")
 							.setFirstResult(startNo)
 							.setMaxResults(10)
-							.setParameter("userGb", "127")		/* userGb°¡ È¸¿øÀÌ¸é ¸ðµÎ °¡Á®¿È */
+							.setParameter("userGb", "127")		/* userGbï¿½ï¿½ È¸ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 							.setParameter("userStatus1", "4")
 							.setParameter("userStatus2", "5");
 					}else {
@@ -626,7 +628,7 @@ public class MemberDaoImpl implements MemberDao {
 								+ " ORDER BY E.regDt DESC ")
 								.setFirstResult(startNo)
 								.setMaxResults(10)
-								.setParameter("userGb", "127");		/* userGb°¡ È¸¿øÀÌ¸é ¸ðµÎ °¡Á®¿È */
+								.setParameter("userGb", "127");		/* userGbï¿½ï¿½ È¸ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 					}
 				}
 			}
@@ -660,7 +662,7 @@ public class MemberDaoImpl implements MemberDao {
 		try {
 			tx = session.beginTransaction();
 			
-			// ±â¾÷ »ç¿ëÀÚ °ü¸® ±â´É ¸Þ¼Òµå ( ±â¾÷ »ç¿ëÀÚÀÇ Á¤º¸µéÀ» °¡Á®¿À´Â Á¤º¸µé )
+			// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½ ( ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ )
 			
 			Query query = null;
 			if( isMember == true) {
@@ -721,7 +723,7 @@ public class MemberDaoImpl implements MemberDao {
 								.setParameter("userId", "%"+searchValue+"%");
 					}
 				}else if("twodepartmentName".equals(searchType)){
-					//¸Þ·Õ
+					//ï¿½Þ·ï¿½
 					if(isAvailable != null && "false".equals(isAvailable)){
 					query = session.createQuery("FROM MemberVO E "
 							+ "WHERE (E.companySeq = :companySeq AND E.twodepartmentName like :twodepartmentName )"
@@ -765,7 +767,7 @@ public class MemberDaoImpl implements MemberDao {
 						query = session.createQuery("FROM MemberVO E "
 							+ "WHERE (E.userGb = :userGb AND E.userId like :userId ) AND (E.userStatus = :userStatus1 OR E.userStatus = :userStatus2)"
 							+ " ORDER BY E.regDt DESC ")
-							.setParameter("userGb", "127")		/* userGb°¡ È¸¿øÀÌ¸é ¸ðµÎ °¡Á®¿È */
+							.setParameter("userGb", "127")		/* userGbï¿½ï¿½ È¸ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 							.setParameter("userId", "%"+searchValue+"%")
 							.setParameter("userStatus1", "4")
 							.setParameter("userStatus2", "5");
@@ -783,7 +785,7 @@ public class MemberDaoImpl implements MemberDao {
 							+ "WHERE (E.userGb = :userGb AND concat(E.lastName, E.firstName) like :fullName) AND (E.userStatus = :userStatus1 OR E.userStatus = :userStatus2)"
 							+ " ORDER BY E.regDt DESC ")
 							.setString("fullName", "%"+searchValue+"%")
-							.setParameter("userGb", "127")		/* userGb°¡ È¸¿øÀÌ¸é ¸ðµÎ °¡Á®¿È */
+							.setParameter("userGb", "127")		/* userGbï¿½ï¿½ È¸ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 							.setParameter("userStatus1", "4")
 							.setParameter("userStatus2", "5");
 					}else {
@@ -799,7 +801,7 @@ public class MemberDaoImpl implements MemberDao {
 						query = session.createQuery("FROM MemberVO E "
 							+ "WHERE (E.userGb = :userGb) AND (E.userStatus = :userStatus1 OR E.userStatus = :userStatus2)"
 							+ " ORDER BY E.regDt DESC ")
-							.setParameter("userGb", "127")		/* userGb°¡ È¸¿øÀÌ¸é ¸ðµÎ °¡Á®¿È */
+							.setParameter("userGb", "127")		/* userGbï¿½ï¿½ È¸ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 							.setParameter("userStatus1", "4")
 							.setParameter("userStatus2", "5");
 					}else {
@@ -838,7 +840,7 @@ public class MemberDaoImpl implements MemberDao {
 			cr.add(user);
 			memberVO = (MemberVO) cr.uniqueResult();
 				
-			/*	ÀÌ ¿¹Á¦´Â username¿¡ ÇØ´çÇÏ´Â ºÎºÐÀÌ idÀÏ°æ¿ì¿¡ °¡´É
+			/*	ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ usernameï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½Îºï¿½ï¿½ï¿½ idï¿½Ï°ï¿½ì¿¡ ï¿½ï¿½ï¿½ï¿½
 				MemberVO memberVO = (MemberVO) session.load(MemberVO.class, username); 
 			*/
 			tx.commit();

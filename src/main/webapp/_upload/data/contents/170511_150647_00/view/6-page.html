@@ -1,0 +1,182 @@
+<!doctype html><html>
+<head>
+<style>
+ body {
+    margin-left: 0px;
+    margin-top: 0px;
+        overflow-x:hidden;
+    overflow-y:hidden;
+  }
+</style>
+<meta charset="UTF-8" />
+<title>170511_150647_00</title>
+</head>
+ 
+<script src="./script/jquery.min.js"></script>
+<script src="./script/jquery-ui.min.js"></script>
+<script src="./script/jquery.transit.js"></script>
+<script type="text/javascript" language="javascript" src="./script/cb.js"></script>
+<script type="text/javascript" language="javascript" src="./script/indexedDB.js"></script>
+<script type="text/javascript" src="./script/jquery.touchSwipe.min.js"></script>
+<script type="text/javascript" src="./script/main.js"></script>
+<script>
+var pageNo = 6;
+    var scale = ($(window).width() / 1075.000000);
+    window.onresize = function() { scale = ($(window).width() / 1075.000000); $("body").css("transform-origin",'0 0'); $("body").css("transform",'scale('+scale+')'); }
+
+    $(document).ready(function(){
+        $("body").css("transform",'scale('+scale+')');
+        $("body").css("transform-origin",'0 0');
+    });
+
+    function changeToggleState(cvs){
+        if(cvs.state == true) {
+            cvs.state = false;
+        }else{
+            cvs.state = true;
+        }
+    }
+    var sound1 = new Audio();
+    var sound2 = new Audio();
+
+
+</script>
+<body id="mybody" oncontextmenu="return false" onselectstart="return false" ondragstart="return false" >
+<section><div id="div_main" style="z-index:1; position:relative; width:1075px; height:1520px; overflow:hidden;background-color:#fff; " >
+<img src="6p_0001.png" style="z-index:2; pointer-events:none; position:absolute; left:0px; top:0px; opacity:1 " width="1074px" height="1520px" >
+<canvas id="cvs_0020" style="z-index:3; position:absolute; left:742px; top:559px; opacity:1" width="55px" height="73px" onmousedown="distributeAction(cvs_0020, 'down', 'N', [[{actType:1, actSubType:'Show', aniTiming:0, target:[cvs_0021], callfunc:'drawAll_0021', startTime:0, delay:0, duration:0 }]])"></canvas>
+<img src="6p_0002.png" style="z-index:4; pointer-events:none; position:absolute; left:-107px; top:10px; opacity:1 " width="92px" height="28px" >
+<canvas id="cvs_0031" style="z-index:5; position:absolute; left:625px; top:114px; opacity:1" width="55px" height="73px" onmousedown="distributeAction(cvs_0031, 'down', 'N', [[{actType:1, actSubType:'Hide', aniTiming:0, target:[cvs_0031], startTime:0, delay:0, duration:0, nextAction:[{actType:11, actSubType: 'Stop Sound', target:[sound1] },{actType:1, actSubType:'Show', aniTiming:0, target:[cvs_0029], callfunc:'drawAll_0029', startTime:0, delay:0, duration:0 }] }]])"></canvas>
+<canvas id="cvs_0029" style="z-index:6; position:absolute; left:625px; top:114px; opacity:1" width="55px" height="73px" onmousedown="distributeAction(cvs_0029, 'down', 'N', [[{actType:1, actSubType:'Hide', aniTiming:0, target:[cvs_0029], startTime:0, delay:0, duration:0, nextAction:[{actType:11, actSubType: 'Play Sound', target:[sound1] },{actType:1, actSubType:'Show', aniTiming:0, target:[cvs_0031], callfunc:'drawAll_0031', startTime:0, delay:0, duration:0 }] }]])"></canvas>
+<div  style="z-index:7; position:absolute; left:9px; top:10px;" width="1280px" height="900px" ><iframe id="cvs_0021" sandbox="allow-same-origin allow-scripts" src="http://page/08_05/08_05.html" scrolling="auto" style="z-index:8; position:absolute; left:0; top:0; " width="1280px" height="900px" > </iframe></div></div>
+
+<script type="text/javascript">
+  var element_0020;
+  var ctx_0020;
+  var id_0020 = new Image();
+
+  function init_0020() {
+    $(cvs_0020).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_0020).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_0020).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_0020).css({'transform': 'rotate(0deg)'});
+    id_0020.src = "3p_0002.png";
+    id_0020.onload = drawAll_0020;
+    element_0020 = document.getElementById("cvs_0020");
+    jQuery.data(cvs_0020, "touch", "y");
+    jQuery.data(cvs_0020, "tag", []);
+    ctx_0020 = element_0020.getContext("2d");
+  }
+
+  function drawAll_0020() {
+    ctx_0020.clearRect(0, 0, 55, 73);
+    ctx_0020.save();
+    if (!(typeof id_0020.naturalWidth !== "undefined" && id_0020.naturalWidth === 0))
+       drawImage(ctx_0020, id_0020, 0, 0, 55, 73, 0);
+    ctx_0020.restore();
+  }
+ 
+  init_0020();
+</script>
+
+<script type="text/javascript">
+  var element_0031;
+  var ctx_0031;
+  var id_0031 = new Image();
+
+  function init_0031() {
+    $(cvs_0031).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_0031).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_0031).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_0031).css({'transform': 'rotate(0deg)'});
+    id_0031.src = "6p_0004.png";
+    id_0031.onload = drawAll_0031;
+    element_0031 = document.getElementById("cvs_0031");
+    jQuery.data(cvs_0031, "touch", "y");
+    jQuery.data(cvs_0031, "tag", []);
+    ctx_0031 = element_0031.getContext("2d");
+    element_0031.hidden=true;
+  }
+
+  function drawAll_0031() {
+    ctx_0031.clearRect(0, 0, 55, 73);
+    ctx_0031.save();
+    if (!(typeof id_0031.naturalWidth !== "undefined" && id_0031.naturalWidth === 0))
+       drawImage(ctx_0031, id_0031, 0, 0, 55, 73, 0);
+    ctx_0031.restore();
+  }
+ 
+  init_0031();
+</script>
+
+<script type="text/javascript">
+  var element_0029;
+  var ctx_0029;
+  var id_0029 = new Image();
+
+  function init_0029() {
+    $(cvs_0029).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_0029).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_0029).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_0029).css({'transform': 'rotate(0deg)'});
+    id_0029.src = "6p_0006.png";
+    id_0029.onload = drawAll_0029;
+    element_0029 = document.getElementById("cvs_0029");
+    jQuery.data(cvs_0029, "touch", "y");
+    jQuery.data(cvs_0029, "tag", []);
+    ctx_0029 = element_0029.getContext("2d");
+  }
+
+  function drawAll_0029() {
+    ctx_0029.clearRect(0, 0, 55, 73);
+    ctx_0029.save();
+    if (!(typeof id_0029.naturalWidth !== "undefined" && id_0029.naturalWidth === 0))
+       drawImage(ctx_0029, id_0029, 0, 0, 55, 73, 0);
+    ctx_0029.restore();
+  }
+ 
+  init_0029();
+</script>
+
+<script type="text/javascript">
+    var element_0021 = document.getElementById("cvs_0021");
+    element_0021.hidden=true;
+
+    element_0021.style.pointerEvents = "none";
+    jQuery.data(cvs_0021, "touch", "n");
+    jQuery.data(cvs_0021, "tag", []);
+ 
+</script>
+
+<script type="text/javascript">
+  var ConditionalTable = new Object();
+ 
+</script>
+
+<script type="text/javascript">
+  var ActionLibraryTable = new Object();
+ 
+</script>
+
+<script type="text/javascript">
+  var TargetTable = new Object();
+jQuery.data(TargetTable, "icon_5", cvs_0020);
+jQuery.data(TargetTable, "icon_btn-1", cvs_0031);
+jQuery.data(TargetTable, "icon_btn", cvs_0029);
+jQuery.data(TargetTable, "Web", cvs_0021);
+ 
+</script>
+
+<script type="text/javascript">
+ 
+</script>
+
+ <script>
+  function pbonload6() {
+     var key = [];
+     var dataString = [];
+ 	distributeAction(null, 'up', 'N', [[{actType:11, actSubType: 'Set Sound', target:[sound1], audioSrc:'6p_0008.mp3', ReadyPlayer:'YES', startTime:0, delay:0, duration:84584 }]]);
+  }
+    window.onload=pbonload6();
+</script>
+</section></body></html>

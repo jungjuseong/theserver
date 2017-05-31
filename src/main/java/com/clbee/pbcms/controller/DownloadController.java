@@ -1,8 +1,5 @@
 package com.clbee.pbcms.controller;
 
-
-
-
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -93,22 +90,23 @@ public class DownloadController  {
 			authority = element.getAuthority();
 			todayDate = appService.getSelectTodayDate();   
 
-			param.setValue("REGSEQ", loginUserSeq); //·Î±×ÀÎ SEQ
-			param.setValue("COMPANY_SEQ", loginUserCompanySeq); //·Î±×ÀÎ COMPANY_SEQ
-			param.setValue("COMPANY_GB", loginUserCompanyGb); //·Î±×ÀÎ °³ÀÎ/È¸»ç ±¸ºÐ
-			param.setValue("TODAYDATE", todayDate); //¿À´Ã ³â¿ùÀÏ
-			param.setValue("AUTHORITY", authority); //·Î±×ÀÎ ±ÇÇÑ Å°
+			param.setValue("REGSEQ", loginUserSeq); //ï¿½Î±ï¿½ï¿½ï¿½ SEQ
+			param.setValue("COMPANY_SEQ", loginUserCompanySeq); //ï¿½Î±ï¿½ï¿½ï¿½ COMPANY_SEQ
+			param.setValue("COMPANY_GB", loginUserCompanyGb); //ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½/È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			param.setValue("TODAYDATE", todayDate); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+			param.setValue("AUTHORITY", authority); //ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å°
 			param.setValue("ISMOBILE", isMobile);
 			param.setValue("sessionUserSeq", activeUser.getMemberVO().getUserSeq());
 		}else{
-			param.setValue("AUTHORITY", "ROLE_ANONYMOUS"); //·Î±×ÀÎ ±ÇÇÑ Å°	
+			param.setValue("AUTHORITY", "ROLE_ANONYMOUS"); //ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å°
 			param.setValue("ISMOBILE", isMobile);
-			param.setValue("COMPANY_GB", ""); //·Î±×ÀÎ °³ÀÎ/È¸»ç ±¸ºÐ
+			param.setValue("COMPANY_GB", ""); //ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½/È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		}
 
 		toChk  = paramSet(req, "toChk");
 		toChk_ = paramSet(req, "toChk_");
-
+		
+		
 		int pageSize = 10;
 		int maxResult = 10;
 		int totalCount = 0;
@@ -122,11 +120,13 @@ public class DownloadController  {
 				param.setValue("searchChk", toChk_);
 			}
 		}
-
+		//ë¹„í™œì„±í™”ëŠ” param.getKey("searchChk") null
+		//System.out.println("ì—¬ê¸°"+param.getKey("searchChk"));
+		
 		param.setValue("searchType", mapList.getSearchType());
 		param.setValue("searchValue", mapList.getSearchValue());
-
-		List listCnt = appService.getSelectListCount(param);
+		
+		List listCnt = appService.getSelectListCount(param); //ë¹„í™œì„±í™”ì¼ down.xmlì— downSelectListCountì˜ ë°°ì—´ (AppServiceImpl -> AppDaoImpl)
 		HashMap temp = (HashMap)listCnt.get(0);
 		totalCount = Integer.parseInt(temp.get("DOWNTOTALCOUNT").toString());
 		mapList.calc(pageSize, totalCount, mapList.getCurrentPage(), maxResult);		
@@ -301,14 +301,14 @@ public class DownloadController  {
         String isCoupon = paramSet(req, "isCoupon");
 		Entity param = new Entity();
 
-		//DB¿¡ ""·Î °ªÀÌ µé¾î°¡ÀÖÀ¸¸é 0À¸·Î °­Á¦ ÃÊ±âÈ­ÇÑ´Ù.
+		//DBï¿½ï¿½ ""ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½î°¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½Ñ´ï¿½.
 		if("".equals(downCnt)) downCnt = "0";
 			try{
 				if("1".equals(isCoupon)){
-					// ÄíÆùÀÏ °æ¿ì
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 					if("CONTENTS".equals(sort)){
 						System.out.println("11111111111111111");
-						// ´Ù¿î·Îµù È½¼ö
+						// ï¿½Ù¿ï¿½Îµï¿½ È½ï¿½ï¿½
 						// dgggg
 						// affff
 						ContentVO contentVO = new ContentVO();
@@ -322,9 +322,9 @@ public class DownloadController  {
 						System.out.println("@@@@@@@@@@@@@@@@@@@");
 					}
 				}else{
-					// ÄíÆùÀÌ ¾Æ´Ò °æ¿ì
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½
 					if("CONTENTS".equals(sort)){
-						// ´Ù¿î·Îµù È½¼ö
+						// ï¿½Ù¿ï¿½Îµï¿½ È½ï¿½ï¿½
 						System.out.println("33333333333333333333");
 						ContentVO contentVO = new ContentVO();
 						contentVO.setMemDownCnt(String.valueOf(Integer.parseInt(downCnt) +1 ));
@@ -337,11 +337,11 @@ public class DownloadController  {
 					}
 				}
 			}catch(Exception e){
-				// ½ÇÆÐÀÏ¶§ 0
+				// ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ 0
 				e.printStackTrace();
 				return 0;
 			}
-		// ¼º°øÀÏ¶§ 1
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ 1
 		return 1;
 	}
 
@@ -352,20 +352,20 @@ public class DownloadController  {
 		return value;
 	}
 
-	/* ÇØ´ç Reuqest ÁÖ¼Ò down/download_proc.html´Â 
-	 * RequestedInAppJsonVO ¿©±â¿Í ¿¬°üÀÌ µÇ¾îÀÖÀ¸¹Ç·Î, ÀÌ down/download_proc.htmlÀ» ¹Ù²Ù·Á¸é 
-	 * RequestedInAppJsonVO ¿©±â Á¤º¸¿¡ ÀÖ´Â String°ªµµ ¹Ù²ãÁà¾ßµË´Ï´Ù. - ¹Ù²ñ 2015-05-14 ¾È¹Ù²ã ÁàµµµÊ.
+	/* ï¿½Ø´ï¿½ Reuqest ï¿½Ö¼ï¿½ down/download_proc.htmlï¿½ï¿½ 
+	 * RequestedInAppJsonVO ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½, ï¿½ï¿½ down/download_proc.htmlï¿½ï¿½ ï¿½Ù²Ù·ï¿½ï¿½ï¿½ 
+	 * RequestedInAppJsonVO ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ Stringï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ï¿½ßµË´Ï´ï¿½. - ï¿½Ù²ï¿½ 2015-05-14 ï¿½È¹Ù²ï¿½ ï¿½àµµï¿½ï¿½.
 	 * */
 	@RequestMapping(value = "down/download_proc.html", method = {RequestMethod.GET, RequestMethod.POST})
 	public String app_regist(HttpSession session, HttpServletRequest req, ModelMap modelMap) {
 
-		//»ç¿ëÀÚ Á¤º¸ 
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 		/*
-		 * °æ·Î , ÆÄÀÏ¸í, ÄíÆù¹øÈ£, ¹øµé¾ÆÀÌµð, 
+		 * ï¿½ï¿½ï¿½ , ï¿½ï¿½ï¿½Ï¸ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½, 
 		 * 
 		 */
 
-		//·Î±×ÀÎÀÎÀÎÁö, ÄíÆùÀÎÁö, seq, Å¸ÀÔ,
+		//ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, seq, Å¸ï¿½ï¿½,
 		Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>)SecurityContextHolder.getContext().getAuthentication().getAuthorities();
 
 		GrantedAuthority element = authorities.iterator().next();
@@ -373,7 +373,7 @@ public class DownloadController  {
 		myUserDetails activeUser = null;
 
 		String returnUrl = "/inc/dummy";
-		//message : ¾Ë ¼ö ¾÷
+		//message : ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
 		String msg = messageSource.getMessage("down.control.001", null, localeResolver.resolveLocale(req));
 		String errorType = "close";
 
@@ -397,30 +397,30 @@ public class DownloadController  {
 
 		try{
 			if((downSeq==null||"".equals(downSeq))&&(downGubun==null||"".equals(downGubun))){
-				//message : Àß¸øµÈ Á¢±ÙÀÔ´Ï´Ù.
+				//message : ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
 				msg = messageSource.getMessage("down.control.002", null, localeResolver.resolveLocale(req));
 				throw new Exception();
 			}
 			if("APP".equals(downGubun)){
-				//¾ÛÀÎ°æ¿ì
-				// ³ª´Â ¾ÛÀº ¸ð¸£°Ú°í~~~
+				//ï¿½ï¿½ï¿½Î°ï¿½ï¿½
+				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ð¸£°Ú°ï¿½~~~
 				if(couponNum!=null&&!"".equals(couponNum)){
-					//ÄíÆù´Ù¿î·ÎµåÀÎ °æ¿ì
+					//ï¿½ï¿½ï¿½ï¿½ï¿½Ù¿ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 				}else{
-					//±×·® ¸®½ºÆ®¿¡¼­ ¹Þ´Â °æ¿ì
+					//ï¿½×·ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½
 				}
 			}else if("CONTENTS".equals(downGubun)){
-				//ÄÁÅÙÆ®ÀÎ °æ¿ì
+				//ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½
 				ContentVO cvo = new ContentVO();
 				ContentVO cvo1 = new ContentVO();
 				if(couponNum!=null&&!"".equals(couponNum)){
-					//ÄíÆù´Ù¿î·ÎµåÀÎ °æ¿ì
+					//ï¿½ï¿½ï¿½ï¿½ï¿½Ù¿ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 					cvo.setContentsSeq(Integer.parseInt(downSeq));
 					cvo.setCouponNum(couponNum);
 					cvo.setCouponGb("1");
 					cvo1 = contentsService.selectByUltimateCondition(cvo);
 					if(cvo1.getContentsSeq()==null){
-						//message : Àß¸øµÈ Á¢±ÙÀÔ´Ï´Ù.
+						//message : ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
 						msg = messageSource.getMessage("down.control.002", null, localeResolver.resolveLocale(req));
 						throw new Exception();
 					}
@@ -428,36 +428,36 @@ public class DownloadController  {
 						int cnt = Integer.parseInt(StringUtil.null2string(cvo1.getNonmemDownCnt(), "0"));
 						int amt = Integer.parseInt(cvo1.getNonmemDownAmt());
 						if(!(amt>cnt)){
-							//message : ´Ù¿î·Îµå È½¼ö°¡ ÃÊ°úµÇ¾ú½À´Ï´Ù. °ü¸®ÀÚ¿¡°Ô ¹®ÀÇÇØÁÖ¼¼¿ä.
+							//message : ï¿½Ù¿ï¿½Îµï¿½ È½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.
 							msg = messageSource.getMessage("down.control.003", null, localeResolver.resolveLocale(req));
 							throw new Exception();
 						}
 					}
 				}else{
-					//±×·® ¸®½ºÆ®¿¡¼­ ¹Þ´Â °æ¿ì
-					//ÄíÆù´Ù¿î·Îµå°¡ ¾Æ´Ñ °æ¿ì
+					//ï¿½×·ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½
+					//ï¿½ï¿½ï¿½ï¿½ï¿½Ù¿ï¿½Îµå°¡ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½
 					cvo.setContentsSeq(Integer.parseInt(downSeq));
 					cvo1 = contentsService.selectByUltimateCondition(cvo);
 						if(cvo1.getContentsSeq()==null){
-							//message : Àß¸øµÈ Á¢±ÙÀÔ´Ï´Ù.
+							//message : ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
 							msg = messageSource.getMessage("down.control.002", null, localeResolver.resolveLocale(req));
 							throw new Exception();
 						}
 					if(cvo1.getDistrGb()!=null&&"1".equals(cvo1.getDistrGb())){
 						if(activeUser==null||activeUser.getMemberVO()==null){
-							//message : È¸¿øÀü¿ëÀÔ´Ï´Ù.
+							//message : È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
 							msg = messageSource.getMessage("down.control.006", null, localeResolver.resolveLocale(req));
 							throw new Exception();
 						}else{
 							if("1".equals(activeUser.getMemberVO().getCompanyGb())){
 								if(!cvo1.getCompanySeq().equals(activeUser.getMemberVO().getCompanySeq())){
-									//message : ±ÇÇÑÀÌ ¹Ù¸£Áö ¾Ê½À´Ï´Ù.
+									//message : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.
 									msg = messageSource.getMessage("down.control.007", null, localeResolver.resolveLocale(req));
 									throw new Exception();
 								}
 							}else if("2".equals(activeUser.getMemberVO().getCompanyGb())){
 								if(!cvo1.getRegUserSeq().equals(activeUser.getMemberVO().getUserSeq())){
-									//message : ±ÇÇÑÀÌ ¹Ù¸£Áö ¾Ê½À´Ï´Ù.
+									//message : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.
 									msg = messageSource.getMessage("down.control.007", null, localeResolver.resolveLocale(req));
 									throw new Exception();
 								}
@@ -465,7 +465,7 @@ public class DownloadController  {
 						}
 					}else{
 						if(cvo1.getCouponGb()!=null&&"1".equals(cvo1.getCouponGb())){
-							//message : ±ÇÇÑÀÌ ¹Ù¸£Áö ¾Ê½À´Ï´Ù.
+							//message : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.
 							msg = messageSource.getMessage("down.control.007", null, localeResolver.resolveLocale(req));
 							throw new Exception();
 						}
@@ -474,7 +474,7 @@ public class DownloadController  {
 						int cnt = Integer.parseInt(StringUtil.null2string(cvo1.getMemDownCnt(), "0"));
 						int amt = Integer.parseInt(cvo1.getMemDownAmt());
 						if(!(amt>cnt)){
-							//message : ´Ù¿î·Îµå È½¼ö°¡ ÃÊ°úµÇ¾ú½À´Ï´Ù. °ü¸®ÀÚ¿¡°Ô ¹®ÀÇÇØÁÖ¼¼¿ä.
+							//message : ï¿½Ù¿ï¿½Îµï¿½ È½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.
 							msg = messageSource.getMessage("down.control.003", null, localeResolver.resolveLocale(req));
 							throw new Exception();
 						}
@@ -482,7 +482,7 @@ public class DownloadController  {
 						Date sdt = cvo1.getMemDownStartDt();
 						Date edt = cvo1.getMemDownEndDt();
 						if(!(sdt.before(new Date())&&edt.after(new Date()))){
-							//message : ´Ù¿î·Îµå ±â°£ÀÌ À¯È¿ÇÏÁö ¾Ê½À´Ï´Ù.
+							//message : ï¿½Ù¿ï¿½Îµï¿½ ï¿½â°£ï¿½ï¿½ ï¿½ï¿½È¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.
 							msg = messageSource.getMessage("down.control.004", null, localeResolver.resolveLocale(req));
 							throw new Exception();						
 						}
@@ -562,7 +562,7 @@ public class DownloadController  {
 
 				return "redirect:"+path+orgName;
 			}
-			//message : Àß¸øµÈ Á¢±ÙÀÔ´Ï´Ù.
+			//message : ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
 			msg = messageSource.getMessage("down.control.002", null, localeResolver.resolveLocale(req));
 			throw new Exception();
 		}catch(Exception e){

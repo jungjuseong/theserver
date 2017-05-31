@@ -1,0 +1,115 @@
+<!doctype html><html>
+<head>
+<style>
+ body {
+    margin-left: 0px;
+    margin-top: 0px;
+        overflow-x:hidden;
+    overflow-y:hidden;
+  }
+</style>
+<meta charset="UTF-8" />
+<title>170511_150647_00</title>
+</head>
+ 
+<script src="./script/jquery.min.js"></script>
+<script src="./script/jquery-ui.min.js"></script>
+<script src="./script/jquery.transit.js"></script>
+<script type="text/javascript" language="javascript" src="./script/cb.js"></script>
+<script type="text/javascript" language="javascript" src="./script/indexedDB.js"></script>
+<script type="text/javascript" src="./script/jquery.touchSwipe.min.js"></script>
+<script type="text/javascript" src="./script/main.js"></script>
+<script>
+var pageNo = 3;
+    var scale = ($(window).width() / 1075.000000);
+    window.onresize = function() { scale = ($(window).width() / 1075.000000); $("body").css("transform-origin",'0 0'); $("body").css("transform",'scale('+scale+')'); }
+
+    $(document).ready(function(){
+        $("body").css("transform",'scale('+scale+')');
+        $("body").css("transform-origin",'0 0');
+    });
+
+    function changeToggleState(cvs){
+        if(cvs.state == true) {
+            cvs.state = false;
+        }else{
+            cvs.state = true;
+        }
+    }
+    var sound1 = new Audio();
+    var sound2 = new Audio();
+
+
+</script>
+<body id="mybody" oncontextmenu="return false" onselectstart="return false" ondragstart="return false" >
+<section><div id="div_main" style="z-index:1; position:relative; width:1075px; height:1520px; overflow:hidden;background-color:#fff; " >
+<img src="3p_0001.png" style="z-index:2; pointer-events:none; position:absolute; left:0px; top:0px; opacity:1 " width="1074px" height="1520px" >
+<canvas id="cvs_0015" style="z-index:3; position:absolute; left:690px; top:75px; opacity:1" width="55px" height="73px" onmousedown="distributeAction(cvs_0015, 'down', 'N', [[{actType:1, actSubType:'Show', aniTiming:0, target:[cvs_0016], callfunc:'drawAll_0016', startTime:0, delay:0, duration:0 }]])"></canvas>
+<div  style="z-index:4; position:absolute; left:9px; top:10px;" width="1280px" height="900px" ><iframe id="cvs_0016" sandbox="allow-same-origin allow-scripts" src="http://page/08_02/08_02.html" scrolling="auto" style="z-index:5; position:absolute; left:0; top:0; " width="1280px" height="900px" > </iframe></div></div>
+
+<script type="text/javascript">
+  var element_0015;
+  var ctx_0015;
+  var id_0015 = new Image();
+
+  function init_0015() {
+    $(cvs_0015).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_0015).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_0015).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_0015).css({'transform': 'rotate(0deg)'});
+    id_0015.src = "3p_0002.png";
+    id_0015.onload = drawAll_0015;
+    element_0015 = document.getElementById("cvs_0015");
+    jQuery.data(cvs_0015, "touch", "y");
+    jQuery.data(cvs_0015, "tag", []);
+    ctx_0015 = element_0015.getContext("2d");
+  }
+
+  function drawAll_0015() {
+    ctx_0015.clearRect(0, 0, 55, 73);
+    ctx_0015.save();
+    if (!(typeof id_0015.naturalWidth !== "undefined" && id_0015.naturalWidth === 0))
+       drawImage(ctx_0015, id_0015, 0, 0, 55, 73, 0);
+    ctx_0015.restore();
+  }
+ 
+  init_0015();
+</script>
+
+<script type="text/javascript">
+    var element_0016 = document.getElementById("cvs_0016");
+    element_0016.hidden=true;
+
+    element_0016.style.pointerEvents = "none";
+    jQuery.data(cvs_0016, "touch", "n");
+    jQuery.data(cvs_0016, "tag", []);
+ 
+</script>
+
+<script type="text/javascript">
+  var ConditionalTable = new Object();
+ 
+</script>
+
+<script type="text/javascript">
+  var ActionLibraryTable = new Object();
+ 
+</script>
+
+<script type="text/javascript">
+  var TargetTable = new Object();
+jQuery.data(TargetTable, "icon_5", cvs_0015);
+jQuery.data(TargetTable, "Web", cvs_0016);
+ 
+</script>
+
+<script type="text/javascript">
+ 
+</script>
+
+ <script>
+   function pbonload3() {
+  }
+    window.onload=pbonload3();
+</script>
+</section></body></html>

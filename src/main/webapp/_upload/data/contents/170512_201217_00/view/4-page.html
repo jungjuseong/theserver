@@ -1,0 +1,623 @@
+<!doctype html><html>
+<head>
+<style>
+ body {
+    margin-left: 0px;
+    margin-top: 0px;
+        overflow-x:hidden;
+    overflow-y:hidden;
+  }
+</style>
+<meta charset="UTF-8" />
+<title>170512_201217_00</title>
+</head>
+ 
+<script src="./script/jquery.min.js"></script>
+<script src="./script/jquery-ui.min.js"></script>
+<script src="./script/jquery.transit.js"></script>
+<script type="text/javascript" language="javascript" src="./script/cb.js"></script>
+<script type="text/javascript" language="javascript" src="./script/indexedDB.js"></script>
+<script type="text/javascript" src="./script/jquery.touchSwipe.min.js"></script>
+<script type="text/javascript" src="./script/main.js"></script>
+<script>
+var pageNo = 4;
+    var scale = ($(window).height() / 720.000000);
+    window.onresize = function() { scale = ($(window).height() / 720.000000); $("body").css("transform-origin",'0 0'); $("body").css("transform",'scale('+scale+')'); }
+
+    $(document).ready(function(){
+        $("body").css("transform",'scale('+scale+')');
+        $("body").css("transform-origin",'0 0');
+    });
+
+    function changeToggleState(cvs){
+        if(cvs.state == true) {
+            cvs.state = false;
+        }else{
+            cvs.state = true;
+        }
+    }
+    var sound1 = new Audio();
+    var sound2 = new Audio();
+
+
+</script>
+<body id="mybody" oncontextmenu="return false" onselectstart="return false" ondragstart="return false" >
+<section><div id="div_main" style="z-index:1; position:relative; width:1280px; height:720px; overflow:hidden;background-color:#fff; " >
+<canvas id="cvs_1632" style="z-index:2; position:absolute; left:-5px; top:-38px; opacity:1 " width="1285px" height="759px"></canvas>
+<canvas id="cvs_1312" style="z-index:3; position:absolute; left:974px; top:26px; opacity:1" width="260px" height="625px"></canvas>
+<canvas id="cvs_1313" style="z-index:4; position:absolute; left:88px; top:365px; opacity:1" width="261px" height="367px" onmousedown="distributeAction(cvs_1313, 'down', 'N', [[{actType:11, actSubType: 'Set Sound', target:[sound1], audioSrc:'4p_0010.mp3', ReadyPlayer:'NO', startTime:0, delay:0, duration:2089 },{context:ctx_1313, image:id_1313, actType:4, actSubType:'', aniTiming:0, target:[cvs_1313], toX:88, toY:372, scaleWidth: '261px', scaleHeight: '360px', originWidth: '0px', originHeight: '0px', startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:2, waitingTime:0, repeatForever:'N' }]])"></canvas>
+<canvas id="cvs_1315" style="z-index:5; position:absolute; left:644px; top:-1px; opacity:0.0" width="347px" height="295px"></canvas>
+<canvas id="cvs_1316" style="z-index:6; position:absolute; left:645px; top:0px; opacity:0.0" width="357px" height="294px"></canvas>
+<canvas id="cvs_1314" style="z-index:7; position:absolute; left:863px; top:51px; opacity:0.0" width="97px" height="95px"></canvas>
+<canvas id="cvs_1318" style="z-index:8; position:absolute; left:676px; top:199px; opacity:0.0" width="65px" height="64px"></canvas>
+<canvas id="cvs_1317" style="z-index:9; position:absolute; left:366px; top:469px; opacity:1" width="527px" height="259px"></canvas>
+<canvas id="cvs_0061" style="z-index:10; position:absolute; left:126px; top:72px; opacity:0.0" width="492px" height="288px"></canvas>
+<canvas id="cvs_0020" style="z-index:11; position:absolute; left:148px; top:32px; opacity:0.0" width="475px" height="354px"></canvas>
+<canvas id="cvs_1220" style="z-index:12; position:absolute; left:19px; top:-50px; opacity:1" width="49px" height="42px"></canvas>
+<canvas id="cvs_1221" style="z-index:13; position:absolute; left:76px; top:-50px; opacity:1" width="49px" height="42px"></canvas>
+<canvas id="cvs_1222" style="z-index:14; position:absolute; left:134px; top:-50px; opacity:1" width="49px" height="42px"></canvas>
+<canvas id="cvs_1223" style="z-index:15; position:absolute; left:246px; top:-50px; opacity:1" width="49px" height="42px"></canvas>
+<canvas id="cvs_1167" style="z-index:16; position:absolute; left:1167px; top:596px; opacity:1" width="72px" height="85px" onmousedown="distributeAction(cvs_1167, 'down', 'N', [])" onmouseup="distributeAction(cvs_1167, 'up', 'N', [[{actType:12, actSubType: 'Next', goto:'5-page.html', startTime:0, delay:0, duration:0 }]])"></canvas>
+<canvas id="cvs_1168" style="z-index:17; position:absolute; left:44px; top:596px; opacity:1" width="72px" height="85px" onmousedown="distributeAction(cvs_1168, 'down', 'N', [])" onmouseup="distributeAction(cvs_1168, 'up', 'N', [[{actType:12, actSubType: 'Next', goto:'3-page.html', startTime:0, delay:0, duration:0 }]])"></canvas>
+<canvas id="cvs_1169" style="z-index:18; position:absolute; left:25px; top:25px; opacity:1" width="94px" height="95px" onmousedown="distributeAction(cvs_1169, 'down', 'N', [])" onmouseup="distributeAction(cvs_1169, 'up', 'N', [[{actType:12, actSubType: 'Next', goto:'Home' , startTime:0, delay:0, duration:0 }]])"></canvas>
+</div>
+
+<script type="text/javascript">
+  var element_1632;
+  var ctx_1632;
+  var id_1394 = new Image();
+  var id_1631 = new Image();
+  var id_1632 = new Image();
+
+  function init_1632() {
+    id_1394.src = "4p_0001.png";
+    id_1394.onload = drawAll_1632;
+    id_1631.src = "4p_0002.png";
+    id_1631.onload = drawAll_1632;
+    id_1632.src = "4p_0003.png";
+    id_1632.onload = drawAll_1632;
+    element_1632 = document.getElementById("cvs_1632");
+    ctx_1632 = element_1632.getContext("2d");
+    element_1632.style.pointerEvents = "none";
+  }
+
+  function drawAll_1632() {
+    ctx_1632.clearRect(0, 0, 1285, 759);
+    ctx_1632.save();
+    if (!(typeof id_1394.naturalWidth !== "undefined" && id_1394.naturalWidth === 0))
+       drawImage(ctx_1632, id_1394, 1, 0, 1284, 758, 0);
+    ctx_1632.restore();
+    ctx_1632.save();
+    if (!(typeof id_1631.naturalWidth !== "undefined" && id_1631.naturalWidth === 0))
+       drawImage(ctx_1632, id_1631, 0, 36, 1285, 723, 0);
+    ctx_1632.restore();
+    ctx_1632.save();
+    if (!(typeof id_1632.naturalWidth !== "undefined" && id_1632.naturalWidth === 0))
+       drawImage(ctx_1632, id_1632, 937, 414, 290, 307, 0);
+    ctx_1632.restore();
+  }
+ 
+  init_1632();
+</script>
+
+<script type="text/javascript">
+  var element_1312;
+  var ctx_1312;
+  var id_1312 = new Image();
+
+  function init_1312() {
+    $(cvs_1312).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1312).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1312).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1312).css({'transform': 'rotate(0deg)'});
+    id_1312.src = "4p_0004.png";
+    id_1312.onload = drawAll_1312;
+    element_1312 = document.getElementById("cvs_1312");
+    jQuery.data(cvs_1312, "touch", "n");
+    jQuery.data(cvs_1312, "tag", []);
+    ctx_1312 = element_1312.getContext("2d");
+    element_1312.style.pointerEvents = "none";
+  }
+
+  function drawAll_1312() {
+    ctx_1312.clearRect(0, 0, 260, 625);
+    ctx_1312.save();
+    if (!(typeof id_1312.naturalWidth !== "undefined" && id_1312.naturalWidth === 0))
+       drawImage(ctx_1312, id_1312, 0, 0, 260, 625, 0);
+    ctx_1312.restore();
+  }
+ 
+  init_1312();
+</script>
+
+<script type="text/javascript">
+  var element_1313;
+  var ctx_1313;
+  var id_1313 = new Image();
+
+  function init_1313() {
+    $(cvs_1313).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1313).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1313).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1313).css({'transform': 'rotate(0deg)'});
+    id_1313.src = "4p_0005.png";
+    id_1313.onload = drawAll_1313;
+    element_1313 = document.getElementById("cvs_1313");
+    jQuery.data(cvs_1313, "touch", "y");
+    jQuery.data(cvs_1313, "tag", []);
+    ctx_1313 = element_1313.getContext("2d");
+  }
+
+  function drawAll_1313() {
+    ctx_1313.clearRect(0, 0, 261, 367);
+    ctx_1313.save();
+    if (!(typeof id_1313.naturalWidth !== "undefined" && id_1313.naturalWidth === 0))
+       drawImage(ctx_1313, id_1313, 0, 0, 261, 367, 0);
+    ctx_1313.restore();
+  }
+ 
+  init_1313();
+</script>
+
+<script type="text/javascript">
+  var element_1315;
+  var ctx_1315;
+  var id_1315 = new Image();
+
+  function init_1315() {
+    $(cvs_1315).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1315).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1315).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1315).css({'transform': 'rotate(0deg)'});
+    id_1315.src = "4p_0006.png";
+    id_1315.onload = drawAll_1315;
+    element_1315 = document.getElementById("cvs_1315");
+    jQuery.data(cvs_1315, "touch", "n");
+    jQuery.data(cvs_1315, "tag", []);
+    ctx_1315 = element_1315.getContext("2d");
+    element_1315.style.opacity=0.00;
+  }
+
+  function drawAll_1315() {
+    ctx_1315.clearRect(0, 0, 347, 295);
+    ctx_1315.save();
+    if (!(typeof id_1315.naturalWidth !== "undefined" && id_1315.naturalWidth === 0))
+       drawImage(ctx_1315, id_1315, 0, 0, 347, 295, 0);
+    ctx_1315.restore();
+  }
+ 
+  init_1315();
+</script>
+
+<script type="text/javascript">
+  var element_1316;
+  var ctx_1316;
+  var id_1316 = new Image();
+
+  function init_1316() {
+    $(cvs_1316).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1316).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1316).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1316).css({'transform': 'rotate(0deg)'});
+    id_1316.src = "4p_0007.png";
+    id_1316.onload = drawAll_1316;
+    element_1316 = document.getElementById("cvs_1316");
+    jQuery.data(cvs_1316, "touch", "n");
+    jQuery.data(cvs_1316, "tag", []);
+    ctx_1316 = element_1316.getContext("2d");
+    element_1316.style.opacity=0.00;
+  }
+
+  function drawAll_1316() {
+    ctx_1316.clearRect(0, 0, 357, 294);
+    ctx_1316.save();
+    if (!(typeof id_1316.naturalWidth !== "undefined" && id_1316.naturalWidth === 0))
+       drawImage(ctx_1316, id_1316, 0, 0, 357, 294, 0);
+    ctx_1316.restore();
+  }
+ 
+  init_1316();
+</script>
+
+<script type="text/javascript">
+  var element_1314;
+  var ctx_1314;
+  var id_1314 = new Image();
+
+  function init_1314() {
+    $(cvs_1314).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1314).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1314).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1314).css({'transform': 'rotate(0deg)'});
+    id_1314.src = "4p_0008.png";
+    id_1314.onload = drawAll_1314;
+    element_1314 = document.getElementById("cvs_1314");
+    jQuery.data(cvs_1314, "touch", "n");
+    jQuery.data(cvs_1314, "tag", []);
+    ctx_1314 = element_1314.getContext("2d");
+    element_1314.style.opacity=0.00;
+  }
+
+  function drawAll_1314() {
+    ctx_1314.clearRect(0, 0, 97, 95);
+    ctx_1314.save();
+    if (!(typeof id_1314.naturalWidth !== "undefined" && id_1314.naturalWidth === 0))
+       drawImage(ctx_1314, id_1314, 0, 0, 97, 95, 0);
+    ctx_1314.restore();
+  }
+ 
+  init_1314();
+</script>
+
+<script type="text/javascript">
+  var element_1318;
+  var ctx_1318;
+  var id_1318 = new Image();
+
+  function init_1318() {
+    $(cvs_1318).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1318).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1318).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1318).css({'transform': 'rotate(0deg)'});
+    id_1318.src = "4p_0008.png";
+    id_1318.onload = drawAll_1318;
+    element_1318 = document.getElementById("cvs_1318");
+    jQuery.data(cvs_1318, "touch", "n");
+    jQuery.data(cvs_1318, "tag", []);
+    ctx_1318 = element_1318.getContext("2d");
+    element_1318.style.opacity=0.00;
+  }
+
+  function drawAll_1318() {
+    ctx_1318.clearRect(0, 0, 65, 64);
+    ctx_1318.save();
+    if (!(typeof id_1318.naturalWidth !== "undefined" && id_1318.naturalWidth === 0))
+       drawImage(ctx_1318, id_1318, 0, 0, 65, 64, 0);
+    ctx_1318.restore();
+  }
+ 
+  init_1318();
+</script>
+
+<script type="text/javascript">
+  var element_1317;
+  var ctx_1317;
+  var id_1317 = new Image();
+
+  function init_1317() {
+    $(cvs_1317).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1317).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1317).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1317).css({'transform': 'rotate(0deg)'});
+    id_1317.src = "4p_0009.png";
+    id_1317.onload = drawAll_1317;
+    element_1317 = document.getElementById("cvs_1317");
+    jQuery.data(cvs_1317, "touch", "n");
+    jQuery.data(cvs_1317, "tag", []);
+    ctx_1317 = element_1317.getContext("2d");
+    element_1317.style.pointerEvents = "none";
+  }
+
+  function drawAll_1317() {
+    ctx_1317.clearRect(0, 0, 527, 259);
+    ctx_1317.save();
+    if (!(typeof id_1317.naturalWidth !== "undefined" && id_1317.naturalWidth === 0))
+       drawImage(ctx_1317, id_1317, 0, 0, 527, 259, 0);
+    ctx_1317.restore();
+  }
+ 
+  init_1317();
+</script>
+
+<script type="text/javascript">
+  var element_0061;
+  var ctx_0061;
+  var id_0061 = new Image();
+
+  function init_0061() {
+    $(cvs_0061).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_0061).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_0061).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_0061).css({'transform': 'rotate(0deg)'});
+    id_0061.src = "text_4_0061.png";
+    id_0061.onload = drawAll_0061;
+    element_0061 = document.getElementById("cvs_0061");
+    jQuery.data(cvs_0061, "touch", "n");
+    jQuery.data(cvs_0061, "tag", []);
+    ctx_0061 = element_0061.getContext("2d");
+    element_0061.style.opacity=0.00;
+  }
+
+  function drawAll_0061() {
+    ctx_0061.clearRect(0, 0, 492, 288);
+    ctx_0061.save();
+    if (!(typeof id_0061.naturalWidth !== "undefined" && id_0061.naturalWidth === 0))
+       drawImage(ctx_0061, id_0061, 0, 0, 492, 288, 0);
+    ctx_0061.restore();
+  }
+ 
+  init_0061();
+</script>
+
+<script type="text/javascript">
+  var element_0020;
+  var ctx_0020;
+  var id_0020 = new Image();
+
+  function init_0020() {
+    $(cvs_0020).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_0020).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_0020).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_0020).css({'transform': 'rotate(0deg)'});
+    id_0020.src = "text_4_0020.png";
+    id_0020.onload = drawAll_0020;
+    element_0020 = document.getElementById("cvs_0020");
+    jQuery.data(cvs_0020, "touch", "n");
+    jQuery.data(cvs_0020, "tag", []);
+    ctx_0020 = element_0020.getContext("2d");
+    element_0020.style.opacity=0.00;
+  }
+
+  function drawAll_0020() {
+    ctx_0020.clearRect(0, 0, 475, 354);
+    ctx_0020.save();
+    if (!(typeof id_0020.naturalWidth !== "undefined" && id_0020.naturalWidth === 0))
+       drawImage(ctx_0020, id_0020, 0, 0, 475, 354, 0);
+    ctx_0020.restore();
+  }
+ 
+  init_0020();
+</script>
+
+<script type="text/javascript">
+  var element_1220;
+  var ctx_1220;
+  var id_1220 = new Image();
+
+  function init_1220() {
+    $(cvs_1220).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1220).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1220).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1220).css({'transform': 'rotate(0deg)'});
+    id_1220.src = "text_4_1220.png";
+    id_1220.onload = drawAll_1220;
+    element_1220 = document.getElementById("cvs_1220");
+    jQuery.data(cvs_1220, "touch", "n");
+    jQuery.data(cvs_1220, "tag", []);
+    ctx_1220 = element_1220.getContext("2d");
+    element_1220.style.pointerEvents = "none";
+  }
+
+  function drawAll_1220() {
+    ctx_1220.clearRect(0, 0, 49, 42);
+    ctx_1220.save();
+    if (!(typeof id_1220.naturalWidth !== "undefined" && id_1220.naturalWidth === 0))
+       drawImage(ctx_1220, id_1220, 0, 0, 49, 42, 0);
+    ctx_1220.restore();
+  }
+ 
+  init_1220();
+</script>
+
+<script type="text/javascript">
+  var element_1221;
+  var ctx_1221;
+  var id_1221 = new Image();
+
+  function init_1221() {
+    $(cvs_1221).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1221).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1221).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1221).css({'transform': 'rotate(0deg)'});
+    id_1221.src = "text_4_1221.png";
+    id_1221.onload = drawAll_1221;
+    element_1221 = document.getElementById("cvs_1221");
+    jQuery.data(cvs_1221, "touch", "n");
+    jQuery.data(cvs_1221, "tag", []);
+    ctx_1221 = element_1221.getContext("2d");
+    element_1221.style.pointerEvents = "none";
+  }
+
+  function drawAll_1221() {
+    ctx_1221.clearRect(0, 0, 49, 42);
+    ctx_1221.save();
+    if (!(typeof id_1221.naturalWidth !== "undefined" && id_1221.naturalWidth === 0))
+       drawImage(ctx_1221, id_1221, 0, 0, 49, 42, 0);
+    ctx_1221.restore();
+  }
+ 
+  init_1221();
+</script>
+
+<script type="text/javascript">
+  var element_1222;
+  var ctx_1222;
+  var id_1222 = new Image();
+
+  function init_1222() {
+    $(cvs_1222).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1222).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1222).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1222).css({'transform': 'rotate(0deg)'});
+    id_1222.src = "text_4_1222.png";
+    id_1222.onload = drawAll_1222;
+    element_1222 = document.getElementById("cvs_1222");
+    jQuery.data(cvs_1222, "touch", "n");
+    jQuery.data(cvs_1222, "tag", []);
+    ctx_1222 = element_1222.getContext("2d");
+    element_1222.style.pointerEvents = "none";
+  }
+
+  function drawAll_1222() {
+    ctx_1222.clearRect(0, 0, 49, 42);
+    ctx_1222.save();
+    if (!(typeof id_1222.naturalWidth !== "undefined" && id_1222.naturalWidth === 0))
+       drawImage(ctx_1222, id_1222, 0, 0, 49, 42, 0);
+    ctx_1222.restore();
+  }
+ 
+  init_1222();
+</script>
+
+<script type="text/javascript">
+  var element_1223;
+  var ctx_1223;
+  var id_1223 = new Image();
+
+  function init_1223() {
+    $(cvs_1223).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1223).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1223).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1223).css({'transform': 'rotate(0deg)'});
+    id_1223.src = "text_4_1223.png";
+    id_1223.onload = drawAll_1223;
+    element_1223 = document.getElementById("cvs_1223");
+    jQuery.data(cvs_1223, "touch", "n");
+    jQuery.data(cvs_1223, "tag", []);
+    ctx_1223 = element_1223.getContext("2d");
+    element_1223.style.pointerEvents = "none";
+  }
+
+  function drawAll_1223() {
+    ctx_1223.clearRect(0, 0, 49, 42);
+    ctx_1223.save();
+    if (!(typeof id_1223.naturalWidth !== "undefined" && id_1223.naturalWidth === 0))
+       drawImage(ctx_1223, id_1223, 0, 0, 49, 42, 0);
+    ctx_1223.restore();
+  }
+ 
+  init_1223();
+</script>
+
+<script type="text/javascript">
+  var element_1167;
+  var ctx_1167;
+  var id_1167 = new Image();
+
+  function init_1167() {
+    $(cvs_1167).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1167).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1167).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1167).css({'transform': 'rotate(0deg)'});
+    id_1167.src = "2p_0013.png";
+    id_1167.onload = drawAll_1167;
+    element_1167 = document.getElementById("cvs_1167");
+    jQuery.data(cvs_1167, "touch", "y");
+    jQuery.data(cvs_1167, "tag", []);
+    ctx_1167 = element_1167.getContext("2d");
+  }
+
+  function drawAll_1167() {
+    ctx_1167.clearRect(0, 0, 72, 85);
+    ctx_1167.save();
+    if (!(typeof id_1167.naturalWidth !== "undefined" && id_1167.naturalWidth === 0))
+       drawImage(ctx_1167, id_1167, 0, 0, 72, 85, 0);
+    ctx_1167.restore();
+  }
+ 
+  init_1167();
+</script>
+
+<script type="text/javascript">
+  var element_1168;
+  var ctx_1168;
+  var id_1168 = new Image();
+
+  function init_1168() {
+    $(cvs_1168).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1168).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1168).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1168).css({'transform': 'rotate(0deg)'});
+    id_1168.src = "2p_0013.png";
+    id_1168.onload = drawAll_1168;
+    element_1168 = document.getElementById("cvs_1168");
+    jQuery.data(cvs_1168, "touch", "y");
+    jQuery.data(cvs_1168, "tag", []);
+    ctx_1168 = element_1168.getContext("2d");
+  }
+
+  function drawAll_1168() {
+    ctx_1168.clearRect(0, 0, 72, 85);
+    ctx_1168.save();
+    ctx_1168.translate(36, 42);
+    if (!(typeof id_1168.naturalWidth !== "undefined" && id_1168.naturalWidth === 0))
+       drawImage(ctx_1168, id_1168, -36, -42, 72, 85, 180);
+    ctx_1168.restore();
+  }
+ 
+  init_1168();
+</script>
+
+<script type="text/javascript">
+  var element_1169;
+  var ctx_1169;
+  var id_1169 = new Image();
+
+  function init_1169() {
+    $(cvs_1169).css({'-ms-transform': 'rotate(0deg)'});
+    $(cvs_1169).css({'-webkit-transform': 'rotate(0deg)'});
+    $(cvs_1169).css({'-moz-transform': 'rotate(0deg)'});
+    $(cvs_1169).css({'transform': 'rotate(0deg)'});
+    id_1169.src = "2p_0014.png";
+    id_1169.onload = drawAll_1169;
+    element_1169 = document.getElementById("cvs_1169");
+    jQuery.data(cvs_1169, "touch", "y");
+    jQuery.data(cvs_1169, "tag", []);
+    ctx_1169 = element_1169.getContext("2d");
+  }
+
+  function drawAll_1169() {
+    ctx_1169.clearRect(0, 0, 94, 95);
+    ctx_1169.save();
+    if (!(typeof id_1169.naturalWidth !== "undefined" && id_1169.naturalWidth === 0))
+       drawImage(ctx_1169, id_1169, 0, 0, 94, 95, 0);
+    ctx_1169.restore();
+  }
+ 
+  init_1169();
+</script>
+
+<script type="text/javascript">
+  var ConditionalTable = new Object();
+ 
+</script>
+
+<script type="text/javascript">
+  var ActionLibraryTable = new Object();
+ 
+</script>
+
+<script type="text/javascript">
+  var TargetTable = new Object();
+jQuery.data(TargetTable, "5_3_선생님 상반신", cvs_1312);
+jQuery.data(TargetTable, "5_3_성장이", cvs_1313);
+jQuery.data(TargetTable, "5_3_아픈성숙이1", cvs_1315);
+jQuery.data(TargetTable, "5_3_아픈성숙이2", cvs_1316);
+jQuery.data(TargetTable, "5_3_세균", cvs_1314);
+jQuery.data(TargetTable, "5_3_세균-2", cvs_1318);
+jQuery.data(TargetTable, "5_3_친구들", cvs_1317);
+jQuery.data(TargetTable, "텍스트-1", cvs_0061);
+jQuery.data(TargetTable, "텍스트", cvs_0020);
+jQuery.data(TargetTable, "텍스트-2", cvs_1220);
+jQuery.data(TargetTable, "텍스트-3", cvs_1221);
+jQuery.data(TargetTable, "텍스트-4", cvs_1222);
+jQuery.data(TargetTable, "텍스트-5", cvs_1223);
+jQuery.data(TargetTable, "arrow btn", cvs_1167);
+jQuery.data(TargetTable, "arrow btn-1", cvs_1168);
+jQuery.data(TargetTable, "홈버튼", cvs_1169);
+ 
+</script>
+
+<script type="text/javascript">
+ 
+</script>
+
+ <script>
+  function pbonload4() {
+     var key = [];
+     var dataString = [];
+ 	distributeAction(null, 'up', 'N', [[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_0020], opacity:1.00, startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:0, waitingTime:27000, repeatForever:'N', nextAction:[{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_0061], opacity:1.00, startTime:0, delay:0, duration:500 }] },{actType:1, actSubType:'Show', aniTiming:0, target:[cvs_1168], callfunc:'drawAll_1168', startTime:0, delay:0, duration:0 },{actType:1, actSubType:'Show', aniTiming:0, target:[cvs_1167], callfunc:'drawAll_1167', startTime:0, delay:0, duration:0 },{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1220], toX:19, toY:-49, effectSound:'4p_0014.mp3', startTime:500, delay:0, duration:6000, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1221], toX:76, toY:-50, effectSound:'4p_0013.mp3', startTime:0, delay:0, duration:6000, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1222], toX:134, toY:-50, effectSound:'4p_0012.mp3', startTime:0, delay:0, duration:15000, nextAction:[{actType:3, actSubType:'Move To', aniTiming:0, target:[cvs_1223], toX:246, toY:-50, effectSound:'4p_0011.mp3', startTime:1000, delay:0, duration:13000 }] }] }] },{actType:6, actSubType:'Rotate To', aniTiming:0, target:[cvs_1312], angle:3.00, anchorX:40.5, anchorY:50.0, startTime:2000, delay:0, duration:800, reverse:'Y', aniTiming:0, revDuration:800, repeatCount:0, waitingTime:0, repeatForever:'Y' },{actType:6, actSubType:'Rotate To', aniTiming:0, target:[cvs_1313], angle:3.00, anchorX:58.2, anchorY:100.0, startTime:8674, delay:0, duration:700, reverse:'Y', aniTiming:0, revDuration:700, repeatCount:0, waitingTime:0, repeatForever:'Y' },{context:ctx_1317, image:id_1317, actType:4, actSubType:'', aniTiming:0, target:[cvs_1317], toX:361, toY:459, scaleWidth: '541px', scaleHeight: '266px', originWidth: '0px', originHeight: '0px', startTime:8674, delay:0, duration:700, reverse:'Y', aniTiming:0, revDuration:700, repeatCount:0, waitingTime:0, repeatForever:'Y' },{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1315], opacity:1.00, startTime:7500, delay:0, duration:1000, nextAction:[{actType:2, actSubType:'Fade To', aniTiming:0, target:[cvs_1315], opacity:0.70, startTime:0, delay:0, duration:600, reverse:'Y', aniTiming:0, revDuration:600, repeatCount:11, waitingTime:0, repeatForever:'N', nextAction:[{actType:2, actSubType:'Fade Out', aniTiming:0, target:[cvs_1315], opacity:0.00, startTime:0, delay:0, duration:1000 }] }] },{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1314], opacity:1.00, startTime:21711, delay:0, duration:1000, nextAction:[{context:ctx_1314, image:id_1314, actType:4, actSubType:'', aniTiming:0, target:[cvs_1314], toX:863, toY:45, scaleWidth: '103px', scaleHeight: '101px', originWidth: '0px', originHeight: '0px', startTime:0, delay:0, duration:500, reverse:'Y', aniTiming:0, revDuration:400, repeatCount:0, waitingTime:0, repeatForever:'Y' }] },{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1318], opacity:1.00, startTime:21711, delay:0, duration:1000, nextAction:[{context:ctx_1318, image:id_1318, actType:4, actSubType:'', aniTiming:0, target:[cvs_1318], toX:669, toY:198, scaleWidth: '74px', scaleHeight: '74px', originWidth: '0px', originHeight: '0px', startTime:0, delay:0, duration:400, reverse:'Y', aniTiming:0, revDuration:500, repeatCount:0, waitingTime:0, repeatForever:'Y' }] },{actType:2, actSubType:'Fade In', aniTiming:0, target:[cvs_1316], opacity:1.00, effectSound:'4p_0015.mp3', startTime:21711, delay:0, duration:1000 },{actType:11, actSubType: 'Set Sound', target:[sound2], audioSrc:'2p_0021.mp3', ReadyPlayer:'NO', startTime:0, delay:0, duration:93204, repeatForever:'Y', reverse:'N', aniTiming:0, revDuration:0, repeatCount:0, waitingTime:0, repeatForever:'Y' }]]);
+  }
+    window.onload=pbonload4();
+</script>
+</section></body></html>
