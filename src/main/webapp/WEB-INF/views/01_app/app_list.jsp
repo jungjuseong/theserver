@@ -68,6 +68,13 @@ function appModify(seq){
 	document.appFrm.submit();
 }
 
+function deleteApp(){
+	if(confirm("정말 삭제하겠습니까?")==true){
+		alert("d");
+	}else{
+		return;
+	}
+}
 
 //inapp search popup
 var inappPopup
@@ -256,7 +263,17 @@ function goToTest(){
 														<img src="/images/icon_circle_green.png" alt=""> <spring:message code='app.list.table.status1' /><!-- 완료 --> 
 													</c:when>
 													<c:otherwise>
-														<img src="/images/icon_circle_yellow.png" alt=""> <spring:message code='app.list.table.status3' /><!-- 테스트중 -->
+														<!-- 
+														<c:choose>
+														<c:when test="${authority eq 'ROLE_COMPANY_MIDDLEADMIN'}">
+														<img onclick="deleteApp()" src="/images/icon_circle_yellow.png" alt=""> <spring:message code='app.list.table.status3' />
+														</c:when>
+														<c:otherwise>
+														<img src="/images/icon_circle_yellow.png" alt=""> <spring:message code='app.list.table.status3' />
+														</c:otherwise>
+														</c:choose> 
+														-->
+														<img src="/images/icon_circle_yellow.png" alt=""> <spring:message code='app.list.table.status3' /> <!-- 테스트중 -->
 													</c:otherwise>
 												</c:choose>											
 											</c:otherwise>
@@ -293,7 +310,7 @@ function goToTest(){
 				<!-- btn area -->
 				<sec:authorize access="!hasRole('ROLE_ADMIN_SERVICE')">
 					<div class="btn_area_bottom fRight clfix">
-						<a class="btn btnL btn_red" href="javascript:appRegist();"><spring:message code='app.list.table.regist' /></a>
+						<a class="btn btnL btn_red" href="javascript:appRegist();"><spring:message code='app.list.table.regist' /></a> <!-- 신규등록  -->
 					</div>
 				</sec:authorize>
 				<!-- //btn area -->

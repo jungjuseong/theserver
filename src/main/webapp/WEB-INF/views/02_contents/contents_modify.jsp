@@ -10,6 +10,7 @@ $(document).ready(function(){
 	<sec:authorize access="isAuthenticated()">  
 		<sec:authentication property="principal.authorities" var="userRole" />
 	</sec:authorize>
+	
 
 	$("#appSearch").click(function(){
 		 window.open("/contents/write/popUpContents.html","","width=680, height=333, top=100, left=100, resizable= yes");
@@ -684,6 +685,15 @@ function cancelResist(){
 		window.location.href="/contents/list.html?page=1";
 	}
 }
+//콘텐츠 삭제 
+function contentDelete(){
+	if(confirm("<spring:message code='user.list.027' />")){
+		$("#contents_modify_f").attr('action', '/contents/deleteContents.html');
+		$("#contents_modify_f").submit();
+		//document.appForm.action='/contents/deleteContents.html';
+		//document.appForm.submit();
+	}
+}
 </script>
 
 
@@ -704,7 +714,7 @@ function cancelResist(){
 			<!-- 콘텐츠 수정 -->
 			<h2><spring:message code='contents.modify.001' /></h2>
 			
-			<form action="/contents/modify.html" id="contents_modify_f" method="POST" enctype="multipart/form-data">
+			<form action="/contents/modify.html" name="contents_modify_f" id="contents_modify_f" method="POST" enctype="multipart/form-data">
 			<div class="section fisrt_section">
 				<div class="table_area">
 					<table class="rowtable writetable">
@@ -946,6 +956,16 @@ function cancelResist(){
 				<div class="btn_area_bottom tCenter">
 					<a href="#" id="modifyBtn" class="btn btnL btn_red"><spring:message code='contents.modify.030' /></a>
 					<a href="javascript:cancelResist();" class="btn btnL btn_gray_light"><spring:message code='contents.modify.031' /></a>
+					<c:choose>
+						<c:when test="${'2' eq contentVO.completGb }">
+							<a href="javascript:contentDelete();" class="btn btnL btn_gray_light"><spring:message code='user.list.011'/></a>		
+						</c:when>
+						<c:otherwise>
+							<sec:authorize access="hasRole('ROLE_COMPANY_DISTRIBUTOR') || hasRole('ROLE_ADMIN_SERVICE') || hasRole('ROLE_COMPANY_MIDDLEADMIN')">
+								<a href="javascript:contentDelete();" class="btn btnL btn_gray_light"><spring:message code='user.list.011'/></a>
+							</sec:authorize>	
+						</c:otherwise>
+					</c:choose>
 					<input type="hidden" name="contentsSeq" 		value="${param.contentsSeq }"/>
 					<input type="hidden" name="contentsappSubSeq"   value="${contentVO.contentsappSubVO.contentsappSubSeq }">
 					<input type="hidden" name="page" value="${param.page }"/>
@@ -955,15 +975,13 @@ function cancelResist(){
 					<input type="hidden" name="chgUserSeq" value="<sec:authentication property="principal.memberVO.userSeq" />"/>
 					<input type="hidden" name="chgUserId" value="<sec:authentication property="principal.memberVO.userId" />"/>
 					<input type="hidden" name="chgUserGb" value="<sec:authentication property="principal.memberVO.userGb" />"/>
-				</div>
+				</div> 
 			</div>
 			</form>
 			<!-- //콘텐츠 수정 -->
 		</div>
 	</div>
 	<!-- //conteiner -->
-
-	
 	<!-- footer -->
 	<%@ include file="../inc/footer.jsp" %>
 	<!-- //footer -->

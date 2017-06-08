@@ -233,6 +233,25 @@ public class ContentsController {
 		modelAndView.setViewName("02_contents/contents_modify");
 		return modelAndView;
 	}
+	
+	@RequestMapping( value = "contents/deleteContents.html", method=RequestMethod.POST)
+	public ModelAndView contentsDeletePOST(String contentsSeq, HttpServletRequest request, HttpSession session) {
+
+  		ModelAndView mav = new ModelAndView();
+  		String page;
+  		
+  		page = paramSet(request, "page");
+  		System.out.println("page = "+page);
+  		
+  		try{
+  			contentsService.deleteContentsInfo(Integer.parseInt(contentsSeq));
+  			mav.setViewName("redirect:/contents/list.html?page="+Integer.parseInt(page));
+  		}catch(Exception e){
+  			e.printStackTrace();
+  		}
+
+  		return mav;
+	}
 
 	@RequestMapping( value = "contents/modify.html", method=RequestMethod.POST)
 	public ModelAndView contentsModifyPOST( String contentsappSubSeq,  String relatedAppName, String relatedAppType, String relatedBundleId, String relatedInAppSeq, String page, String fileChanged, ContentVO contentFormVO, @RequestParam("contentsFile") MultipartFile uploadFile , HttpServletRequest request, HttpSession session) {

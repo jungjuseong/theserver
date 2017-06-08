@@ -92,7 +92,7 @@ $(document).ready(function(){
 		var thisVal = $(this).attr("alt");
 		var spVal = thisVal.split("|&|");
 
-		if("<c:out value='${userRole}'/>" == "[ROLE_COMPANY_DISTRIBUTOR]" || "<c:out value='${userRole}'/>" == "[ROLE_COMPANY_MIDDLEADMIN]"){
+		if("<c:out value='${userRole}'/>" == "[ROLE_COMPANY_DISTRIBUTOR]" || "<c:out value='${userRole}'/>" == "[ROLE_COMPANY_MIDDLEADMIN]" || "<c:out value='${userRole}'/>" == "[ROLE_COMPANY_CREATOR]" ){
 			if(!(/Android|iPhone|iPad/i.test(navigator.userAgent))){
 				//데스크탑일때
 				/* if(spVal[0] == "APP" && spVal[7] != "AppStore"){

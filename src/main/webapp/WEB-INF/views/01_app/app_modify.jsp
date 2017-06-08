@@ -1528,7 +1528,7 @@ function settemplateAppcontents(action){
 						</tr>
 						<sec:authorize access="hasRole('ROLE_ADMIN_SERVICE')">
 							<tr>
-								<th scope="row"><span class="title"><em>*</em> <spring:message code='app.modify.text44' /></span></th>
+								<th scope="row"><span class="title"><em>*</em> <spring:message code='app.modify.text44' /></span></th><!-- 제한여부  -->
 								<td colspan="3">
 									<div class="radio_area">
 										<input name="limitGb" id="l_y"  type="radio" value="1" <c:if test="${'1' eq appVO.limitGb }">checked="checked"</c:if>> <label for="l_y"><spring:message code='app.modify.text45' /></label>
@@ -1549,13 +1549,22 @@ function settemplateAppcontents(action){
 				<div class="btn_area_bottom tCenter">
 					<a id="registBtn" href="#registBtn_;" class="btn btnL btn_red"><spring:message code='app.modify.text49' /></a>
 					<a href="javascript:cancelResist();" class="btn btnL btn_gray_light"><spring:message code='app.modify.text50' /></a>
-					<c:if test="${'2' eq appVO.completGb }">
-						<a href="javascript:appDelete();" class="btn btnL btn_gray_light"><spring:message code='user.list.011'/></a>
-					</c:if>
+					<!-- 삭제  -->
+					<c:choose>
+						<c:when test="${'2' eq appVO.completGb }">
+							<a href="javascript:appDelete();" class="btn btnL btn_gray_light"><spring:message code='user.list.011'/></a>		
+						</c:when>
+						<c:otherwise>
+						<sec:authorize access="hasRole('ROLE_COMPANY_DISTRIBUTOR') || hasRole('ROLE_ADMIN_SERVICE') || hasRole('ROLE_COMPANY_MIDDLEADMIN')">
+								<a href="javascript:appDelete();" class="btn btnL btn_gray_light"><spring:message code='user.list.011'/></a>
+							</sec:authorize>		
+						</c:otherwise>
+					</c:choose>
+					<!-- 앱 생성 요청  -->
 					<c:if test="${'1' eq appVO.regGb }">
 						<a id="appRequest" class="btn btnL btn_gray_light"><spring:message code='extend.local.083' /></a>
-						
 					</c:if>
+					<!-- 로그보기  -->
 					<c:if test="${'2' eq appVO.regGb }">
 						<a id="viewLog" class="btn btnL btn_gray_light"><spring:message code="extend.local.092" /></a>
 					</c:if>

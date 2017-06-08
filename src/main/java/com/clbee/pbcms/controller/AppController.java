@@ -144,6 +144,7 @@ public class AppController
 			if(appList.getCurrentPage()==null)appList.setCurrentPage(1);
 			appList = appService.selectList(activeUser.getMemberVO(), appList);
 			modelMap.addAttribute("appList", appList);
+			modelMap.addAttribute("authority", authority);
 		
 			return "01_app/app_list";
 		}
@@ -192,7 +193,7 @@ public class AppController
 		return "01_app/app_pop_template";
 	}
 
-	//ÅÛÇÃ¸´ÀÌ¹ÌÁöÁ¤º¸
+	//ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "app/template/capture.html", method = RequestMethod.GET)
 	public @ResponseBody List man_provision_modify(HttpServletRequest request, HttpSession session, CaptureVO vo) throws Exception{
 		myUserDetails activeUser = null;
@@ -224,7 +225,7 @@ public class AppController
 	}
 
 	/**
-	 * ¾ÆÀÌÄÜÀÌ¹ÌÁö ¾÷·Îµå
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½
 	 */
 	@RequestMapping(value = "app/iconfileupload.html", method = RequestMethod.POST)
 	public @ResponseBody HashMap<Object, Object> app_icon_file_upload(HttpServletRequest request, HttpSession session, @RequestParam("iconFile") MultipartFile file) throws Exception{
@@ -240,7 +241,7 @@ public class AppController
 	}
 
 	/**
-	 * Ä¸ÃÄ ÀÌ¹ÌÁö ¾÷·Îµå
+	 * Ä¸ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½
 	 */
 	@RequestMapping(value = "app/deletetmpimg.html", method = RequestMethod.POST)
 	public @ResponseBody HashMap<Object, Object> app_delete_temp_img(HttpServletRequest request, HttpSession session){
@@ -253,13 +254,13 @@ public class AppController
 			String savePath = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(request)) +  messageSource.getMessage("file.upload.path.temp.images.file", null, localeResolver.resolveLocale(request));
 			File file = new File(savePath+saveFileName);
 			if(!FileUtil.delete(file)){
-				//»èÁ¦ µµÁß ¿À·ù°¡ ¹ß»ýÇß½À´Ï´Ù.
+				//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.
 				map.put("error", messageSource.getMessage("app.control.001", null, localeResolver.resolveLocale(request)));
 				return map;
 			}
 			map.put("error", "none" );
 		}catch(Exception e){
-			//»èÁ¦ µµÁß ¿À·ù°¡ ¹ß»ýÇß½À´Ï´Ù.
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.
 			map.put("error", messageSource.getMessage("app.control.001", null, localeResolver.resolveLocale(request)));
 			return map;
 		}
@@ -293,11 +294,11 @@ public class AppController
 					String mimeType = upLoadFile.getContentType();
 					if("inappFile".equals(map.get("fileType"))){
 	/*					if (!("image/jpeg".equals(mimeType)||"image/gif".equals(mimeType)||"image/png".equals(mimeType)||"image/jpg".equals(mimeType))) {					 
-							map.put("error", "µî·ÏÇÒ ¼ö ¾ø´Â ÆÄÀÏ ÇüÅÂÀÔ´Ï´Ù.");
+							map.put("error", "ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 							outputStream.close();
 							inputStream.close();
 							return map;
-							//throw new Exception("µî·ÏÇÒ ¼ö ¾ø´Â ÆÄÀÏÇüÅÂÀÔ´Ï´Ù.");
+							//throw new Exception("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 						}*/
 						savePath = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(request)) +  messageSource.getMessage("file.path.inapp.file", null, localeResolver.resolveLocale(request));
 						//webPath = messageSource.getMessage("file.web.path.temp.images.file", null, localeResolver.resolveLocale(request));
@@ -307,7 +308,7 @@ public class AppController
 							//outputStream.close();
 							inputStream.close();
 							return map;
-							//throw new Exception("µî·ÏÇÒ ¼ö ¾ø´Â ÆÄÀÏÇüÅÂÀÔ´Ï´Ù.");
+							//throw new Exception("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 						}
 						savePath = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(request)) +  messageSource.getMessage("file.upload.path.temp.images.file", null, localeResolver.resolveLocale(request));
 						webPath = messageSource.getMessage("file.upload.path.temp.images.file", null, localeResolver.resolveLocale(request));
@@ -323,12 +324,12 @@ public class AppController
 					}
 					if("inappFile".equals(map.get("fileType"))){
 					}else{
-						//ÆÄÀÏ ºñÀ²°Ë¼ö ¹× ¸®»çÀÌÁî 
+						//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ë¼ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 						BufferedImage uploadImages = ImageIO.read(new File(savePath + saveFileName));	
 						int orgHeight = uploadImages.getHeight();
 						int orgWidth = uploadImages.getWidth();
 							
-						//¾ÆÀÌÄÜÀÏ¶§
+						//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½
 						int toBeWidth = 300;
 						int toBeHeight = 300;
 						/*if ("iconFile".equals(map.get("fileType"))) {							
@@ -342,7 +343,7 @@ public class AppController
 						/*if ("captureFile".equals(map.get("fileType"))) {
 								
 						if(orgHeight!=orgWidth){
-							map.put("error", "ÀÌ¹ÌÁö ºñÀ²ÀÌ ¸ÂÁö ¾Ê½À´Ï´Ù.");
+							map.put("error", "ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.");
 							outputStream.close();
 							inputStream.close();
 							return map;						
@@ -365,7 +366,7 @@ public class AppController
 					map.put("webPath", webPath+saveFileName);
 					System.out.println("webPath+saveFileName = " + webPath+saveFileName);
 					map.put("error", "none");
-					//ÆÄÀÏ ºñÀ²°Ë¼ö ¹× ¸®»çÀÌÁî 
+					//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ë¼ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 					outputStream.close();
 					//outputStream.flush();
 					inputStream.close();
@@ -380,7 +381,7 @@ public class AppController
 	}
 
 	/**
-	 * Ä¸ÃÄ ÀÌ¹ÌÁö ¾÷·Îµå
+	 * Ä¸ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½
 	 */
 	@RequestMapping(value = "app/capturefileupload.html", method = RequestMethod.POST)
 	public @ResponseBody HashMap<Object, Object> app_capture_file_upload(HttpServletRequest request, HttpSession session, @RequestParam("captureFile") MultipartFile file){
@@ -415,16 +416,16 @@ public class AppController
 
   	@RequestMapping(value = "app/regist.html", method = RequestMethod.POST)
 	public String app_regist_impl(AppVO appVO, HttpServletRequest request, ModelMap modelMap) throws Exception {
-		//Map reqMap = WebUtil.getRequestMap(request); // Request Map °´Ã¼ »ý¼º
+		//Map reqMap = WebUtil.getRequestMap(request); // Request Map ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 		//Map model = new HashMap();	
 		/*
 		String area_idx = StringUtil.getVConv(reqMap.get("area"), "I");
-		String searchAreOverseasYn = StringUtils.defaultString(StringUtil.getVConv( reqMap.get("oversea"), "S", "N")); // ±¹³» N , ÇØ¿Ü Y
+		String searchAreOverseasYn = StringUtils.defaultString(StringUtil.getVConv( reqMap.get("oversea"), "S", "N")); // ï¿½ï¿½ï¿½ï¿½ N , ï¿½Ø¿ï¿½ Y
 		*/
 		//WebUtil.checkParameter(request);		
 		
 		//System.out.println(appVO.toString());
-		//»ç¿ëÀÚ Á¤º¸ 
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 		try{
 			myUserDetails activeUser = null;
 			if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof String) {
@@ -447,19 +448,19 @@ public class AppController
 	/*		List list = provisionService.selectList(vo);
 	    	modelMap.addAttribute("provisionList", list);
 	    	modelMap.addAttribute("provisionVo", vo);*/
-			//dbÀÔ·Â
+			//dbï¿½Ô·ï¿½
 
 			int appSeq = appService.getSeqAfterInsertAppInfo(appVO);
-			//ÀÌ¹ÌÁö Ã³·¯
+			//ï¿½Ì¹ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 			String tempPath = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(request)) + messageSource.getMessage("file.upload.path.temp.images.file", null, localeResolver.resolveLocale(request));
 			String toPath = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(request))	 + messageSource.getMessage("file.upload.path.app.icon.file", null, localeResolver.resolveLocale(request));				
-			//¾ÆÀÌÄÜÀÌ¹ÌÁö
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½
 			String iconOrgFile = appVO.getIconOrgFile();
 			String iconSaveFile = appVO.getIconSaveFile();
 			if(FileUtil.movefile(iconSaveFile, tempPath, toPath)){
-				//....Äõ¸®
+				//....ï¿½ï¿½ï¿½ï¿½
 			}
-			//Ä¸ÃÄÀÌ¹ÌÁö Ã³¸®
+			//Ä¸ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 			String[] imgOrgFileArr = request.getParameterValues("imgOrgFile");
 			String[] imgSaveFileArr = request.getParameterValues("imgSaveFile");
 			String imgOrgFile = null;
@@ -470,7 +471,7 @@ public class AppController
 					imgOrgFile = imgOrgFileArr[i];
 					imgSaveFile = imgSaveFileArr[i];
 					if(FileUtil.movefile(imgSaveFile, tempPath, toPath)){
-						//....Äõ¸® tb_capture
+						//....ï¿½ï¿½ï¿½ï¿½ tb_capture
 						CaptureVO captureVO = new CaptureVO();
 						captureVO.setCaptureGb("1");
 						captureVO.setBoardSeq(appSeq);
@@ -482,7 +483,7 @@ public class AppController
 				}
 			}
 
-			//ÇÁ·ÎºñÁ¯ ¿¬°áÅ×ÀÌºí ÀÔ·Â ¹× °»½Å
+			//ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			String[] provSeqArr = request.getParameterValues("provSeq");
 			//String[] provIdArr = request.getParameterValues("provId");
 			String storeBundleId1 = request.getParameter("storeBundleId1");
@@ -641,7 +642,7 @@ public class AppController
 			System.out.println("@@@@@@@@@@@@@@"+appVO.getAppSeq());
 			appVO = appService.selectForUpdate(appVO, activeUser.getMemberVO());
 			if(appVO==null){
-				//throw new Exception("Àß¸øµÈ Á¢±ÙÀÔ´Ï´Ù.");
+				//throw new Exception("ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 				String returnUrl = "/inc/dummy";
 				modelMap.addAttribute("msg", messageSource.getMessage("app.control.006", null, localeResolver.resolveLocale(request)));
 				modelMap.addAttribute("type", "-1");
@@ -687,7 +688,7 @@ public class AppController
 	@RequestMapping(value = "app/modify.html", method = RequestMethod.POST)
 	public String app_modify_impl(HttpSession session, String[] useS, String isAvailable, HttpServletRequest request, ModelMap modelMap, CaptureVO vo, AppVO appVO, AppList appList) {
 
-		//»ç¿ëÀÚ Á¤º¸ 
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 		myUserDetails activeUser = null;
 		if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof String) {
 			throw new AuthenticationException();
@@ -707,18 +708,18 @@ public class AppController
 		String[] provTestGbArr = request.getParameterValues("provTestGb");
 		String isCompleteNoToYes = request.getParameter("isCompleteNoToYes");
 
-		//couponNumÀÌ NullÀÏ °æ¿ì ""À¸·Î ¹Ù²Þ
+		//couponNumï¿½ï¿½ Nullï¿½ï¿½ ï¿½ï¿½ï¿½ ""ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½
 		if(appVO.getCouponNum() == null)appVO.setCouponNum("");
 		try{
 			AppVO appVO2 = appService.selectForUpdate(appVO, activeUser.getMemberVO());
 			if(appVO2==null){
-				//throw new Exception("Àß¸øµÈ Á¢±ÙÀÔ´Ï´Ù.");
+				//throw new Exception("ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 				String returnUrl = "/inc/dummy";
 				modelMap.addAttribute("msg", messageSource.getMessage("app.control.006", null, localeResolver.resolveLocale(request)));
 				modelMap.addAttribute("type", "-1");
 				return returnUrl;				
 			}
-			//»ç¿ë³¯Â¥ ¹Ì»ç¿ë³¯Â¥
+			//ï¿½ï¿½ë³¯Â¥ ï¿½Ì»ï¿½ë³¯Â¥
 			if(!appVO.getUseGb().equals(appVO2.getUseGb())){
 				if("1".equals(appVO.getUseGb())){
 					appVO.setUseAvailDt(new Date());
@@ -727,7 +728,7 @@ public class AppController
 				}
 			}
 
-			//Á¦ÇÑ ³¯Â¥
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥
 			if(appVO.getLimitGb()!=null){
 				if(!appVO.getLimitGb().equals(appVO2.getLimitGb())){
 					if("1".equals(appVO.getLimitGb())){
@@ -736,19 +737,19 @@ public class AppController
 				}				
 			}
 
-			// if("UPDATEOTHERYES") ¾È¿¡ µé¾î°¡¾ßÇÒ ÀÌ 2ÁÙÀÇ ÄÚµå°¡
-			// ¹Ù±ùÀ¸·Î ³ª¿Í¼­ ¸ÕÀú Ã£´Â ÀÌÀ¯´Â ¸ÇÃ³À½ Å×½ºÆ®·Î µî·ÏÇÑÈÄ, ¿Ï·á ¹öÆ°À» ´­·¶À»¶§,
-			// ±âÁ¸¿¡ ¾ÛÀÌ µî·ÏµÈ°Ô ÀÖ´Ù ¾ø´Ù±îÁö Ã¼Å©ÇØ¼­ Ã¼Å©ÇØ¼­ javascript·Î, UPDATEOTHERYES¸¦ ÇÏ´Â°Í´ë½Å¿¡
-			// ¼­¹ö´Ü¿¡¼­ size != 0À¸·Î ´ë½Å Ã¼Å°ÇÑ°Í
+			// if("UPDATEOTHERYES") ï¿½È¿ï¿½ ï¿½ï¿½î°¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ 2ï¿½ï¿½ï¿½ï¿½ ï¿½Úµå°¡
+			// ï¿½Ù±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í¼ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½×½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Ï·ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ÏµÈ°ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Ù±ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ø¼ï¿½ Ã¼Å©ï¿½Ø¼ï¿½ javascriptï¿½ï¿½, UPDATEOTHERYESï¿½ï¿½ ï¿½Ï´Â°Í´ï¿½Å¿ï¿½
+			// ï¿½ï¿½ï¿½ï¿½ï¿½Ü¿ï¿½ï¿½ï¿½ size != 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ã¼Å°ï¿½Ñ°ï¿½
 			param.setValue("store_bundle_id",storeBundleId1+storeBundleId2);
 			param.setValue("OSTYPE", appVO.getOstype());
 			List<LinkedHashMap<Object, Object>> appVOForBundleIdList = appService.getRowIsCompletedByBundleId(param);
 
-			// ÀÌ ¾÷µ¥ÀÌÆ®¸¦ µÎ¹øÂ° ¾÷µ¥ÀÌÆ®º¸´Ù ¸ÕÀú µÐÀÌÀ¯´Â
-			// SortingÇÒ¶§ °¡Àå ¸¶Áö¸·¿¡ ¾÷µ¥ÀÌÆ®µÈ ¼ø¼­´ë·Î SortingÇÏ±â ¶§¹®
-			// ±×¸®°í ÀÌ ¾÷µ¥ÀÌÆ®±â´ÉÀº, µÎ¹øÂ° ¾÷µ¥ÀÌÆ®°¡ ¿Ï¼º = '¾Æ´Ï¿À'ÀÏ¶§ '¿¹'·Î ÇßÀ»°æ¿ì
-			// bundle id°¡ ¶È°°°í ¹öÀüÀÌ ³·Àº ÇØ´ç ¾ÛÀ» »ç¿ëÁß´ÜÇÏ±â À§ÇÔÀÓ µû¶ó¼­
-			// SortingµÉ¶§ ÀÌ¾÷µ¥ÀÌÆ®´Â µÎ¹øÂ° ¾÷µ¥ÀÌÆ®º¸´Ù ¹Ø¿¡ ³»·Á°¡¾ßµÇ±â ¶§¹®¿¡ ¸ÕÀú ¾÷µ¥ÀÌÆ®¸¦ ÇÔ
+			// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Î¹ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			// Sortingï¿½Ò¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Sortingï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½
+			// ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Î¹ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ï¼ï¿½ = 'ï¿½Æ´Ï¿ï¿½'ï¿½Ï¶ï¿½ 'ï¿½ï¿½'ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			// bundle idï¿½ï¿½ ï¿½È°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ß´ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			// Sortingï¿½É¶ï¿½ ï¿½Ì¾ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Î¹ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ßµÇ±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½
 			if("UPDATEOTHERYES".equals(isCompleteNoToYes) && appVOForBundleIdList.size() != 0){
 				System.out.println("@@@@@@@@@@@ UPDATEOTHERYES!!!!");
 				AppHistoryVO appHistoryVOForHashMap = new AppHistoryVO(appVOForBundleIdList.get(0));
@@ -759,24 +760,24 @@ public class AppController
 			appVO.setChgUserId(activeUser.getMemberVO().getUserId());
 			appVO.setChgUserGb(activeUser.getMemberVO().getUserGb());
 
-			//ÀÌ°ÍÀº ¸ÇÃ³À½¿¡ ½ÃµµÇÑ ¾÷µ¥ÀÌÆ® ÀÔ´Ï´Ù.
+			//ï¿½Ì°ï¿½ï¿½ï¿½ ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½Ãµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ô´Ï´ï¿½.
 			if("Adhoc".equals(appVO.getProvisionGb()));
 				appVO.setProvisionGb("1");
 			if("AppStore".equals(appVO.getProvisionGb()));
 				appVO.setProvisionGb("2");
 			appService.updateAppInfo(appVO, appVO.getAppSeq());
 
-			//ÀÌ¹ÌÁö Ã³·¯
+			//ï¿½Ì¹ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 			String tempPath = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(request)) + messageSource.getMessage("file.upload.path.temp.images.file", null, localeResolver.resolveLocale(request));
 			String toPath = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(request)) + messageSource.getMessage("file.upload.path.app.icon.file", null, localeResolver.resolveLocale(request));
 			
-			//¾ÆÀÌÄÜÀÌ¹ÌÁö
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½
 			//String iconOrgFile = appVO.getIconOrgFile();
 			String iconSaveFile = appVO.getIconSaveFile();
 			if(FileUtil.movefile(iconSaveFile, tempPath, toPath)){
-				//....Äõ¸®
+				//....ï¿½ï¿½ï¿½ï¿½
 			}
-			//Ä¸ÃÄÀÌ¹ÌÁö Ã³¸®
+			//Ä¸ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 			String[] captureSeqArr = request.getParameterValues("captureSeq");
 			String[] imgOrgFileArr = request.getParameterValues("imgOrgFile");
 			String[] imgSaveFileArr = request.getParameterValues("imgSaveFile");
@@ -790,7 +791,7 @@ public class AppController
 					imgOrgFile = imgOrgFileArr[i];				 
 					imgSaveFile = imgSaveFileArr[i];				 
 					if("0".equals(captureSeq)&&FileUtil.movefile(imgSaveFile, tempPath, toPath)){
-						//....Äõ¸® tb_capture
+						//....ï¿½ï¿½ï¿½ï¿½ tb_capture
 						CaptureVO captureVO = new CaptureVO();
 						captureVO.setCaptureGb("1");
 						captureVO.setBoardSeq(appVO.getAppSeq());
@@ -802,7 +803,7 @@ public class AppController
 					}
 				}
 			}
-			//±âÁ¸ÆÄÀÏ»èÁ¦
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï»ï¿½ï¿½ï¿½
 			//captureSeq
 /*			var html = '<input typd="hidden" name="deleteFileSeq" value="'+captureSeq+'"/>';
 			html += '<input typd="hidden" name="deleteSaveFileName" value="'+saveFileName+'"/>';
@@ -819,7 +820,7 @@ public class AppController
 					deleteFileSeq = Integer.parseInt(deleteFileSeqArr[i]);
 					deleteSaveFileName = deleteSaveFileNameArr[i];				 
 					deleteFileType = deleteFileTypeArr[i];
-					if("capture".equals(deleteFileType)){//ÄÎÃÄÆÄÀÏ »èÁ¦
+					if("capture".equals(deleteFileType)){//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						deleteFilePath = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(request)) + messageSource.getMessage("file.upload.path.app.capture.file", null, localeResolver.resolveLocale(request));
 						if(FileUtil.delete(new File(deleteFilePath+deleteSaveFileName))){
 							CaptureVO captureVO = new CaptureVO();
@@ -827,13 +828,13 @@ public class AppController
 							captureService.delete(captureVO);
 							captureVO = null;
 						}
-					}else if("icon".equals(deleteFileType)){//¾ÆÀÌÄÜÆÄÀÏ»èÁ¦
+					}else if("icon".equals(deleteFileType)){//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï»ï¿½ï¿½ï¿½
 						deleteFilePath = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(request)) + messageSource.getMessage("file.upload.path.app.icon.file", null, localeResolver.resolveLocale(request));
 						FileUtil.delete(new File(deleteFilePath+deleteSaveFileName));
 					}
 				}
 			}
-			//ÇÁ·ÎºñÁ¯ ¿¬°áÅ×ÀÌºí ÀÔ·Â ¹× °»½Å
+			//ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			int provSeq = 0;
 			String provId = null;
 			String provTestGb = null;
@@ -872,7 +873,7 @@ public class AppController
 					bundleService.insert(bundleVO);
 				}				
 			}
-			// Æ¯Á¤È¸¿ø ¸®½ºÆ® Á¤º¸
+			// Æ¯ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 
 			/*if(useS.length >0) {
 				System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
@@ -912,7 +913,7 @@ public class AppController
 		}catch(Exception e){
 			e.printStackTrace();
 			String returnUrl = "/inc/dummy";
-			//message : µî·Ï ½ÇÆÐ
+			//message : ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			modelMap.addAttribute("msg", messageSource.getMessage("app.control.005", null, localeResolver.resolveLocale(request)));
 			modelMap.addAttribute("type", "-1");
 			return returnUrl;
@@ -966,16 +967,16 @@ public class AppController
 
 	@RequestMapping(value = "app/inapp/regist.html", method = RequestMethod.POST)
 	public String app_inapp_regist_impl(AppVO appVO, String appSeq, String storeBundleId, HttpServletRequest request, ModelMap modelMap, InAppList inAppList, InappVO vo, @RequestParam("inappFile") MultipartFile file) throws Exception {
-		//Map reqMap = WebUtil.getRequestMap(request); // Request Map °´Ã¼ »ý¼º
+		//Map reqMap = WebUtil.getRequestMap(request); // Request Map ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 		//Map model = new HashMap();	
 		/*
 		String area_idx = StringUtil.getVConv(reqMap.get("area"), "I");
-		String searchAreOverseasYn = StringUtils.defaultString(StringUtil.getVConv( reqMap.get("oversea"), "S", "N")); // ±¹³» N , ÇØ¿Ü Y
+		String searchAreOverseasYn = StringUtils.defaultString(StringUtil.getVConv( reqMap.get("oversea"), "S", "N")); // ï¿½ï¿½ï¿½ï¿½ N , ï¿½Ø¿ï¿½ Y
 		*/
 		//WebUtil.checkParameter(request);		
 
 		//System.out.println(appVO.toString());
-		//»ç¿ëÀÚ Á¤º¸
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		String returnUrl = "redirect:/app/inapp/list.html";
 		try{
 			HashMap<Object, Object> map = new HashMap<Object, Object>();
@@ -1014,18 +1015,18 @@ public class AppController
 	/*		List list = provisionService.selectList(vo);
 	    	modelMap.addAttribute("provisionList", list);
 	    	modelMap.addAttribute("provisionVo", vo);*/
-			//dbÀÔ·Â
+			//dbï¿½Ô·ï¿½
 			int inappSeq = inAppService.getSeqAfterInsertInAppInfo(vo);
-			//ÀÌ¹ÌÁö Ã³·¯
+			//ï¿½Ì¹ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 			String tempPath = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(request)) + messageSource.getMessage("file.upload.path.temp.images.file", null, localeResolver.resolveLocale(request));
 			String toPath = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(request)) + messageSource.getMessage("file.upload.path.inapp.icon.file", null, localeResolver.resolveLocale(request));				
-			//¾ÆÀÌÄÜÀÌ¹ÌÁö
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½
 			String iconOrgFile = appVO.getIconOrgFile();
 			String iconSaveFile = appVO.getIconSaveFile();
 			if(FileUtil.movefile(iconSaveFile, tempPath, toPath)){
-				//....Äõ¸®
+				//....ï¿½ï¿½ï¿½ï¿½
 			}
-			//Ä¸ÃÄÀÌ¹ÌÁö Ã³¸®
+			//Ä¸ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 			String[] imgOrgFileArr = request.getParameterValues("imgOrgFile");
 			String[] imgSaveFileArr = request.getParameterValues("imgSaveFile");
 			String imgOrgFile = null;
@@ -1036,7 +1037,7 @@ public class AppController
 					imgOrgFile = imgOrgFileArr[i];				 
 					imgSaveFile = imgSaveFileArr[i];				 
 					if(FileUtil.movefile(imgSaveFile, tempPath, toPath)){
-						//....Äõ¸® tb_capture
+						//....ï¿½ï¿½ï¿½ï¿½ tb_capture
 						CaptureVO captureVO = new CaptureVO();
 						captureVO.setCaptureGb("2");
 						captureVO.setBoardSeq(inappSeq);
@@ -1088,7 +1089,7 @@ public class AppController
 		}catch(Exception e){
 			e.printStackTrace();
 			returnUrl = "/inc/dummy";
-			//message : µî·Ï ½ÇÆÐ
+			//message : ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			modelMap.addAttribute("msg", messageSource.getMessage("app.control.005", null, localeResolver.resolveLocale(request)));
 			modelMap.addAttribute("type", "-1");
 			return returnUrl;
@@ -1152,7 +1153,7 @@ public class AppController
 		Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>)SecurityContextHolder.getContext().getAuthentication().getAuthorities();
 		GrantedAuthority element = authorities.iterator().next();
 		String authority = element.getAuthority();
-		//»ç¿ëÀÚ Á¤º¸ 
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 		myUserDetails activeUser = null;
 		if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof String) {
 			throw new AuthenticationException();
@@ -1164,14 +1165,14 @@ public class AppController
 		try {
 			InappVO ivo2 = inAppService.selectForUpdate(ivo, activeUser.getMemberVO());
 			if(ivo2==null){
-				//throw new Exception("Àß¸øµÈ Á¢±ÙÀÔ´Ï´Ù.");
+				//throw new Exception("ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 				String returnUrl = "/inc/dummy";
-				//message : Àß¸øµÈ Á¢±ÙÀÔ´Ï´Ù.
+				//message : ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
 				modelMap.addAttribute("msg", messageSource.getMessage("app.control.006", null, localeResolver.resolveLocale(request)));
 				modelMap.addAttribute("type", "-1");
 				return returnUrl;
 			}
-			//»ç¿ë³¯Â¥ ¹Ì»ç¿ë³¯Â¥
+			//ï¿½ï¿½ë³¯Â¥ ï¿½Ì»ï¿½ë³¯Â¥
 
 			if(!ivo2.getUseGb().equals(ivo.getUseGb())){
 				if("1".equals(ivo.getUseGb())){
@@ -1182,7 +1183,7 @@ public class AppController
 			}
 
 			if("ROLE_ADMIN_SERVICE".equals(authority)){
-				//Á¦ÇÑ ³¯Â¥
+				//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥
 				if(!ivo2.getLimitGb().equals(ivo.getLimitGb())){
 					if("1".equals(ivo.getLimitGb())){
 						ivo.setLimitDt(new Date());
@@ -1212,16 +1213,16 @@ public class AppController
 			ivo.setChgUserGb(activeUser.getMemberVO().getUserGb());
 
 			inAppService.updateInAppInfo(ivo, ivo.getInappSeq());
-			//ÀÌ¹ÌÁö Ã³·¯
+			//ï¿½Ì¹ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 			String tempPath = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(request)) + messageSource.getMessage("file.upload.path.temp.images.file", null, localeResolver.resolveLocale(request));
 			String toPath = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(request)) + messageSource.getMessage("file.upload.path.inapp.icon.file", null, localeResolver.resolveLocale(request));				
-			//¾ÆÀÌÄÜÀÌ¹ÌÁö
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½
 			String iconOrgFile = ivo.getIconOrgFile();
 			String iconSaveFile = ivo.getIconSaveFile();
 			if(FileUtil.movefile(iconSaveFile, tempPath, toPath)){
-				//....Äõ¸®
+				//....ï¿½ï¿½ï¿½ï¿½
 			}
-			//Ä¸ÃÄÀÌ¹ÌÁö Ã³¸®
+			//Ä¸ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 			String[] captureSeqArr = request.getParameterValues("captureSeq");
 			String[] imgOrgFileArr = request.getParameterValues("imgOrgFile");
 			String[] imgSaveFileArr = request.getParameterValues("imgSaveFile");
@@ -1235,7 +1236,7 @@ public class AppController
 					imgOrgFile = imgOrgFileArr[i];
 					imgSaveFile = imgSaveFileArr[i];
 					if("0".equals(captureSeq)&&FileUtil.movefile(imgSaveFile, tempPath, toPath)){
-						//....Äõ¸® tb_capture
+						//....ï¿½ï¿½ï¿½ï¿½ tb_capture
 						CaptureVO captureVO = new CaptureVO();
 						captureVO.setCaptureGb("2");
 						captureVO.setBoardSeq(ivo.getInappSeq());
@@ -1248,7 +1249,7 @@ public class AppController
 				}
 			}
 
-			//±âÁ¸ÆÄÀÏ
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			//captureSeq
 /*			var html = '<input typd="hidden" name="deleteFileSeq" value="'+captureSeq+'"/>';
 			html += '<input typd="hidden" name="deleteSaveFileName" value="'+saveFileName+'"/>';
@@ -1278,7 +1279,7 @@ public class AppController
 					deleteFileSeq = Integer.parseInt(deleteFileSeqArr[i]);
 					deleteSaveFileName = deleteSaveFileNameArr[i];
 					deleteFileType = deleteFileTypeArr[i];
-					if("capture".equals(deleteFileType)){//ÄÎÃÄÆÄÀÏ »èÁ¦
+					if("capture".equals(deleteFileType)){//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						deleteFilePath = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(request)) + messageSource.getMessage("file.upload.path.inapp.capture.file", null, localeResolver.resolveLocale(request));
 						if(FileUtil.delete(new File(deleteFilePath+deleteSaveFileName))){
 							CaptureVO captureVO = new CaptureVO();
@@ -1286,10 +1287,10 @@ public class AppController
 							captureService.delete(captureVO);
 							captureVO = null;
 						}
-					}else if("icon".equals(deleteFileType)){//¾ÆÀÌÄÜÆÄÀÏ»èÁ¦
+					}else if("icon".equals(deleteFileType)){//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï»ï¿½ï¿½ï¿½
 						deleteFilePath = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(request)) + messageSource.getMessage("file.upload.path.inapp.icon.file", null, localeResolver.resolveLocale(request));
 						FileUtil.delete(new File(deleteFilePath+deleteSaveFileName));
-					}else if("inapp".equals(deleteFileType)){//ÀÎ¾ÛÆÄÀÏ»èÁ¦
+					}else if("inapp".equals(deleteFileType)){//ï¿½Î¾ï¿½ï¿½ï¿½ï¿½Ï»ï¿½ï¿½ï¿½
 						deleteFilePath = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(request)) + messageSource.getMessage("file.path.inapp.file", null, localeResolver.resolveLocale(request));
 						FileUtil.delete(new File(deleteFilePath+deleteSaveFileName));
 					}
@@ -1362,9 +1363,9 @@ public class AppController
 		}catch(Exception e){
 			e.printStackTrace();
 			//return "redirect:/app/list.html";
-			//throw new Exception("Àß¸øµÈ Á¢±ÙÀÔ´Ï´Ù.");
+			//throw new Exception("ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 			String returnUrl = "/inc/dummy";
-			//message : ÀúÀå ½ÇÆÐ
+			//message : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			modelMap.addAttribute("msg", messageSource.getMessage("app.control.006", null, localeResolver.resolveLocale(request)));
 			modelMap.addAttribute("type", "-1");
 			return returnUrl;			
@@ -1391,7 +1392,7 @@ public class AppController
 		storeBundleId 		= this.paramSet(req, "storeBundleId");
 		isInapp 		= this.paramSet(req, "isInapp");
 		
-		//·Î±×ÀÎÁ¤º¸
+		//ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		myUserDetails activeUser = null;
 		if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof String) {
 			throw new AuthenticationException();
@@ -1429,7 +1430,7 @@ public class AppController
 		//categorySeq2 = this.paramSet(req, "categorySeq2");
 		
 		AppVO appVO = appService.selectByStoreId(storeBundleId);
-		//·Î±×ÀÎÁ¤º¸
+		//ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		myUserDetails activeUser = null;
 		if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof String) {
 			throw new AuthenticationException();
@@ -1448,7 +1449,7 @@ public class AppController
 			InCateVo.setCategoryParent(0);
 			//InCateVo.setCategorySeq(Integer.parseInt(categorySeq1));
 		}else{
-			InCateVo.setCategoryParent(Integer.parseInt(categorySeq1));//ºÎ¸ð ½ÃÄö½º ³Ö¾î¾ßÇÔ.
+			InCateVo.setCategoryParent(Integer.parseInt(categorySeq1));//ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½.
 			//InCateVo.setCategorySeq(Integer.parseInt(categorySeq2));
 		}
 		InCateVo.setDepth(depth);
@@ -1480,7 +1481,7 @@ public class AppController
 		categorySeq2 = this.paramSet(req, "categorySeq2");
 
 		AppVO appVO = appService.selectByStoreId(storeBundleId);
-		//·Î±×ÀÎÁ¤º¸
+		//ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		myUserDetails activeUser = null;
 		if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof String) {
 			throw new AuthenticationException();
@@ -1498,7 +1499,7 @@ public class AppController
 			InCateVo.setCategoryParent(0);
 			InCateVo.setCategorySeq(Integer.parseInt(categorySeq1));
 		}else{
-			//InCateVo.setCategoryParent(Integer.parseInt(categorySeq2));//ºÎ¸ð ½ÃÄö½º ³Ö¾î¾ßÇÔ.
+			//InCateVo.setCategoryParent(Integer.parseInt(categorySeq2));//ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½.
 			InCateVo.setCategorySeq(Integer.parseInt(categorySeq2));
 		}
 		InCateVo.setDepth(depth);
@@ -1528,7 +1529,7 @@ public class AppController
 		
 		AppVO appVO = appService.selectByStoreId(storeBundleId);
 		
-		//·Î±×ÀÎÁ¤º¸
+		//ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		
 		/*myUserDetails activeUser = (myUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		userSeq	=	String.valueOf(activeUser.getMemberVO().getUserSeq());
@@ -1543,7 +1544,7 @@ public class AppController
 			InCateVo.setCategoryParent(0);
 			InCateVo.setCategorySeq(Integer.parseInt(categorySeq1));
 		}else{
-			InCateVo.setCategoryParent(Integer.parseInt(categorySeq2));//ºÎ¸ð ½ÃÄö½º ³Ö¾î¾ßÇÔ.
+			InCateVo.setCategoryParent(Integer.parseInt(categorySeq2));//ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½.
 			InCateVo.setCategorySeq(Integer.parseInt(categorySeq2));
 		}
 		inAppCategoryService.deleteInAppInfo(InCateVo);

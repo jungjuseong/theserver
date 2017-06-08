@@ -456,6 +456,30 @@ public class ContentsDaoImpl extends AbstractDAO implements ContentsDao {
 		
 		return list;
 	}
+	
+	@Override
+	public void deleteContentsInfo(int contentsSeq){
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		
+		try {
+			tx = session.beginTransaction();
+			
+			Criteria cr = session.createCriteria(ContentVO.class);
+			cr.add(
+				Restrictions.eq("contentsSeq", contentsSeq)
+			);
+			ContentVO contentVO = (ContentVO)cr.uniqueResult();
+			session.delete(contentVO);
+			
+			tx.commit();
+		}catch (Exception e) {
+			if(tx != null) tx.rollback();
+			e.printStackTrace();	
+		}finally {
+			session.close();
+		}
+	}
 
 
 }

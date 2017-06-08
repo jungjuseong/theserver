@@ -75,7 +75,7 @@ public class ContentsServiceImpl implements ContentsService {
 				System.out.println("selectList[] " + vo.size());
 				System.out.println(vo.size());
 			}catch(Exception e){
-				System.out.println("¿¡·¯");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½");
 				e.printStackTrace();
 			}
 		return list;
@@ -109,5 +109,10 @@ public class ContentsServiceImpl implements ContentsService {
 		return contentDao.getListByCustomInfo(DBName, value);
 	}
 
+	@Override
+	public void deleteContentsInfo( int contentsSeq ){
+		// TODO Auto-generated method stub
+		contentDao.deleteContentsInfo(contentsSeq);
+	}
 
 }

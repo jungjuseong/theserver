@@ -21,7 +21,7 @@
 							<if test="ISMOBILE == 'IPHD'">
 								AND install_gb = 1 AND (ostype = '1' OR ostype='2' OR ostype='3')
 							</if>
-							<if test="AUTHORITY != 'ROLE_COMPANY_DISTRIBUTOR' and AUTHORITY != 'ROLE_COMPANY_MIDDLEADMIN' and ISMOBILE == 'NOMB'">
+							<if test="AUTHORITY != 'ROLE_COMPANY_DISTRIBUTOR' and AUTHORITY != 'ROLE_COMPANY_MIDDLEADMIN' and AUTHORITY != 'ROLE_COMPANY_CREATOR' and ISMOBILE == 'NOMB'">
 				    			<!-- ì±ì íí´ìë ìë¬´ê²ë ë³´ì§ ìê² ë¤ë ìë¯¸  -->
 								AND app_seq = 0
 							</if>

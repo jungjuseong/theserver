@@ -21,5 +21,5 @@ public interface ContentsService {
 	ContentVO selectByUltimateCondition(ContentVO cvo);
 	List<ContentVO> getListByCustomInfo(String DBName, String value);
 	List<ContentVO> getListByCustomInfo(String DBName, int value);
-	
+	void deleteContentsInfo( int contentsSeq );
 }
