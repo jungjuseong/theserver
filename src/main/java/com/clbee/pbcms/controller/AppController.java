@@ -4,11 +4,14 @@ import com.clbee.pbcms.service.AppService;
 import com.clbee.pbcms.service.BundleService;
 import com.clbee.pbcms.service.CaptureService;
 import com.clbee.pbcms.service.ChangelistService;
+import com.clbee.pbcms.service.ContentsService;
 import com.clbee.pbcms.service.InAppCategoryService;
 import com.clbee.pbcms.service.InAppService;
+import com.clbee.pbcms.service.LogService;
 import com.clbee.pbcms.service.MemberService;
 import com.clbee.pbcms.service.ProvisionService;
 import com.clbee.pbcms.service.TemplateService;
+import com.clbee.pbcms.service.NoticeService;
 import com.clbee.pbcms.util.AuthenticationException;
 import com.clbee.pbcms.util.DateUtil;
 import com.clbee.pbcms.util.Entity;
@@ -26,6 +29,7 @@ import com.clbee.pbcms.vo.InAppList;
 import com.clbee.pbcms.vo.InappSubVO;
 import com.clbee.pbcms.vo.InappVO;
 import com.clbee.pbcms.vo.InappcategoryVO;
+import com.clbee.pbcms.vo.LogList;
 import com.clbee.pbcms.vo.MemberVO;
 import com.clbee.pbcms.vo.ProvisionVO;
 import com.clbee.pbcms.vo.TemplateList;
@@ -109,6 +113,12 @@ public class AppController
 	
 	@Autowired
 	ChangelistService changelistService;
+	 
+	@Autowired
+	LogService logService;
+	
+	@Autowired
+	NoticeService noticeService;
 
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
@@ -142,6 +152,7 @@ public class AppController
 			return "redirect:/down/list.html";
 		}else{
 			if(appList.getCurrentPage()==null)appList.setCurrentPage(1);
+			System.out.println("여기 "+appList.getTotalCount());
 			appList = appService.selectList(activeUser.getMemberVO(), appList);
 			modelMap.addAttribute("appList", appList);
 			modelMap.addAttribute("authority", authority);
@@ -597,6 +608,50 @@ public class AppController
 
   		return mav;
   	}
+  	@RequestMapping(value={"/app/log/list.html"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+    public ModelAndView manLogListGET(String startDate, String endDate, HttpSession session, HttpServletRequest request)
+      throws Exception
+    {
+      ModelAndView mav = new ModelAndView();
+      myUserDetails activeUser = (myUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+      
+      AppVO appVO = null;
+      
+      int isSingle = 0;
+      String storeBundleId;
+      
+      String page = paramSet(request, "page");
+      String decodeValue = paramSet(request, "decodeValue");
+      
+      String searchType = paramSet(request, "searchType");
+      String searchValue = paramSet(request, "searchValue");
+      if ((paramSet(request, "inappSeq") != null) && (!"".equals(paramSet(request, "inappSeq"))))
+      {
+        storeBundleId = paramSet(request, "inappSeq");
+        isSingle = 2;
+      }
+      else
+      {
+        storeBundleId = paramSet(request, "storeBundleId");
+        appVO = this.appService.selectByStoreId(storeBundleId);
+        isSingle = 1;
+      }
+      if (searchValue != null) {
+        decodeValue = URLDecoder.decode(searchValue, "UTF-8");
+      }
+      LogList addList = this.logService.selectLogList(Integer.parseInt(page), storeBundleId, decodeValue, searchType, startDate, endDate);
+      
+      mav.addObject("searchValue", decodeValue);
+      mav.addObject("logList", addList);
+      if (appVO != null) {
+        mav.addObject("isSingle", Integer.valueOf(isSingle));
+      }
+      mav.addObject("startDate", startDate);
+      mav.addObject("endDate", endDate);
+      mav.setViewName("01_app/log_list");
+      
+      return mav;
+    }
   	
   	@RequestMapping(value = "app/deleteApp.html", method = RequestMethod.POST)
 	public ModelAndView appDeleteAppPOST(HttpSession session, HttpServletRequest request) {
@@ -610,7 +665,13 @@ public class AppController
   		appSeq = paramSet(request, "appSeq");
   		
   		try{
-  			appService.deleteAppInfo(Integer.parseInt(appSeq));
+  			appService.deleteAppInfo(Integer.parseInt(appSeq));//앱 삭제
+  			//appService.deleteAppHistoryInfo(Integer.parseInt(appSeq));//앱 히스토리 삭제
+  			//bundleService.delete(Integer.parseInt(appSeq));//번들 삭제
+  			//noticeService.deleteNoticeSubAppSeqInfo(Integer.parseInt(appSeq));//공지 앱 삭제
+  			//appService.deleteAppSubAppSeqInfo(Integer.parseInt(appSeq));//앱서브 삭제
+  			//프로비젼 삭
+  			
   			mav.setViewName("redirect:/app/list.html?currentPage="+currentPage+"&appSeq="+appSeq+"&searchValue="+searchValue+"&isAvailable="+isAvailable);
   		}catch(Exception e){
   			e.printStackTrace();
@@ -619,7 +680,6 @@ public class AppController
   	  		mav.addObject("msg", messageSource.getMessage("app.control.001", null, localeResolver.resolveLocale(request)));
   	  		mav.addObject("type", "-1");
   		}
-
   		return mav;
   	}
   	

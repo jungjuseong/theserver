@@ -1,12 +1,20 @@
 package com.clbee.pbcms.dao;
 
+import com.clbee.pbcms.vo.LogVO;
+import java.util.Date;
 import java.util.List;
 
-import com.clbee.pbcms.vo.LogVO;
-
-public interface LogDao {
-	int insertLogInfo(LogVO logVO);
-	Object selectLogInfo( String storeBundleId, String inappSeq, Integer userSeq, String pageGb, String dataGb);
-	List<LogVO> selectLogList( int startNo );
-	int selectLogListCount();
+public abstract interface LogDao
+{
+  public abstract int insertLogInfo(LogVO paramLogVO);
+  
+  public abstract Object selectLogInfo(String paramString1, String paramString2, Integer paramInteger, String paramString3, String paramString4);
+  
+  public abstract List<LogVO> selectLogList(int paramInt, String paramString1, String paramString2, String paramString3, Date paramDate1, Date paramDate2);
+  
+  public abstract int selectLogListCount(String paramString1, String paramString2, String paramString3, Date paramDate1, Date paramDate2);
+  
+  public abstract LogVO selectLogInfo(int paramInt);
+  
+  public abstract List<LogVO> selectLogAllList(String paramString1, String paramString2, String paramString3, Date paramDate1, Date paramDate2);
 }

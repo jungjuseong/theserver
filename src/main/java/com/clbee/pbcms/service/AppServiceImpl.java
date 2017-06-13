@@ -233,6 +233,12 @@ public class AppServiceImpl implements AppService {
 		// TODO Auto-generated method stub
 		dao.deleteAppInfo(appSeq);
 	}
+	
+	@Override
+	public void deleteAppHistoryInfo(int appSeq) {
+		// TODO Auto-generated method stub
+		dao.deleteAppHistoryInfo(appSeq);
+	}
 
 	@Override
 	public int insertAppHistoryInfo(AppHistoryVO app) {
@@ -409,4 +415,12 @@ public class AppServiceImpl implements AppService {
 		// TODO Auto-generated method stub
 		dao.updateAppSubInfo(updatedVO, subNum);
 	}
+
+	@Override
+	public void deleteAppSubAppSeqInfo(int appSeq) {
+		// TODO Auto-generated method stub
+		dao.deleteAppSubAppSeqInfo(appSeq);
+	}
+
+	
 }

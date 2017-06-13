@@ -281,7 +281,6 @@ public class MemberVO implements Serializable {
 	}
 
 	public String getUserGb() {
-		System.out.println("여기지롱 "+this.userGb);
 		return this.userGb;
 	}
 

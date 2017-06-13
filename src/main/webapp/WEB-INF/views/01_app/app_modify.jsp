@@ -331,6 +331,7 @@ $(document).ready(function(){
 	});
 
 	$('#registBtn').click(function(){
+		//post 형식
 		$("#appForm").attr('action', '/app/modify.html');
 		var isVaid = customValidate({
 			 	 rules: {
@@ -1069,15 +1070,15 @@ function companyCreatorLimit(){
 function appDelete(){
 	if(confirm("<spring:message code='user.list.027' />")){
 		if("1" == "${appVO.regGb}"){
-			if(confirm("<spring:message code='extend.local.091' />")){
+			if(confirm("<spring:message code='extend.local.091' />")){//인앱도 삭제하시겠습니까?
 				document.appForm.action='/app/deleteBoth.html';
 				document.appForm.submit();
 			}else{
-				document.appForm.action='/app/deleteApp.html';
+				document.appForm.action='/app/deleteApp.html';//인앱은 삭제 안해...
 				document.appForm.submit();
 			}
 		}else{
-			document.appForm.action='/app/deleteApp.html';
+			document.appForm.action='/app/deleteApp.html';//single app 삭제 
 			document.appForm.submit();
 		}
 	}

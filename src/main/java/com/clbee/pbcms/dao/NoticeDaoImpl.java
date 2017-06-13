@@ -100,7 +100,7 @@ public class NoticeDaoImpl implements NoticeDao {
 			.addOrder(Order.desc("regDt"));
 			
 			/*
-			 * 1. °øÁö»çÇ× ÀÌ¸§ °Ë»ö
+			 * 1. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½Ë»ï¿½
 			*/
 			if(searchType != null && !"".equals(searchType)) {
 				switch(Integer.parseInt(searchType)) {
@@ -137,7 +137,7 @@ public class NoticeDaoImpl implements NoticeDao {
 			);
 			
 			/*
-			 * 1. °øÁö»çÇ× ÀÌ¸§ °Ë»ö
+			 * 1. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½Ë»ï¿½
 			*/
 			if(searchType != null && !"".equals(searchType)) {
 				switch(Integer.parseInt(searchType)) {
@@ -422,6 +422,31 @@ public class NoticeDaoImpl implements NoticeDao {
 		}
 		
 		return list;
+	}
+
+	@Override
+	public void deleteNoticeappSubInfo(int appSeq) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		
+		try {
+			tx = session.beginTransaction();
+			
+			String hql = "DELETE FROM NoticeSubVO T " + 
+		             "WHERE T.appSeq = :appSeq ";
+			
+			Query query = session.createQuery(hql);
+			query.setParameter("appSeq",appSeq);
+			query.executeUpdate();
+			
+			tx.commit();
+		}catch (Exception e) {
+			if(tx != null) tx.rollback();
+			e.printStackTrace();	
+		}finally {
+			session.close();
+		}
 	}
 }
 

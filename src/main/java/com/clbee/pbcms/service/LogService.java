@@ -6,7 +6,13 @@ import com.clbee.pbcms.vo.LogList;
 import com.clbee.pbcms.vo.LogVO;
 
 public interface LogService {
-	int insertLogInfo(LogVO logVO);
-	Object selectLogInfo( String storeBundleId, String inappSeq, Integer userSeq, String pageGb, String dataGb);
-	LogList selectLogList( int startNo);
+	public abstract int insertLogInfo(LogVO paramLogVO);
+	  
+	public abstract Object selectLogInfo(String paramString1, String paramString2, Integer paramInteger, String paramString3, String paramString4);
+	  
+	public abstract LogList selectLogList(int paramInt, String paramString1, String paramString2, String paramString3, String paramString4, String paramString5);
+	  
+	public abstract LogVO selectLogInfo(int paramInt);
+	  
+	public abstract List<LogVO> selectLogAllList(String paramString1, String paramString2, String paramString3, String paramString4, String paramString5);
 }

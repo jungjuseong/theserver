@@ -68,13 +68,6 @@ function appModify(seq){
 	document.appFrm.submit();
 }
 
-function deleteApp(){
-	if(confirm("정말 삭제하겠습니까?")==true){
-		alert("d");
-	}else{
-		return;
-	}
-}
 
 //inapp search popup
 var inappPopup
@@ -86,7 +79,7 @@ function inAppPop(storeBundleId){
 	var winPosLeft = (screen.width - winWidth)/2;
 	var winPosTop = (screen.height - winHeight)/2;
 	var url = "/app/inapp/list.html?storeBundleId=" + storeBundleId+"&isAvailable=false&searchType=inappName&searchValue=";		
-	var opt = "width=" + winWidth + ", height=" + winHeight + ", top=" + winPosTop + ", left=" + winPosLeft + ", scrollbars=yes, resizeable=No, status=No, toolbar=No";
+	var opt = "width=" + winWidth + ", height=" + winHeight + ", top=" + winPosTop + ", left=" + winPosLeft + ", scrollbars=No, resizeable=No, status=No, toolbar=No";
 	//if(!templatePopup){
 		inappPopup = window.open(url, "inappPopup", opt);			
 	//}

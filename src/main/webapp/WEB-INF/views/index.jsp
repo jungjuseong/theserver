@@ -18,7 +18,6 @@
 
                 // Prevents the default action to be triggered. 
                 e.preventDefault();
-
                 // Triggering bPopup when click event is fired
                 $('.pop_wrap').bPopup();
 

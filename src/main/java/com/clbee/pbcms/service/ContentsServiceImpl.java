@@ -115,4 +115,5 @@ public class ContentsServiceImpl implements ContentsService {
 		contentDao.deleteContentsInfo(contentsSeq);
 	}
 
+
 }

@@ -1083,7 +1083,7 @@ public class ManController {
 		return mav;
 	}
 
-	@RequestMapping(value="/man/log/list.html" , method=RequestMethod.GET )
+	/*@RequestMapping(value="/man/log/list.html" , method=RequestMethod.GET )
 	public ModelAndView manLogListGET( String page, String searchType, String searchValue,  HttpSession session, HttpServletRequest req) throws Exception{
 		ModelAndView mav = new ModelAndView();
 		myUserDetails activeUser = (myUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -1101,7 +1101,7 @@ public class ManController {
 
 		return mav;
 	}
-
+*/
 	
 	
 	

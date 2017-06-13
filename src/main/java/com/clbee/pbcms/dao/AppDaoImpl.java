@@ -800,6 +800,30 @@ public class AppDaoImpl extends AbstractDAO implements AppDao {
 	}
 
 	@Override
+	public void deleteAppHistoryInfo(int appSeq) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			
+			Criteria cr = session.createCriteria(AppHistoryVO.class);
+			cr.add(
+				Restrictions.eq("appSeq", appSeq)
+			);
+			AppVO appVO = (AppVO)cr.uniqueResult();
+			session.delete(appVO);	
+			
+			tx.commit();
+		}catch (Exception e) {
+			if(tx != null) tx.rollback();
+			e.printStackTrace();	
+		}finally {
+			session.close();
+		}
+	}
+	
+	@Override
 	public List<AppSubVO> selectAppSubList(int appSeq) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.openSession();
@@ -1115,5 +1139,30 @@ public class AppDaoImpl extends AbstractDAO implements AppDao {
 		}
 				
 		return appVO;
+	}
+
+	@Override
+	public void deleteAppSubAppSeqInfo(int appSeq) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		
+		try {
+			tx = session.beginTransaction();
+			
+			Criteria cr = session.createCriteria(AppSubVO.class);
+			cr.add(
+				Restrictions.eq("appSeq", appSeq)
+			);
+			AppVO appVO = (AppVO)cr.uniqueResult();
+			session.delete(appVO);	
+			
+			tx.commit();
+		}catch (Exception e) {
+			if(tx != null) tx.rollback();
+			e.printStackTrace();	
+		}finally {
+			session.close();
+		}
 	}
 }

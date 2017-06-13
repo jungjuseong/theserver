@@ -203,6 +203,12 @@ public class AppVO implements Serializable {
 	
 	@Column(name="login_gb")
 	private String loginGb;
+	
+	@Column(name="app_schema")
+	private String appSchema;
+	
+	@Column(name="app_host")
+	private String appHost;
 
 	public AppVO(){
 	}
@@ -271,6 +277,8 @@ public class AppVO implements Serializable {
 		this.loginGb = (String)map.get("loginGb");
 		this.loginTime = (String)map.get("loginTime");
 		this.logoutTime = (String)map.get("logoutTime");
+		this.appSchema = (String)map.get("appSchema");
+		this.appHost = (String)map.get("appHost");
 	}
 
 	public void setAppVO( AppVO updatedVO){
@@ -325,8 +333,9 @@ public class AppVO implements Serializable {
 		this.loginGb = updatedVO.getLoginGb();
 		this.loginTime = updatedVO.getLoginTime();
 		this.logoutTime = updatedVO.getLogoutTime();
+		this.appSchema = updatedVO.getAppSchema();
+		this.appHost = updatedVO.getAppHost();
 	}
-
 	public Integer getAppSeq() {
 		return this.appSeq;
 	}
@@ -792,6 +801,22 @@ public class AppVO implements Serializable {
 		this.logoutTime = logoutTime;
 	}
 
+	public String getAppSchema() {
+		return appSchema;
+	}
+
+	public void setAppSchema(String appSchema) {
+		this.appSchema = appSchema;
+	}
+	
+	public String getAppHost() {
+		return appHost;
+	}
+
+	public void setAppHost(String appHost) {
+		this.appHost = appHost;
+	}
+	
 	@NotFound(action = NotFoundAction.IGNORE)
 	@ManyToOne(  optional = true)
 	@JoinColumn( nullable=true, name="chg_user_seq",  referencedColumnName="user_seq", insertable=false, updatable=false)
@@ -824,6 +849,8 @@ public class AppVO implements Serializable {
 				+ templateSeq + ", useAvailDt=" + useAvailDt
 				+ ", useDisableDt=" + useDisableDt + ", useGb=" + useGb
 				+ ", verNum=" + verNum + ", regMemberVO=" + regMemberVO
-				+ ", chgMemberVO=" + chgMemberVO + "]";
+				+ ", chgMemberVO=" + chgMemberVO
+				+ ", appSchema=" + appSchema
+				+ ", appHost=" + appHost + "]";
 	}
 }

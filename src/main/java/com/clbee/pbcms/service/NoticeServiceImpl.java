@@ -39,9 +39,9 @@ public class NoticeServiceImpl implements NoticeService {
 	public NoticeList selectNoticeList( int currentPage, int companySeq, String searchType, String searchValue ) {
 		// TODO Auto-generated method stub
 		NoticeList list = null;
-		// ÀüÃ¼ ÆäÀÌÁö 1,2,3,4,5,6,7,8,9,19¹Ø¿¡ ÆÄ¶ó¹ÌÅÍ ¼ýÀÚ°¡ Ç¥½ÃµÉ °¹¼ö
+		// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1,2,3,4,5,6,7,8,9,19ï¿½Ø¿ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú°ï¿½ Ç¥ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½
 		int pageSize = 10;
-		// ÇÑÆäÀÌÁö¿¡ ÃÖ´ë ¸®½ºÆÃµÉ È½¼ö
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ È½ï¿½ï¿½
 		int maxResult = 10; 
 		int totalCount = 0;
 		int startNo = 0;
@@ -58,7 +58,7 @@ public class NoticeServiceImpl implements NoticeService {
 				list.setList(vo);
 
 			}catch(Exception e){
-				System.out.println("¿¡·¯");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½");
 				e.printStackTrace();
 			}
 		return list;
@@ -150,11 +150,11 @@ public class NoticeServiceImpl implements NoticeService {
 					int endYear = cal.get(Calendar.YEAR);
 					
 
-					// 1. year(ÇöÀç ³âµµ)°¡ stYearº¸´Ù Å¬°æ¿ì month¿Í day´Â ¾Æ¹«»ó°üÀÌ¾øÀ½
-					// 2. year°¡ stYear¿Í °°À»°æ¿ì month¸¦ ºñ±³ÇÔ
-					// 3. ÀÌ¶§ month°¡ stMonthº¸´Ù Å¬°æ¿ì day´Â ¾Æ¹«»ó°üÀÌ ¾øÀ½
-					// 4. month°¡ stMonth¿Í °°À»°æ¿ì stDay¸¦ ºñ±³ÇÔ
-					// endYearµµ 1, 2, 3, 4 ¿Í °°À½
+					// 1. year(ï¿½ï¿½ï¿½ï¿½ ï¿½âµµ)ï¿½ï¿½ stYearï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ monthï¿½ï¿½ dayï¿½ï¿½ ï¿½Æ¹ï¿½ï¿½ï¿½ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½
+					// 2. yearï¿½ï¿½ stYearï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ monthï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+					// 3. ï¿½Ì¶ï¿½ monthï¿½ï¿½ stMonthï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ dayï¿½ï¿½ ï¿½Æ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+					// 4. monthï¿½ï¿½ stMonthï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ stDayï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+					// endYearï¿½ï¿½ 1, 2, 3, 4 ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 					if(year > stYear || (year == stYear && (month > stMonth || (month == stMonth && day >= stDay)))){
 						if(year < endYear || (year == endYear && (month < endMonth || (month == endMonth && day <= endDay)))){
 							addList.add(list.get(i));
@@ -179,5 +179,11 @@ public class NoticeServiceImpl implements NoticeService {
 		}
 		
 		return addList;
+	}
+
+	@Override
+	public void deleteNoticeSubAppSeqInfo(int appSeq) {
+		// TODO Auto-generated method stub
+		noticeDao.deleteNoticeappSubInfo(appSeq);
 	}
 }
