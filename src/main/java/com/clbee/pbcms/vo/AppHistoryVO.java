@@ -196,6 +196,12 @@ public class AppHistoryVO implements Serializable {
 	@Column(name="login_gb")
 	private String loginGb;
 	
+	@Column(name="app_schema")
+	private String appSchema;
+	
+	@Column(name="app_host")
+	private String appHost;
+	
 	public AppHistoryVO(){
 		
 	}
@@ -265,6 +271,8 @@ public class AppHistoryVO implements Serializable {
 		this.loginGb = (String)map.get("loginGb");
 		this.loginTime = (String)map.get("loginTime");
 		this.logoutTime = (String)map.get("logoutTime");
+		this.appSchema = (String)map.get("appSchema");
+		this.appHost = (String)map.get("appHost");
 	}
 
 	public void setAppVO( AppHistoryVO updatedVO){
@@ -319,6 +327,8 @@ public class AppHistoryVO implements Serializable {
 		this.loginGb = updatedVO.getLoginGb();
 		this.loginTime = updatedVO.getLoginTime();
 		this.logoutTime = updatedVO.getLogoutTime();
+		this.appSchema = updatedVO.getAppSchema();
+		this.appHost = updatedVO.getAppHost();
 	}
 
 	public Integer getAppSeq() {
@@ -730,6 +740,22 @@ public class AppHistoryVO implements Serializable {
 	public void setChgMemberVO(MemberVO chgMemberVO) {
 		this.chgMemberVO = chgMemberVO;
 	}
+	
+	public String getAppSchema() {
+		return appSchema;
+	}
+
+	public void setAppSchema(String appSchema) {
+		this.appSchema = appSchema;
+	}
+	
+	public String getAppHost() {
+		return appHost;
+	}
+
+	public void setAppHost(String appHost) {
+		this.appHost = appHost;
+	}
 
 	@NotFound(action = NotFoundAction.IGNORE)
 	@ManyToOne(  optional = true)
@@ -774,7 +800,9 @@ public class AppHistoryVO implements Serializable {
 				+ templateSeq + ", useAvailDt=" + useAvailDt
 				+ ", useDisableDt=" + useDisableDt + ", useGb=" + useGb
 				+ ", verNum=" + verNum + ", regMemberVO=" + regMemberVO
-				+ ", chgMemberVO=" + chgMemberVO + "]";
+				+ ", chgMemberVO=" + chgMemberVO
+				+ ", appSchema=" + appSchema
+				+ ", appHost=" + appHost + "]";
 	}
 
 	public String getLoginTime() {

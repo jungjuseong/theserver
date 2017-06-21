@@ -37,31 +37,31 @@ public class myUserDetailsService implements UserDetailsService {
 		System.out.println("password" + memberVO.getUserPw());
 		Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
-		System.out.println("userGb Number is = " + memberVO.getUserGb());
+		System.out.println("userGb Number // = " + memberVO.getUserGb());
 		switch(Integer.parseInt(memberVO.getUserGb())) {
-			case 1 :	/* ±â¾÷ »ç¿ëÀÚ */
+			case 1 :	/* ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ */
 				 authorities.add(new GrantedAuthorityImpl("ROLE_COMPANY_USER"));
 				break;
-			case 5 :	/*	±â¾÷ Á¦ÀÛÀÚÀÏ °æ¿ì */
+			case 5 :	/*	ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ */
 				 authorities.add(new GrantedAuthorityImpl("ROLE_COMPANY_CREATOR"));
 				break;
-			case 21 :	/* ±â¾÷ ¹èÆ÷ÀÚÀÏ °æ¿ì */
+			case 21 :	/* ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ */
 				authorities.add(new GrantedAuthorityImpl("ROLE_COMPANY_DISTRIBUTOR"));
 			break;
 			case 29 :
 				authorities.add(new GrantedAuthorityImpl("ROLE_COMPANY_MIDDLEADMIN"));
 				break;
-			case 127 :	/* userGb°¡ È¸¿øÀÏ °æ¿ì */
-				/* companyGb°¡ ±â¾÷È¸¿ø ÀÏ°æ¿ì*/
+			case 127 :	/* userGbï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ */
+				/* companyGbï¿½ï¿½ ï¿½ï¿½ï¿½È¸ï¿½ï¿½ ï¿½Ï°ï¿½ï¿½*/
 				if("1".equals(memberVO.getCompanyGb())) {
 					 authorities.add(new GrantedAuthorityImpl("ROLE_COMPANY_MEMBER"));
 				}
-				/* companyGb°¡ °³ÀÎÈ¸¿øÀÏ °æ¿ì */
+				/* companyGbï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ */
 				else{
 					 authorities.add(new GrantedAuthorityImpl("ROLE_INDIVIDUAL_MEMBER"));
 				}
 				break;
-			case 255 :	/*	¼­ºñ½º °ü¸®ÀÚÀÏ °æ¿ì */
+			case 255 :	/*	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ */
 				 authorities.add(new GrantedAuthorityImpl("ROLE_ADMIN_SERVICE"));
 				break;
 		}

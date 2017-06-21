@@ -992,7 +992,7 @@ public class AppDaoImpl extends AbstractDAO implements AppDao {
 
 	@Override
 	public int checkIfAvailableAppByBundleId( int userSeq, String ostype, String storeBundleId ) {
-		// TODO Auto-generated method stub
+		//TODO Auto-generated method stub
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		List<AppVO> list = null;

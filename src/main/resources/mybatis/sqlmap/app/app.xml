@@ -103,7 +103,6 @@ FROM
 
 <select id="getRowIsCompletedByBundleId" parameterType="hashmap" resultType="java.util.LinkedHashMap">
 	SELECT 
-	
 	    a.app_seq as appSeq,
 	    a.reg_gb as regGb,
 	    a.app_name as appName,
@@ -151,7 +150,9 @@ FROM
 	    DATE_FORMAT(a.chg_dt, '%Y-%m-%d %k:%i:%s') as chgDt,
 	    a.app_size as appSize,
 	    a.app_resultCode as app_resultCode,
-	    a.use_user_gb as useUserGb
+	    a.use_user_gb as useUserGb,
+	    a.app_schema as appSchema,
+	    a.app_host as appHost
 	FROM
 	    tb_app AS a
 	        LEFT OUTER JOIN
@@ -164,9 +165,9 @@ FROM
 	     	AND (a.ostype = '1' OR a.ostype = '2' OR a.ostype = '3')
 	     </if>
 	     <if test="OSTYPE == 4">
-	     	AND a.ostype = '4'
+	     	AND a.use_gb = '4'
 	     </if>
-	ORDER BY useGb DESC
+	ORDER BY a.use_Gb DESC
 	LIMIT 1;
 </select>
 

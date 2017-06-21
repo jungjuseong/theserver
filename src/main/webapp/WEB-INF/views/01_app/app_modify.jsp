@@ -1078,7 +1078,7 @@ function appDelete(){
 				document.appForm.submit();
 			}
 		}else{
-			document.appForm.action='/app/deleteApp.html';//single app 삭제 
+			document.appForm.action='/app/deleteApp.html';//single app 삭제
 			document.appForm.submit();
 		}
 	}

@@ -152,7 +152,6 @@ public class AppController
 			return "redirect:/down/list.html";
 		}else{
 			if(appList.getCurrentPage()==null)appList.setCurrentPage(1);
-			System.out.println("여기 "+appList.getTotalCount());
 			appList = appService.selectList(activeUser.getMemberVO(), appList);
 			modelMap.addAttribute("appList", appList);
 			modelMap.addAttribute("authority", authority);
@@ -685,6 +684,7 @@ public class AppController
   	
 	@RequestMapping(value = "app/modify.html", method = RequestMethod.GET)
 	public String app_modify(HttpSession session, HttpServletRequest request, ModelMap modelMap, InappVO inappVO, InAppList inAppList, CaptureVO vo, AppVO appVO, AppList appList) {
+		
 		List<?> captureList = null;
 		List<?> bundleList = null;
 		int inappCnt = 0;
@@ -699,7 +699,7 @@ public class AppController
 			}else {
 				activeUser = (myUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			}
-			System.out.println("@@@@@@@@@@@@@@"+appVO.getAppSeq());
+			System.out.println("modify appSeq"+appVO.getAppSeq());
 			appVO = appService.selectForUpdate(appVO, activeUser.getMemberVO());
 			if(appVO==null){
 				//throw new Exception("�߸��� �����Դϴ�.");
@@ -747,7 +747,7 @@ public class AppController
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "app/modify.html", method = RequestMethod.POST)
 	public String app_modify_impl(HttpSession session, String[] useS, String isAvailable, HttpServletRequest request, ModelMap modelMap, CaptureVO vo, AppVO appVO, AppList appList) {
-
+		
 		//����� ���� 
 		myUserDetails activeUser = null;
 		if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof String) {
@@ -794,7 +794,7 @@ public class AppController
 					if("1".equals(appVO.getLimitGb())){
 						appVO.setLimitDt(new Date());
 					}
-				}				
+				}
 			}
 
 			// if("UPDATEOTHERYES") �ȿ� ������ �� 2���� �ڵ尡
@@ -804,12 +804,16 @@ public class AppController
 			param.setValue("store_bundle_id",storeBundleId1+storeBundleId2);
 			param.setValue("OSTYPE", appVO.getOstype());
 			List<LinkedHashMap<Object, Object>> appVOForBundleIdList = appService.getRowIsCompletedByBundleId(param);
+			
 
 			// �� ������Ʈ�� �ι�° ������Ʈ���� ���� ��������
 			// Sorting�Ҷ� ���� �������� ������Ʈ�� ������� Sorting�ϱ� ����
 			// �׸��� �� ������Ʈ�����, �ι�° ������Ʈ�� �ϼ� = '�ƴϿ�'�϶� '��'�� �������
 			// bundle id�� �Ȱ��� ������ ���� �ش� ���� ����ߴ��ϱ� ������ ����
 			// Sorting�ɶ� �̾�����Ʈ�� �ι�° ������Ʈ���� �ؿ� �������ߵǱ� ������ ���� ������Ʈ�� ��
+			
+			System.out.println("여기1 "+isCompleteNoToYes +", "+appVOForBundleIdList.size());
+			
 			if("UPDATEOTHERYES".equals(isCompleteNoToYes) && appVOForBundleIdList.size() != 0){
 				System.out.println("@@@@@@@@@@@ UPDATEOTHERYES!!!!");
 				AppHistoryVO appHistoryVOForHashMap = new AppHistoryVO(appVOForBundleIdList.get(0));
@@ -969,7 +973,7 @@ public class AppController
 			String url = "redirect:/app/list.html";
 			String parameters = "?currentPage=1&searchValue="+"&isAvailable="+isAvailable;
 				 /*"&appSeq="+appVO.getAppSeq()+"&searchType="+appList.getSearchType()+"&searchValue="+appList.getSearchValue();*/
-			return url + parameters;
+			return "/inc/dummy";//"url + parameters";
 		}catch(Exception e){
 			e.printStackTrace();
 			String returnUrl = "/inc/dummy";

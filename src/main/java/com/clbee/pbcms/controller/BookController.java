@@ -601,7 +601,7 @@ public class BookController {
 		}
 
 		vo.setStoreBundleId(appVO.getStoreBundleId());
-		int completAndUsingCnt =0;
+		int completAndUsingCnt = 0;
 		if(inAppList.getCurrentPage()==null)inAppList.setCurrentPage(1);
 		inAppList = inAppService.getListByBundleId(vo, inAppList, activeUser.getMemberVO());
 

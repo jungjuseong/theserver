@@ -217,7 +217,6 @@ public class DownloadController  {
 			req.setAttribute("filepath", path);
 			req.setAttribute("orgFileName", orgName);
 			req.setAttribute("saveFileName", onlySaveName+"/"+saveName);
-			
 			mav.setViewName("/inc/download");
 			return mav;
 		}else {

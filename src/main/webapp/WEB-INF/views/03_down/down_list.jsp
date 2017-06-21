@@ -139,18 +139,46 @@ $(document).ready(function(){
 					//2는 현재 일반다운로드
 					downloadCounting('2', spVal);
 					if("apk" == spVal[13]){
-						window.location.href="${path}android/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".apk";
-						console.log("${path}android/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".apk")
+						$.ajax({
+						    type: 'HEAD',
+						    url: "${path}android/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".apk",
+						    success: function() {
+						    	window.location.href="${path}android/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".apk";
+								console.log("${path}android/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".apk")
+						    },  
+						    error: function() {
+						        alert('<spring:message code='down.list.030' />');
+						    }
+						});
 					}
 					else{ 
-						window.location.href="${path}contents/"+spVal[1]+"/contents.zip";
-						console.log("${path}contents/"+spVal[1]+"/contents.zip")
+						$.ajax({
+						    type: 'HEAD',
+						    url: "${path}contents/"+spVal[1]+"/contents.zip",
+						    success: function() {
+						    	window.location.href="${path}contents/"+spVal[1]+"/contents.zip";
+								console.log("${path}contents/"+spVal[1]+"/contents.zip")
+						    },  
+						    error: function() {
+						        alert('<spring:message code='down.list.030' />');
+						    }
+						});
 					}
 
 				}else {
 					//2는 현재 일반다운로드 라는 뜻
 					downloadCounting('2', spVal);
-					window.location.href="${path}ios/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".ipa";
+					$.ajax({
+						    type: 'HEAD',
+						    url: "${path}ios/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".ipa",
+						    success: function() {
+						    	window.location.href="${path}ios/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".ipa";
+								console.log("${path}ios/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".ipa")
+						    },  
+						    error: function() {
+						        alert('<spring:message code='down.list.030' />');
+						    }
+					});
 				}
 			}else{
 
@@ -306,8 +334,16 @@ function goToSearch(_page){
 
 function goToViewScreen(path){
 	var fullPath = "<spring:message code='file.path.contents.file' />"+path+"/view/pb.html";
-	
-	window.open(fullPath);
+	$.ajax({
+	    type: 'HEAD',
+	    url: "<spring:message code='file.path.contents.file' />"+path+"/view/pb.html",
+	    success: function() {
+	    	window.open(fullPath);
+	    },  
+	    error: function() {
+	        alert('<spring:message code='down.list.030' />');
+	    }
+	});
 }
 
 </script>
