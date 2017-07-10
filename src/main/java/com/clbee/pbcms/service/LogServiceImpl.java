@@ -1,12 +1,19 @@
 package com.clbee.pbcms.service;
 
 import com.clbee.pbcms.dao.LogDao;
+import com.clbee.pbcms.vo.AppHistoryVO;
+import com.clbee.pbcms.vo.AppVO;
 import com.clbee.pbcms.vo.LogList;
 import com.clbee.pbcms.vo.LogVO;
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -126,4 +133,9 @@ public class LogServiceImpl
     }
     return this.logDao.selectLogAllList(storeBundleId, searchValue, searchType, startDateF, endDateF);
   }
+
+@Override
+public void deleteLogInfo(String storeBundleId) {
+	this.logDao.deleteLogInfo(storeBundleId);
+}
 }

@@ -12,7 +12,7 @@ public interface NoticeService {
 	int insertNoticeSubInfo( NoticeSubVO noticeSubVO );
 	List<NoticeSubVO> selectNoticeSubList ( int noticeSeq );
 	void deleteNoticeSubInfo ( NoticeSubVO noticeSubVO);
-	void deleteNoticeSubAppSeqInfo ( int appSeq);
+	void deleteNoticeSubAppSeqInfo (String storeBundleId );
 	int updateNoticeInfo( NoticeVO updatedVO );
 	NoticeVO selectNoticeInfo( int noticeSeq );
 	NoticeList selectNoticeList ( int currentPage, int companySeq, String searchType, String searchValue );

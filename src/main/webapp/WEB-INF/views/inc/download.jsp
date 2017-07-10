@@ -30,9 +30,11 @@
     FileInputStream in = null;
     OutputStream    os = null;
     try {
-        File file = new File(filepath + savedFileName );
+        File file = new File(filepath + savedFileName);
+        if (file.isFile()) {
+        	
         in = new FileInputStream(file);
-
+        
         String strClient=request.getHeader("User-Agent");
 
         response.reset();
@@ -53,6 +55,7 @@
         int len = 0;
         while( (len = in.read(b)) > 0 )
             os.write(b, 0, len);
+        }// if 
 
     } catch(Exception e) {
         System.out.println(e.toString());
@@ -64,7 +67,6 @@
         if(in !=null) try{in.close();} catch(Exception e){}
         if(os !=null) try{os.close();}  catch(Exception e){}
     }
-
 
     MemoryMXBean memoryBean = ManagementFactory.getMemoryMXBean();
     System.out.println("=================================== "+ memoryBean.getHeapMemoryUsage() );

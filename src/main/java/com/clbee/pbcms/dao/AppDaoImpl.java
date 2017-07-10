@@ -3,7 +3,7 @@ package com.clbee.pbcms.dao;
 
 import java.beans.Expression;
 import java.math.BigInteger;
-import java.util.List;
+import java.util.List; 
 
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
@@ -779,7 +779,6 @@ public class AppDaoImpl extends AbstractDAO implements AppDao {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		
-		
 		try {
 			tx = session.beginTransaction();
 			
@@ -800,20 +799,24 @@ public class AppDaoImpl extends AbstractDAO implements AppDao {
 	}
 
 	@Override
-	public void deleteAppHistoryInfo(int appSeq) {
+	public void deleteAppHistoryInfo(String store_bundle_id) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
+		
 		try {
 			tx = session.beginTransaction();
-			
-			Criteria cr = session.createCriteria(AppHistoryVO.class);
-			cr.add(
-				Restrictions.eq("appSeq", appSeq)
-			);
-			AppVO appVO = (AppVO)cr.uniqueResult();
-			session.delete(appVO);	
-			
+			/*session.createCriteria(arg0)*/
+	
+			String hql = "delete from AppHistoryVO where store_bundle_id = :store_bundle_id";
+	
+			System.out.println("store_bundle_id = " + store_bundle_id);
+	
+			Query query = session.createQuery(hql)
+					.setParameter("store_bundle_id", store_bundle_id);
+	
+			query.executeUpdate();
+	
 			tx.commit();
 		}catch (Exception e) {
 			if(tx != null) tx.rollback();

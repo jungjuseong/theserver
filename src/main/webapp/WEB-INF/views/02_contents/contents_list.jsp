@@ -180,8 +180,32 @@ $(document).ready(function(){
 					$("#ostype").val("PDF");
 					break;
 			}
-			document.downloadForm.action = "/down/down.html";
-			document.downloadForm.submit();
+			// http://localhost:8080/_upload/data/contents/170515_154111_00/view/pb.html
+			// 170515_154111_00.zip => orgFileName
+			/*
+			<input type="hidden" id="ostype" name = "ostype" value=""/>
+				<input type="hidden" id="downSeq" name="downSeq" value=""/>
+				<input type="hidden" id="orgFileName" name = "orgFileName" value=""/>
+				<input type="hidden" id="saveFileName" name = "saveFileName" value=""/>
+			*/
+			//alert("d "+$("#downSeq").val());
+			
+			var saveName = $("#saveFileName").val()
+			var onlySaveName = saveName.substring(0,saveName.lastIndexOf("."));
+			$.ajax({
+			    type: 'HEAD',
+			    url: "<spring:message code='file.path.contents.file' />"+onlySaveName+"/"+$("#saveFileName").val(),
+			    success: function() {
+			    	document.downloadForm.action = "/down/down.html";"/usr/local/apache-tomcat-8.0.43/webapps/pagecreatorOrginal/WEB-INF/views/02_contents/contents_list.jsp"
+			    	document.downloadForm.submit();
+			    },  
+			    error: function() {
+			        alert('<spring:message code='down.list.030' />');
+			    }
+			});
+			
+			//document.downloadForm.action = "/down/down.html";
+			//document.downloadForm.submit();
 			/* window.location.href='${defaultDownloadUrl}' + uploadSaveFile; */
 			
 		}else{
@@ -514,10 +538,10 @@ app.inapp.list.text16=개
 					<a href="/contents/list.html?page=${contentList.startPage-memberList.pageSize}" class="paging_btn"><img src="/images/icon_arrow_prev_page.png" alt="<spring:message code='contents.list.031' />"></a>
 					</c:if>
 					<c:forEach var="i" begin="${contentList.startPage }" end="${contentList.endPage}">
-						    <c:if test="${param.page==i }"><span class="current"><c:out value="${i}"/></span></c:if>
-						    <c:if test="${param.page!=i }"> <a href="/contents/list.html?page=${i}"><c:out value="${i}"/></a></c:if>
-	<%-- 					    <c:out value="${i}"/>
-						    <c:if test="${param.page==i }"></strong></c:if> --%>
+						<c:if test="${param.page==i }"><span class="current"><c:out value="${i}"/></span></c:if>
+						<c:if test="${param.page!=i }"> <a href="/contents/list.html?page=${i}"><c:out value="${i}"/></a></c:if>
+	<%-- 				 <c:out value="${i}"/>
+						<c:if test="${param.page==i }"></strong></c:if> --%>
 					</c:forEach>
 					<c:if test="${contentList.endPage*contentList.maxResult < contentList.totalCount}">
 					<a href="/contents/list.html?page=${contentList.endPage+1}" class="paging_btn"><img src="/images/icon_arrow_next_page.png" alt="<spring:message code='contents.list.032' />"></a>

@@ -17,4 +17,6 @@ public abstract interface LogDao
   public abstract LogVO selectLogInfo(int paramInt);
   
   public abstract List<LogVO> selectLogAllList(String paramString1, String paramString2, String paramString3, Date paramDate1, Date paramDate2);
+
+  public void deleteLogInfo(String storeBundleId);
 }

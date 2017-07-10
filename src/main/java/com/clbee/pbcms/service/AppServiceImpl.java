@@ -235,9 +235,9 @@ public class AppServiceImpl implements AppService {
 	}
 	
 	@Override
-	public void deleteAppHistoryInfo(int appSeq) {
+	public void deleteAppHistoryInfo(String store_bundle_id ) {
 		// TODO Auto-generated method stub
-		dao.deleteAppHistoryInfo(appSeq);
+		dao.deleteAppHistoryInfo(store_bundle_id);
 	}
 
 	@Override

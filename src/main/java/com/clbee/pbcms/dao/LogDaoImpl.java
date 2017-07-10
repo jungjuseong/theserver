@@ -1,6 +1,8 @@
 package com.clbee.pbcms.dao;
 
 import com.clbee.pbcms.Json.SpaceObject;
+import com.clbee.pbcms.vo.AppHistoryVO;
+import com.clbee.pbcms.vo.AppVO;
 import com.clbee.pbcms.vo.LogVO;
 import java.io.PrintStream;
 import java.util.Date;
@@ -327,4 +329,28 @@ public class LogDaoImpl implements LogDao
     }
     return result;
   }
+
+@Override
+public void deleteLogInfo(String storeBundleId) {
+	// TODO Auto-generated method stub
+			Session session = sessionFactory.openSession();
+			Transaction tx = null;
+			try {
+				tx = session.beginTransaction();
+				
+				Criteria cr = session.createCriteria(LogVO.class);
+				cr.add(
+					Restrictions.eq("storeBundleId", storeBundleId)
+				);
+				LogVO logVO = (LogVO)cr.uniqueResult();
+				session.delete(logVO);	
+				
+				tx.commit();
+			}catch (Exception e) {
+				if(tx != null) tx.rollback();
+				e.printStackTrace();	
+			}finally {
+				session.close();
+			}
+}
 }

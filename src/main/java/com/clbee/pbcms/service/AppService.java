@@ -37,7 +37,7 @@ public interface AppService {
 	List getCountOfIdenticalCouponNumForAll( Entity param );
 	List getRowIsCompletedByBundleId( Entity param);
 	void deleteAppInfo( int appSeq );
-	void deleteAppHistoryInfo( int appSeq );
+	void deleteAppHistoryInfo( String store_bundle_id );
 	void deleteAppSubAppSeqInfo(int appSeq);
 	List<AppSubVO> selectAppSubList ( int appSeq);
 	int insertAppSubInfo ( AppSubVO appSubVO );

@@ -1161,6 +1161,7 @@ function settemplateAppcontents(action){
 			<input type="hidden" name="storeBundleId " value="${appVO.storeBundleId }" />
 		</form>
 		<form name="appForm" id="appForm" method="post" enctype="multipart/form-data" action="" >
+		<input type="hidden" name="storeBundleId " value="${appVO.storeBundleId }" />
 			<input type="hidden" name="currentPage" id="" value="${appList.currentPage }">
 			<input type="hidden" name="searchType" id="" value="${appList.searchType }">
 			<input type="hidden" name="searchValue" id="" value="${appList.searchValue }">
@@ -1556,7 +1557,7 @@ function settemplateAppcontents(action){
 							<a href="javascript:appDelete();" class="btn btnL btn_gray_light"><spring:message code='user.list.011'/></a>		
 						</c:when>
 						<c:otherwise>
-						<sec:authorize access="hasRole('ROLE_COMPANY_DISTRIBUTOR') || hasRole('ROLE_ADMIN_SERVICE') || hasRole('ROLE_COMPANY_MIDDLEADMIN')">
+							<sec:authorize access="hasRole('ROLE_COMPANY_DISTRIBUTOR') || hasRole('ROLE_ADMIN_SERVICE') || hasRole('ROLE_COMPANY_MIDDLEADMIN')">
 								<a href="javascript:appDelete();" class="btn btnL btn_gray_light"><spring:message code='user.list.011'/></a>
 							</sec:authorize>		
 						</c:otherwise>
