@@ -155,7 +155,7 @@ public class AppHistoryVO implements Serializable {
 	private Integer regUserSeq;
 
 	@Column(name="store_bundle_id")
-	//@Formula("(select tb_bundle.bundle_name from tb_bundle where tb_bundle.app_seq = app_seq limit 1)")
+	@Formula("(select tb_bundle.bundle_name from tb_bundle where tb_bundle.app_seq = app_seq limit 1)")
 	private String storeBundleId;
 	
 	@Column(name="provision_gb")

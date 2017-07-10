@@ -425,24 +425,21 @@ public class NoticeDaoImpl implements NoticeDao {
 	}
 
 	@Override
-	public void deleteNoticeappSubInfo(String storeBundleId) {
+	public void deleteNoticeappSubInfo(int appSeq) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		
 		try {
 			tx = session.beginTransaction();
-			/*session.createCriteria(arg0)*/
-	
-			String hql = "delete from NoticeappSubVO where store_bundle_id = :store_bundle_id";
-	
-			System.out.println("store_bundle_id = " + storeBundleId);
-	
-			Query query = session.createQuery(hql)
-					.setParameter("store_bundle_id", storeBundleId);
-	
+			
+			String hql = "DELETE FROM NoticeSubVO T " + 
+		             "WHERE T.appSeq = :appSeq ";
+			
+			Query query = session.createQuery(hql);
+			query.setParameter("appSeq",appSeq);
 			query.executeUpdate();
-	
+			
 			tx.commit();
 		}catch (Exception e) {
 			if(tx != null) tx.rollback();
@@ -450,28 +447,6 @@ public class NoticeDaoImpl implements NoticeDao {
 		}finally {
 			session.close();
 		}
-		
-		/*
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-		
-		try {
-			tx = session.beginTransaction();
-			
-			String hql = "DELETE FROM NoticeSubVO " + 
-		             "WHERE store_bundle_id = :storeBundleId ";
-			
-			Query query = session.createQuery(hql);
-			query.setParameter("storeBundleId",storeBundleId);
-			query.executeUpdate();
-			
-			tx.commit();
-		}catch (Exception e) {
-			if(tx != null) tx.rollback();
-			e.printStackTrace();	
-		}finally {
-			session.close();
-		}*/
 	}
 }
 

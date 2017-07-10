@@ -208,18 +208,17 @@ public class DownloadController  {
 			String path, orgName, saveName, onlySaveName;
 			path = orgName = saveName = onlySaveName = "";
 
+			System.out.println("ostype is = " + ostype);
 			ContentVO contetnsVO = contentsService.selectByContentId(Integer.parseInt(paramSet(req, "downSeq")));
 			path = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(req)) + messageSource.getMessage("file.path.contents.file", null, localeResolver.resolveLocale(req));
 			orgName = contetnsVO.getUploadOrgFile();
 			saveName = contetnsVO.getUploadSaveFile();
 			onlySaveName = saveName.substring(0,saveName.lastIndexOf("."));
-			req.setAttribute("filepath", path);	
+			req.setAttribute("filepath", path);
 			req.setAttribute("orgFileName", orgName);
 			req.setAttribute("saveFileName", onlySaveName+"/"+saveName);
-			System.out.println("여기 html");
 			mav.setViewName("/inc/download");
 			return mav;
-			
 		}else {
 			if("1".equals(directDown)) {
 				String path, orgName, saveName;
@@ -232,6 +231,7 @@ public class DownloadController  {
 				req.setAttribute("filepath", path);
 				req.setAttribute("orgFileName", orgName+downVer+".ipa");
 				req.setAttribute("saveFileName", saveName+downVer+".ipa");
+				
 				mav.setViewName("/inc/download");
 			}else {
 				mav.addObject("DownGubun", downGubun);

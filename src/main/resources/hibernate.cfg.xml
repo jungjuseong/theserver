@@ -19,7 +19,6 @@
 	<mapping class="com.clbee.pbcms.vo.AppcategoryVO"/>
 	<mapping class="com.clbee.pbcms.vo.InappcategoryVO" />	
 	<mapping class="com.clbee.pbcms.vo.AppVO"/>
-	<mapping class="com.clbee.pbcms.vo.AppHistoryVO"/>
 	<mapping class="com.clbee.pbcms.vo.BundleVO"/>
 	<mapping class="com.clbee.pbcms.vo.DownloadLogVO" />
 	<mapping class="com.clbee.pbcms.vo.ChangelistVO" />

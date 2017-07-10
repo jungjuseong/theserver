@@ -182,8 +182,8 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public void deleteNoticeSubAppSeqInfo(String storeBundleId) {
+	public void deleteNoticeSubAppSeqInfo(int appSeq) {
 		// TODO Auto-generated method stub
-		noticeDao.deleteNoticeappSubInfo(storeBundleId);
+		noticeDao.deleteNoticeappSubInfo(appSeq);
 	}
 }

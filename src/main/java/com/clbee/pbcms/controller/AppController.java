@@ -596,14 +596,10 @@ public class AppController
   		try{
   			appService.deleteAppInfo(Integer.parseInt(appSeq));
   			inAppService.deleteInAppInfo(storeBundleId);
-			appService.deleteAppHistoryInfo(storeBundleId);//앱 히스토리 삭제
-  			bundleService.delete(Integer.parseInt(appSeq));//번들 삭제
-  			noticeService.deleteNoticeSubAppSeqInfo(storeBundleId);//공지 앱 삭제
-  			appService.deleteAppSubAppSeqInfo(Integer.parseInt(appSeq));//앱서브 삭제
-  			logService.deleteLogInfo(storeBundleId);//로그 삭제 
   			mav.setViewName("redirect:/app/list.html?currentPage="+currentPage+"&appSeq="+appSeq+"&searchValue="+searchValue+"&isAvailable="+isAvailable);
   		}catch(Exception e){
   			e.printStackTrace();
+  			
   			mav.setViewName("/inc/dummy");
   	  		mav.addObject("msg", messageSource.getMessage("app.control.001", null, localeResolver.resolveLocale(request)));
   	  		mav.addObject("type", "-1");
@@ -660,21 +656,19 @@ public class AppController
 	public ModelAndView appDeleteAppPOST(HttpSession session, HttpServletRequest request) {
   		
   		ModelAndView mav = new ModelAndView();
-  		String currentPage, appSeq, searchValue, isAvailable ,storeBundleId;
+  		String currentPage, appSeq, searchValue, isAvailable ;
   		
   		currentPage = paramSet(request, "currentPage");
   		searchValue = paramSet(request, "searchValue");
   		isAvailable = paramSet(request, "isAvailable");
-  		storeBundleId = paramSet(request, "storeBundleId");
   		appSeq = paramSet(request, "appSeq");
   		
   		try{
   			appService.deleteAppInfo(Integer.parseInt(appSeq));//앱 삭제
-  			appService.deleteAppHistoryInfo(storeBundleId);//앱 히스토리 삭제
-  			bundleService.delete(Integer.parseInt(appSeq));//번들 삭제
-  			noticeService.deleteNoticeSubAppSeqInfo(storeBundleId);//공지 앱 삭제
-  			appService.deleteAppSubAppSeqInfo(Integer.parseInt(appSeq));//앱서브 삭제
-  			logService.deleteLogInfo(storeBundleId);//로그 삭제 
+  			//appService.deleteAppHistoryInfo(Integer.parseInt(appSeq));//앱 히스토리 삭제
+  			//bundleService.delete(Integer.parseInt(appSeq));//번들 삭제
+  			//noticeService.deleteNoticeSubAppSeqInfo(Integer.parseInt(appSeq));//공지 앱 삭제
+  			//appService.deleteAppSubAppSeqInfo(Integer.parseInt(appSeq));//앱서브 삭제
   			//프로비젼 삭
   			
   			mav.setViewName("redirect:/app/list.html?currentPage="+currentPage+"&appSeq="+appSeq+"&searchValue="+searchValue+"&isAvailable="+isAvailable);
@@ -979,7 +973,7 @@ public class AppController
 			String url = "redirect:/app/list.html";
 			String parameters = "?currentPage=1&searchValue="+"&isAvailable="+isAvailable;
 				 /*"&appSeq="+appVO.getAppSeq()+"&searchType="+appList.getSearchType()+"&searchValue="+appList.getSearchValue();*/
-			return "url + parameters";
+			return "/inc/dummy";//"url + parameters";
 		}catch(Exception e){
 			e.printStackTrace();
 			String returnUrl = "/inc/dummy";

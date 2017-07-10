@@ -19,5 +19,5 @@ public interface NoticeDao {
 	void deleteNoticeappSubInfo(NoticeappSubVO noticeappSubVO);
 	List<NoticeappSubVO> selectNoticeappSubList( int noticeSeq );
 	List<NoticeVO> getListNoticeByCompany(int companySeq, int userSeq, String storeBundleId );
-	void deleteNoticeappSubInfo(String storeBundleId);
+	void deleteNoticeappSubInfo(int appSeq);
 }
