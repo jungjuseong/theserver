@@ -9,7 +9,7 @@ $(document).ready(function(){
 	</sec:authorize>
 
 	
-	
+	21
 	//배포자일경우엔, 모바일따로, 웹따로
 	//그 외일 경우엔, 사용하실 장비에서 다운로드해야됩니다.
 	var toChkVal = "";
@@ -89,6 +89,7 @@ $(document).ready(function(){
 
 	
 	$('.downloadGo').click(function () {
+		
 		var thisVal = $(this).attr("alt");
 		var spVal = thisVal.split("|&|");
 
@@ -139,7 +140,7 @@ $(document).ready(function(){
 					//2는 현재 일반다운로드
 					downloadCounting('2', spVal);
 					if("apk" == spVal[13]){
-						$.ajax({
+						/*$.ajax({
 						    type: 'HEAD',
 						    url: "${path}android/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".apk",
 						    success: function() {
@@ -149,10 +150,12 @@ $(document).ready(function(){
 						    error: function() {
 						        alert('<spring:message code='down.list.030' />');
 						    }
-						});
+						});*/
+						window.location.href="${path}android/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".apk";
+						console.log("${path}android/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".apk")
 					}
 					else{ 
-						$.ajax({
+						/*$.ajax({
 						    type: 'HEAD',
 						    url: "${path}contents/"+spVal[1]+"/contents.zip",
 						    success: function() {
@@ -162,13 +165,15 @@ $(document).ready(function(){
 						    error: function() {
 						        alert('<spring:message code='down.list.030' />');
 						    }
-						});
+						});*/
+						window.location.href="${path}contents/"+spVal[1]+"/contents.zip";
+						console.log("${path}contents/"+spVal[1]+"/contents.zip")
 					}
 
 				}else {
 					//2는 현재 일반다운로드 라는 뜻
 					downloadCounting('2', spVal);
-					$.ajax({
+					/*$.ajax({
 						    type: 'HEAD',
 						    url: "${path}ios/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".ipa",
 						    success: function() {
@@ -178,7 +183,9 @@ $(document).ready(function(){
 						    error: function() {
 						        alert('<spring:message code='down.list.030' />');
 						    }
-					});
+					});*/
+					window.location.href="${path}ios/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".ipa";
+					console.log("${path}ios/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".ipa")
 				}
 			}else{
 

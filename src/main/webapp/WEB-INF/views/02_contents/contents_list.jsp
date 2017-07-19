@@ -180,8 +180,35 @@ $(document).ready(function(){
 					$("#ostype").val("PDF");
 					break;
 			}
-			document.downloadForm.action = "/down/down.html";
-			document.downloadForm.submit();
+			
+			
+			/*var pathss = uploadSaveFile.split(".");
+			alert("usr/local/apache-tomcat-7.0.57/webapps/DocsBuilderCMS/_uplod/data/contents/"+pathss[0]+"/"+uploadOrgFile);
+			$.ajax({
+			    type: 'HEAD',
+			    url: "usr/local/apache-tomcat-7.0.57/webapps/DocsBuilderCMS/_uplod/data/contents/"+pathss[0]+"/"+uploadOrgFile,
+			    success: function() {
+			    	document.downloadForm.action = "/down/down.html";
+					document.downloadForm.submit();
+			    },  
+			    error: function() {
+			        alert('<spring:message code='down.list.030' />');
+			    }
+			});*/
+			var saveName = $("#saveFileName").val()
+			var onlySaveName = saveName.substring(0,saveName.lastIndexOf("."));
+			$.ajax({
+			    type: 'HEAD',
+			    url: "<spring:message code='file.path.contents.file' />"+onlySaveName+"/"+$("#saveFileName").val(),
+			    success: function() {
+			    	document.downloadForm.action = "/down/down.html";
+			    	document.downloadForm.submit();
+			    },  
+			    error: function() {
+			        alert('<spring:message code='down.list.030' />');
+			    }
+			});
+			
 			/* window.location.href='${defaultDownloadUrl}' + uploadSaveFile; */
 			
 		}else{

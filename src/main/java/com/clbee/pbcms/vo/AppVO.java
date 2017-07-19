@@ -1,343 +1,297 @@
 package com.clbee.pbcms.vo;
 
-import java.io.Serializable;
-
-import javax.persistence.*;
-
-import org.apache.ibatis.annotations.Case;
-import org.hibernate.FetchMode;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.Formula;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
-
 import com.clbee.pbcms.Json.CustomDateSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.mysql.fabric.xmlrpc.base.Value;
-
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Formula;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
-
-
-/**
- * The persistent class for the tb_app database table.
- * 
- */
 @Entity
-@Table(name="tb_app", catalog="pbcms_test")
+@Table(name = "tb_app", catalog = "pbcms_test")
 @DynamicInsert(true)
 @DynamicUpdate(true)
 public class AppVO implements Serializable {
 	private static final long serialVersionUID = 1L;
-
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="app_seq")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "app_seq")
 	private Integer appSeq;
-
-	@Column(name="app_contents_amt")
+	@Column(name = "app_contents_amt")
 	private String appContentsAmt;
-
-	@Column(name="app_contents_gb")
+	@Column(name = "app_contents_gb")
 	private String appContentsGb;
-
-	@Column(name="app_name")
+	@Column(name = "app_name")
 	private String appName;
-
 	private String app_resultCode;
-
-	@Column(name="app_size")
+	@Column(name = "app_size")
 	private String appSize;
-
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="chg_dt")
+	@Column(name = "chg_dt")
 	private Date chgDt;
-
 	@Lob
-	@Column(name="chg_text")
+	@Column(name = "chg_text")
 	private String chgText;
-
-	@Column(name="chg_user_gb")
+	@Column(name = "chg_user_gb")
 	private String chgUserGb;
-
-	@Column(name="chg_user_id")
+	@Column(name = "chg_user_id")
 	private String chgUserId;
-
-	@Column(name="chg_user_seq")
+	@Column(name = "chg_user_seq")
 	private Integer chgUserSeq;
-
-	@Column(name="complet_gb")
+	@Column(name = "complet_gb")
 	private String completGb;
-
-	@Column(name="coupon_gb")
+	@Column(name = "coupon_gb")
 	private String couponGb;
-
-	@Column(name="coupon_num")
+	@Column(name = "coupon_num")
 	private String couponNum;
-
 	@Lob
-	@Column(name="description_text")
+	@Column(name = "description_text")
 	private String descriptionText;
-
-	@Column(name="distr_gb")
+	@Column(name = "distr_gb")
 	private String distrGb;
-
-	@Column(name="file_name")
+	@Column(name = "file_name")
 	private String fileName;
-
-	@Column(name="icon_org_file")
+	@Column(name = "icon_org_file")
 	private String iconOrgFile;
-
-	@Column(name="icon_save_file")
+	@Column(name = "icon_save_file")
 	private String iconSaveFile;
-
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="limit_dt")
+	@Column(name = "limit_dt")
 	private Date limitDt;
-
-	@Column(name="limit_gb")
+	@Column(name = "limit_gb")
 	private String limitGb;
-
-	@Column(name="mem_down_amt")
+	@Column(name = "mem_down_amt")
 	private String memDownAmt;
-
-	@Column(name="mem_down_cnt")
+	@Column(name = "mem_down_cnt")
 	private String memDownCnt;
-
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="mem_down_end_dt")
+	@Column(name = "mem_down_end_dt")
 	private Date memDownEndDt;
-
-	@Column(name="mem_down_gb")
+	@Column(name = "mem_down_gb")
 	private String memDownGb;
-
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="mem_down_start_dt")
+	@Column(name = "mem_down_start_dt")
 	private Date memDownStartDt;
-
-	@Column(name="nonmem_down_amt")
+	@Column(name = "nonmem_down_amt")
 	private String nonmemDownAmt;
-
-	@Column(name="nonmem_down_cnt")
+	@Column(name = "nonmem_down_cnt")
 	private String nonmemDownCnt;
-
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="nonmem_down_end_dt")
+	@Column(name = "nonmem_down_end_dt")
 	private Date nonmemDownEndDt;
-
-	@Column(name="nonmem_down_gb")
+	@Column(name = "nonmem_down_gb")
 	private String nonmemDownGb;
-
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="nonmem_down_star_dt")
+	@Column(name = "nonmem_down_star_dt")
 	private Date nonmemDownStarDt;
-
-	@Column(name="install_gb")
+	@Column(name = "install_gb")
 	private String installGb;
-	
 	private String ostype;
-
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="reg_dt")
+	@Column(name = "reg_dt")
 	private Date regDt;
-
-	@Column(name="reg_gb")
+	@Column(name = "reg_gb")
 	private String regGb;
-
-	@Column(name="reg_user_gb")
+	@Column(name = "reg_user_gb")
 	private String regUserGb;
-
-	@Column(name="reg_user_id")
+	@Column(name = "reg_user_id")
 	private String regUserId;
-
-	@Column(name="reg_user_seq")
+	@Column(name = "reg_user_seq")
 	private Integer regUserSeq;
-
-	@Column(name="store_bundle_id")
-	/*@Formula("(select tb_bundle.bundle_name from tb_bundle where tb_bundle.app_seq = app_seq limit 1)")*/
+	@Column(name = "store_bundle_id")
 	private String storeBundleId;
-
-	@Column(name="provision_gb")
+	@Column(name = "provision_gb")
 	private String provisionGb;
-
-	@Column(name="template_name")
+	@Column(name = "template_name")
 	@Formula("(select tb_template.template_name from tb_template where tb_template.template_seq = template_seq limit 1)")
 	private String templateName;
-
-	@Column(name="template_seq")
+	@Column(name = "template_seq")
 	private Integer templateSeq;
-
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="use_avail_dt")
+	@Column(name = "use_avail_dt")
 	private Date useAvailDt;
-
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="use_disable_dt")
+	@Column(name = "use_disable_dt")
 	private Date useDisableDt;
-
-	@Column(name="use_gb")
+	@Column(name = "use_gb")
 	private String useGb;
-
-	@Column(name="ver_num")
+	@Column(name = "ver_num")
 	private String verNum;
-
-	@Column(name="version_code")
+	@Column(name = "version_code")
 	private String versionCode;
-	
-	@Column(name="use_user_gb")
+	@Column(name = "use_user_gb")
 	private String useUserGb;
-	
-	@Column(name="login_time")
+	@Column(name = "login_time")
 	private String loginTime;
-	
-	@Column(name="logout_time")
+	@Column(name = "logout_time")
 	private String logoutTime;
-	
-	@Column(name="login_gb")
+	@Column(name = "login_gb")
 	private String loginGb;
-	
 	@Column(name="app_schema")
 	private String appSchema;
-	
 	@Column(name="app_host")
 	private String appHost;
+	@NotFound(action = NotFoundAction.IGNORE)
+	@ManyToOne(optional = true)
+	@JoinColumn(nullable = true, name = "reg_user_seq", referencedColumnName = "user_seq", insertable = false, updatable = false)
+	private MemberVO regMemberVO;
+	@NotFound(action = NotFoundAction.IGNORE)
+	@OneToMany
+	@Cascade({ org.hibernate.annotations.CascadeType.DELETE })
+	@JoinColumn(nullable = true, name = "app_seq", referencedColumnName = "app_seq", insertable = false, updatable = false)
+	private List<AppSubVO> appSubVO;
+	@NotFound(action = NotFoundAction.IGNORE)
+	@ManyToOne(optional = true)
+	@JoinColumn(nullable = true, name = "chg_user_seq", referencedColumnName = "user_seq", insertable = false, updatable = false)
+	private MemberVO chgMemberVO;
 
-	public AppVO(){
+	public AppVO() {
 	}
 
-	public AppVO( LinkedHashMap<Object, Object> map) throws ParseException {
-		super();
+	public AppVO(LinkedHashMap<Object, Object> map) throws ParseException {
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		
-		this.appSeq = ((Long)map.get("appSeq")).intValue();
-		this.appContentsAmt = (String)map.get("appContentsAmt");
-		this.appContentsGb = (String)map.get("appContentsGb");
-		this.appName = (String)map.get("appName");
-		this.app_resultCode = (String)map.get("app_resultCode");
-		this.appSize = (String)map.get("appSize");
-		if((String)map.get("chgDt") != null)
-		this.chgDt = transFormat.parse((String)map.get("chgDt"));
-		this.chgText = (String)map.get("chgText");
-		this.chgUserGb = (String)map.get("chgUserGb");
-		this.chgUserId = (String)map.get("chgUserId");
-		this.chgUserSeq =((Long)map.get("chgUserSeq")).intValue();
-		this.completGb = (String)map.get("completGb");
-		this.couponGb = (String)map.get("couponGb");
-		this.couponNum = (String)map.get("couponNum");
-		this.descriptionText = (String)map.get("descriptionText");
-		this.distrGb = (String)map.get("distrGb");
-		this.fileName = (String)map.get("fileName");
-		this.iconOrgFile = (String)map.get("iconOrgFile");
-		this.iconSaveFile = (String)map.get("iconSaveFile");
-		if((String)map.get("limitDt") != null)
-		this.limitDt = transFormat.parse((String)map.get("limitDt"));
-		this.limitGb = (String)map.get("limitGb");
-		this.memDownAmt = (String)map.get("memDownAmt");
-		this.memDownCnt = (String)map.get("memDownCnt");
-		if((String)map.get("memDownEndDt") != null)
-		this.memDownEndDt = transFormat.parse((String)map.get("memDownEndDt"));
-		this.memDownGb = (String)map.get("memDownGb");
-		if((String)map.get("memDownStartDt") != null)
-		this.memDownStartDt = transFormat.parse((String)map.get("memDownStartDt"));
-		this.nonmemDownAmt = (String)map.get("nonmemDownAmt");
-		this.nonmemDownCnt = (String)map.get("nonmemDownCnt");
-		if((String)map.get("nonmemDownEndDt") != null)
-		this.nonmemDownEndDt = transFormat.parse((String)map.get("nonmemDownEndDt"));
-		this.nonmemDownGb = (String)map.get("nonmemDownGb");
-		if((String)map.get("nonmemDownStarDt") != null)
-		this.nonmemDownStarDt = transFormat.parse((String)map.get("nonmemDownStarDt"));
-		this.installGb = (String)map.get("installGb");
-		this.ostype = (String)map.get("ostype");
-		if((String)map.get("regDt") != null)
-		this.regDt = transFormat.parse((String)map.get("regDt"));
-		this.regGb = (String)map.get("regGb");
-		this.regUserGb = (String)map.get("regUserGb");
-		this.regUserId = (String)map.get("regUserId");
-		this.regUserSeq = ((Long)map.get("regUserSeq")).intValue();
-		this.storeBundleId = (String)map.get("storeBundleId");
-		this.provisionGb = (String)map.get("provisionGb");
-		this.templateName = (String)map.get("templateName");
-		this.templateSeq = ((Long)map.get("templateSeq")).intValue();
-		if((String)map.get("useAvailDt") != null)
-		this.useAvailDt = transFormat.parse((String)map.get("useAvailDt"));
-		if((String)map.get("useDisableDt") != null)
-		this.useDisableDt = transFormat.parse((String)map.get("useDisableDt"));
-		this.useGb = (String)map.get("useGb");
-		this.verNum = (String)map.get("verNum");
-		this.versionCode = (String)map.get("versionCode");
-		this.useUserGb = (String)map.get("useUserGb");
-		this.loginGb = (String)map.get("loginGb");
-		this.loginTime = (String)map.get("loginTime");
-		this.logoutTime = (String)map.get("logoutTime");
+
+		appSeq = Integer.valueOf(((Long) map.get("appSeq")).intValue());
+		appContentsAmt = ((String) map.get("appContentsAmt"));
+		appContentsGb = ((String) map.get("appContentsGb"));
+		appName = ((String) map.get("appName"));
+		app_resultCode = ((String) map.get("app_resultCode"));
+		appSize = ((String) map.get("appSize"));
+		if ((String) map.get("chgDt") != null)
+			chgDt = transFormat.parse((String) map.get("chgDt"));
+		chgText = ((String) map.get("chgText"));
+		chgUserGb = ((String) map.get("chgUserGb"));
+		chgUserId = ((String) map.get("chgUserId"));
+		chgUserSeq = Integer.valueOf(((Long) map.get("chgUserSeq")).intValue());
+		completGb = ((String) map.get("completGb"));
+		couponGb = ((String) map.get("couponGb"));
+		couponNum = ((String) map.get("couponNum"));
+		descriptionText = ((String) map.get("descriptionText"));
+		distrGb = ((String) map.get("distrGb"));
+		fileName = ((String) map.get("fileName"));
+		iconOrgFile = ((String) map.get("iconOrgFile"));
+		iconSaveFile = ((String) map.get("iconSaveFile"));
+		if ((String) map.get("limitDt") != null)
+			limitDt = transFormat.parse((String) map.get("limitDt"));
+		limitGb = ((String) map.get("limitGb"));
+		memDownAmt = ((String) map.get("memDownAmt"));
+		memDownCnt = ((String) map.get("memDownCnt"));
+		if ((String) map.get("memDownEndDt") != null)
+			memDownEndDt = transFormat.parse((String) map.get("memDownEndDt"));
+		memDownGb = ((String) map.get("memDownGb"));
+		if ((String) map.get("memDownStartDt") != null)
+			memDownStartDt = transFormat.parse((String) map.get("memDownStartDt"));
+		nonmemDownAmt = ((String) map.get("nonmemDownAmt"));
+		nonmemDownCnt = ((String) map.get("nonmemDownCnt"));
+		if ((String) map.get("nonmemDownEndDt") != null)
+			nonmemDownEndDt = transFormat.parse((String) map.get("nonmemDownEndDt"));
+		nonmemDownGb = ((String) map.get("nonmemDownGb"));
+		if ((String) map.get("nonmemDownStarDt") != null)
+			nonmemDownStarDt = transFormat.parse((String) map.get("nonmemDownStarDt"));
+		installGb = ((String) map.get("installGb"));
+		ostype = ((String) map.get("ostype"));
+		if ((String) map.get("regDt") != null)
+			regDt = transFormat.parse((String) map.get("regDt"));
+		regGb = ((String) map.get("regGb"));
+		regUserGb = ((String) map.get("regUserGb"));
+		regUserId = ((String) map.get("regUserId"));
+		regUserSeq = Integer.valueOf(((Long) map.get("regUserSeq")).intValue());
+		storeBundleId = ((String) map.get("storeBundleId"));
+		provisionGb = ((String) map.get("provisionGb"));
+		templateName = ((String) map.get("templateName"));
+		templateSeq = Integer.valueOf(((Long) map.get("templateSeq")).intValue());
+		if ((String) map.get("useAvailDt") != null)
+			useAvailDt = transFormat.parse((String) map.get("useAvailDt"));
+		if ((String) map.get("useDisableDt") != null)
+			useDisableDt = transFormat.parse((String) map.get("useDisableDt"));
+		useGb = ((String) map.get("useGb"));
+		verNum = ((String) map.get("verNum"));
+		versionCode = ((String) map.get("versionCode"));
+		useUserGb = ((String) map.get("useUserGb"));
+		loginGb = ((String) map.get("loginGb"));
+		loginTime = ((String) map.get("loginTime"));
+		logoutTime = ((String) map.get("logoutTime"));
 		this.appSchema = (String)map.get("appSchema");
 		this.appHost = (String)map.get("appHost");
 	}
 
-	public void setAppVO( AppVO updatedVO){
-		
-		this.appContentsAmt = updatedVO.getAppContentsAmt();
-		this.appContentsGb = updatedVO.getAppContentsGb();
-		this.appName = updatedVO.getAppName();
-		this.app_resultCode = updatedVO.getApp_resultCode();
-		this.appSize = updatedVO.getAppSize();
-		this.chgDt = updatedVO.getChgDt();
-		this.chgText = updatedVO.getChgText();
-		this.chgUserGb = updatedVO.getChgUserGb();
-		this.chgUserId = updatedVO.getChgUserId();
-		this.chgUserSeq = updatedVO.getChgUserSeq();
-		this.completGb = updatedVO.getCompletGb();
-		this.couponGb = updatedVO.getCouponGb();
-		this.couponNum = updatedVO.getCouponNum();
-		this.descriptionText = updatedVO.getDescriptionText();
-		this.distrGb = updatedVO.getDistrGb();
-		this.fileName = updatedVO.getFileName();
-		this.iconOrgFile = updatedVO.getIconOrgFile();
-		this.iconSaveFile = updatedVO.getIconSaveFile();
-		this.limitDt = updatedVO.getLimitDt();
-		this.limitGb = updatedVO.getLimitGb();
-		this.memDownAmt = updatedVO.getMemDownAmt();
-		this.memDownCnt = updatedVO.getMemDownCnt();
-		this.memDownEndDt = updatedVO.getMemDownEndDt();
-		this.memDownGb = updatedVO.getMemDownGb();
-		this.memDownStartDt = updatedVO.getMemDownStartDt();
-		this.nonmemDownAmt = updatedVO.getNonmemDownAmt();
-		this.nonmemDownCnt = updatedVO.getNonmemDownCnt();
-		this.nonmemDownEndDt = updatedVO.getNonmemDownEndDt();
-		this.nonmemDownGb = updatedVO.getNonmemDownGb();
-		this.nonmemDownStarDt = updatedVO.getNonmemDownStarDt();
-		this.installGb = updatedVO.getInstallGb();
-		this.ostype = updatedVO.getOstype();
-		this.regDt = updatedVO.getRegDt();
-		this.regGb = updatedVO.getRegGb();
-		this.regUserGb = updatedVO.getRegUserGb();
-		this.regUserId = updatedVO.getRegUserId();
-		this.regUserSeq = updatedVO.getRegUserSeq();
-		this.storeBundleId = updatedVO.getStoreBundleId();
-		this.provisionGb = updatedVO.getProvisionGb();
-		this.templateName = updatedVO.getTemplateName();
-		this.templateSeq = updatedVO.getTemplateSeq();
-		this.useAvailDt = updatedVO.getUseAvailDt();
-		this.useDisableDt = updatedVO.getUseDisableDt();
-		this.useGb = updatedVO.getUseGb();
-		this.verNum = updatedVO.getVerNum();
-		this.versionCode = updatedVO.getVersionCode();
-		this.useUserGb = updatedVO.getUseUserGb();
-		this.loginGb = updatedVO.getLoginGb();
-		this.loginTime = updatedVO.getLoginTime();
-		this.logoutTime = updatedVO.getLogoutTime();
+	public void setAppVO(AppVO updatedVO) {
+		appContentsAmt = updatedVO.getAppContentsAmt();
+		appContentsGb = updatedVO.getAppContentsGb();
+		appName = updatedVO.getAppName();
+		app_resultCode = updatedVO.getApp_resultCode();
+		appSize = updatedVO.getAppSize();
+		chgDt = updatedVO.getChgDt();
+		chgText = updatedVO.getChgText();
+		chgUserGb = updatedVO.getChgUserGb();
+		chgUserId = updatedVO.getChgUserId();
+		chgUserSeq = updatedVO.getChgUserSeq();
+		completGb = updatedVO.getCompletGb();
+		couponGb = updatedVO.getCouponGb();
+		couponNum = updatedVO.getCouponNum();
+		descriptionText = updatedVO.getDescriptionText();
+		distrGb = updatedVO.getDistrGb();
+		fileName = updatedVO.getFileName();
+		iconOrgFile = updatedVO.getIconOrgFile();
+		iconSaveFile = updatedVO.getIconSaveFile();
+		limitDt = updatedVO.getLimitDt();
+		limitGb = updatedVO.getLimitGb();
+		memDownAmt = updatedVO.getMemDownAmt();
+		memDownCnt = updatedVO.getMemDownCnt();
+		memDownEndDt = updatedVO.getMemDownEndDt();
+		memDownGb = updatedVO.getMemDownGb();
+		memDownStartDt = updatedVO.getMemDownStartDt();
+		nonmemDownAmt = updatedVO.getNonmemDownAmt();
+		nonmemDownCnt = updatedVO.getNonmemDownCnt();
+		nonmemDownEndDt = updatedVO.getNonmemDownEndDt();
+		nonmemDownGb = updatedVO.getNonmemDownGb();
+		nonmemDownStarDt = updatedVO.getNonmemDownStarDt();
+		installGb = updatedVO.getInstallGb();
+		ostype = updatedVO.getOstype();
+		regDt = updatedVO.getRegDt();
+		regGb = updatedVO.getRegGb();
+		regUserGb = updatedVO.getRegUserGb();
+		regUserId = updatedVO.getRegUserId();
+		regUserSeq = updatedVO.getRegUserSeq();
+		storeBundleId = updatedVO.getStoreBundleId();
+		provisionGb = updatedVO.getProvisionGb();
+		templateName = updatedVO.getTemplateName();
+		templateSeq = updatedVO.getTemplateSeq();
+		useAvailDt = updatedVO.getUseAvailDt();
+		useDisableDt = updatedVO.getUseDisableDt();
+		useGb = updatedVO.getUseGb();
+		verNum = updatedVO.getVerNum();
+		versionCode = updatedVO.getVersionCode();
+		useUserGb = updatedVO.getUseUserGb();
+		loginGb = updatedVO.getLoginGb();
+		loginTime = updatedVO.getLoginTime();
+		logoutTime = updatedVO.getLogoutTime();
 		this.appSchema = updatedVO.getAppSchema();
 		this.appHost = updatedVO.getAppHost();
 	}
+
 	public Integer getAppSeq() {
-		return this.appSeq;
+		return appSeq;
 	}
 
 	public void setAppSeq(Integer appSeq) {
@@ -345,7 +299,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getAppContentsAmt() {
-		return this.appContentsAmt;
+		return appContentsAmt;
 	}
 
 	public void setAppContentsAmt(String appContentsAmt) {
@@ -353,7 +307,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getAppContentsGb() {
-		return this.appContentsGb;
+		return appContentsGb;
 	}
 
 	public void setAppContentsGb(String appContentsGb) {
@@ -361,7 +315,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getAppName() {
-		return this.appName;
+		return appName;
 	}
 
 	public void setAppName(String appName) {
@@ -369,7 +323,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getApp_resultCode() {
-		return this.app_resultCode;
+		return app_resultCode;
 	}
 
 	public void setApp_resultCode(String app_resultCode) {
@@ -377,16 +331,16 @@ public class AppVO implements Serializable {
 	}
 
 	public String getAppSize() {
-		return this.appSize;
+		return appSize;
 	}
 
 	public void setAppSize(String appSize) {
 		this.appSize = appSize;
 	}
-	
+
 	@JsonSerialize(using = CustomDateSerializer.class)
 	public Date getChgDt() {
-		return this.chgDt;
+		return chgDt;
 	}
 
 	public void setChgDt(Date chgDt) {
@@ -394,7 +348,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getChgText() {
-		return this.chgText;
+		return chgText;
 	}
 
 	public void setChgText(String chgText) {
@@ -402,7 +356,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getChgUserGb() {
-		return this.chgUserGb;
+		return chgUserGb;
 	}
 
 	public void setChgUserGb(String chgUserGb) {
@@ -410,7 +364,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getChgUserId() {
-		return this.chgUserId;
+		return chgUserId;
 	}
 
 	public void setChgUserId(String chgUserId) {
@@ -418,7 +372,7 @@ public class AppVO implements Serializable {
 	}
 
 	public Integer getChgUserSeq() {
-		return this.chgUserSeq;
+		return chgUserSeq;
 	}
 
 	public void setChgUserSeq(Integer chgUserSeq) {
@@ -426,7 +380,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getCompletGb() {
-		return this.completGb;
+		return completGb;
 	}
 
 	public void setCompletGb(String completGb) {
@@ -434,7 +388,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getCouponGb() {
-		return this.couponGb;
+		return couponGb;
 	}
 
 	public void setCouponGb(String couponGb) {
@@ -442,7 +396,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getCouponNum() {
-		return this.couponNum;
+		return couponNum;
 	}
 
 	public void setCouponNum(String couponNum) {
@@ -450,7 +404,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getDescriptionText() {
-		return this.descriptionText;
+		return descriptionText;
 	}
 
 	public void setDescriptionText(String descriptionText) {
@@ -458,7 +412,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getDistrGb() {
-		return this.distrGb;
+		return distrGb;
 	}
 
 	public void setDistrGb(String distrGb) {
@@ -466,7 +420,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getFileName() {
-		return this.fileName;
+		return fileName;
 	}
 
 	public void setFileName(String fileName) {
@@ -474,7 +428,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getIconOrgFile() {
-		return this.iconOrgFile;
+		return iconOrgFile;
 	}
 
 	public void setIconOrgFile(String iconOrgFile) {
@@ -482,7 +436,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getIconSaveFile() {
-		return this.iconSaveFile;
+		return iconSaveFile;
 	}
 
 	public void setIconSaveFile(String iconSaveFile) {
@@ -491,7 +445,7 @@ public class AppVO implements Serializable {
 
 	@JsonSerialize(using = CustomDateSerializer.class)
 	public Date getLimitDt() {
-		return this.limitDt;
+		return limitDt;
 	}
 
 	public void setLimitDt(Date limitDt) {
@@ -499,7 +453,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getLimitGb() {
-		return this.limitGb;
+		return limitGb;
 	}
 
 	public void setLimitGb(String limitGb) {
@@ -507,7 +461,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getMemDownAmt() {
-		return this.memDownAmt;
+		return memDownAmt;
 	}
 
 	public void setMemDownAmt(String memDownAmt) {
@@ -515,7 +469,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getMemDownCnt() {
-		return this.memDownCnt;
+		return memDownCnt;
 	}
 
 	public void setMemDownCnt(String memDownCnt) {
@@ -524,7 +478,7 @@ public class AppVO implements Serializable {
 
 	@JsonSerialize(using = CustomDateSerializer.class)
 	public Date getMemDownEndDt() {
-		return this.memDownEndDt;
+		return memDownEndDt;
 	}
 
 	public void setMemDownEndDt(Date memDownEndDt) {
@@ -532,7 +486,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getMemDownGb() {
-		return this.memDownGb;
+		return memDownGb;
 	}
 
 	public void setMemDownGb(String memDownGb) {
@@ -541,7 +495,7 @@ public class AppVO implements Serializable {
 
 	@JsonSerialize(using = CustomDateSerializer.class)
 	public Date getMemDownStartDt() {
-		return this.memDownStartDt;
+		return memDownStartDt;
 	}
 
 	public void setMemDownStartDt(Date memDownStartDt) {
@@ -549,7 +503,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getNonmemDownAmt() {
-		return this.nonmemDownAmt;
+		return nonmemDownAmt;
 	}
 
 	public void setNonmemDownAmt(String nonmemDownAmt) {
@@ -557,7 +511,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getNonmemDownCnt() {
-		return this.nonmemDownCnt;
+		return nonmemDownCnt;
 	}
 
 	public void setNonmemDownCnt(String nonmemDownCnt) {
@@ -566,7 +520,7 @@ public class AppVO implements Serializable {
 
 	@JsonSerialize(using = CustomDateSerializer.class)
 	public Date getNonmemDownEndDt() {
-		return this.nonmemDownEndDt;
+		return nonmemDownEndDt;
 	}
 
 	public void setNonmemDownEndDt(Date nonmemDownEndDt) {
@@ -574,7 +528,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getNonmemDownGb() {
-		return this.nonmemDownGb;
+		return nonmemDownGb;
 	}
 
 	public void setNonmemDownGb(String nonmemDownGb) {
@@ -583,7 +537,7 @@ public class AppVO implements Serializable {
 
 	@JsonSerialize(using = CustomDateSerializer.class)
 	public Date getNonmemDownStarDt() {
-		return this.nonmemDownStarDt;
+		return nonmemDownStarDt;
 	}
 
 	public void setNonmemDownStarDt(Date nonmemDownStarDt) {
@@ -599,7 +553,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getOstype() {
-		return this.ostype;
+		return ostype;
 	}
 
 	public void setOstype(String ostype) {
@@ -608,7 +562,7 @@ public class AppVO implements Serializable {
 
 	@JsonSerialize(using = CustomDateSerializer.class)
 	public Date getRegDt() {
-		return this.regDt;
+		return regDt;
 	}
 
 	public void setRegDt(Date regDt) {
@@ -616,7 +570,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getRegGb() {
-		return this.regGb;
+		return regGb;
 	}
 
 	public void setRegGb(String regGb) {
@@ -624,7 +578,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getRegUserGb() {
-		return this.regUserGb;
+		return regUserGb;
 	}
 
 	public void setRegUserGb(String regUserGb) {
@@ -632,7 +586,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getRegUserId() {
-		return this.regUserId;
+		return regUserId;
 	}
 
 	public void setRegUserId(String regUserId) {
@@ -640,13 +594,13 @@ public class AppVO implements Serializable {
 	}
 
 	public Integer getRegUserSeq() {
-		return this.regUserSeq;
+		return regUserSeq;
 	}
 
 	public void setRegUserSeq(Integer regUserSeq) {
 		this.regUserSeq = regUserSeq;
 	}
-	
+
 	public String getStoreBundleId() {
 		return storeBundleId;
 	}
@@ -656,7 +610,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getProvisionGb() {
-		return this.provisionGb;
+		return provisionGb;
 	}
 
 	public void setProvisionGb(String provisionGb) {
@@ -664,7 +618,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getTemplateName() {
-		return this.templateName;
+		return templateName;
 	}
 
 	public void setTemplateName(String templateName) {
@@ -672,7 +626,7 @@ public class AppVO implements Serializable {
 	}
 
 	public Integer getTemplateSeq() {
-		return this.templateSeq;
+		return templateSeq;
 	}
 
 	public void setTemplateSeq(Integer templateSeq) {
@@ -681,7 +635,7 @@ public class AppVO implements Serializable {
 
 	@JsonSerialize(using = CustomDateSerializer.class)
 	public Date getUseAvailDt() {
-		return this.useAvailDt;
+		return useAvailDt;
 	}
 
 	public void setUseAvailDt(Date useAvailDt) {
@@ -690,7 +644,7 @@ public class AppVO implements Serializable {
 
 	@JsonSerialize(using = CustomDateSerializer.class)
 	public Date getUseDisableDt() {
-		return this.useDisableDt;
+		return useDisableDt;
 	}
 
 	public void setUseDisableDt(Date useDisableDt) {
@@ -698,7 +652,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getUseGb() {
-		return this.useGb;
+		return useGb;
 	}
 
 	public void setUseGb(String useGb) {
@@ -706,7 +660,7 @@ public class AppVO implements Serializable {
 	}
 
 	public String getVerNum() {
-		return this.verNum;
+		return verNum;
 	}
 
 	public void setVerNum(String verNum) {
@@ -719,30 +673,6 @@ public class AppVO implements Serializable {
 
 	public void setVersionCode(String versionCode) {
 		this.versionCode = versionCode;
-	}
-
-	@NotFound( action = NotFoundAction.IGNORE )
-	@ManyToOne(  optional = true )
-	@JoinColumn( nullable=true, name="reg_user_seq", referencedColumnName="user_seq", insertable=false, updatable=false )
-	private MemberVO regMemberVO;
-	
-	@NotFound( action = NotFoundAction.IGNORE )
-	@OneToMany
-	@Cascade( CascadeType.DELETE )
-	@JoinColumn( nullable=true, name="app_seq", referencedColumnName="app_seq", insertable=false, updatable=false )
-	private List<AppSubVO> appSubVO;
-
-	@NotFound( action = NotFoundAction.IGNORE )
-	@OneToMany
-	@JoinColumn( nullable=true, name="store_bundle_id", referencedColumnName="store_bundle_id", insertable=false, updatable=false )
-	private List<InappVO> inappVO;
-
-	public List<InappVO> getInappVO() {
-		return inappVO;
-	}
-
-	public void setInappVO(List<InappVO> inappVO) {
-		this.inappVO = inappVO;
 	}
 
 	public List<AppSubVO> getAppSubVO() {
@@ -800,7 +730,6 @@ public class AppVO implements Serializable {
 	public void setLogoutTime(String logoutTime) {
 		this.logoutTime = logoutTime;
 	}
-
 	public String getAppSchema() {
 		return appSchema;
 	}
@@ -817,40 +746,24 @@ public class AppVO implements Serializable {
 		this.appHost = appHost;
 	}
 	
-	@NotFound(action = NotFoundAction.IGNORE)
-	@ManyToOne(  optional = true)
-	@JoinColumn( nullable=true, name="chg_user_seq",  referencedColumnName="user_seq", insertable=false, updatable=false)
-	private MemberVO chgMemberVO;
-
-	@Override
 	public String toString() {
-		return "AppVO [appSeq=" + appSeq + ", appContentsAmt=" + appContentsAmt
-				+ ", appContentsGb=" + appContentsGb + ", appName=" + appName
-				+ ", app_resultCode=" + app_resultCode + ", appSize=" + appSize
-				+ ", chgDt=" + chgDt + ", chgText=" + chgText + ", chgUserGb="
-				+ chgUserGb + ", chgUserId=" + chgUserId + ", chgUserSeq="
-				+ chgUserSeq + ", completGb=" + completGb + ", couponGb="
-				+ couponGb + ", couponNum=" + couponNum + ", descriptionText="
-				+ descriptionText + ", distrGb=" + distrGb + ", fileName="
-				+ fileName + ", iconOrgFile=" + iconOrgFile + ", iconSaveFile="
-				+ iconSaveFile + ", limitDt=" + limitDt + ", limitGb="
-				+ limitGb + ", memDownAmt=" + memDownAmt + ", memDownCnt="
-				+ memDownCnt + ", memDownEndDt=" + memDownEndDt
-				+ ", memDownGb=" + memDownGb + ", memDownStartDt="
-				+ memDownStartDt + ", nonmemDownAmt=" + nonmemDownAmt
-				+ ", nonmemDownCnt=" + nonmemDownCnt + ", nonmemDownEndDt="
-				+ nonmemDownEndDt + ", nonmemDownGb=" + nonmemDownGb
-				+ ", nonmemDownStarDt=" + nonmemDownStarDt + ", ostype="
-				+ ostype + ", regDt=" + regDt + ", regGb=" + regGb
-				+ ", regUserGb=" + regUserGb + ", regUserId=" + regUserId
-				+ ", regUserSeq=" + regUserSeq + ", storeBundleId="
-				+ storeBundleId + ", provisionGb=" + provisionGb
-				+ ", templateName=" + templateName + ", templateSeq="
-				+ templateSeq + ", useAvailDt=" + useAvailDt
-				+ ", useDisableDt=" + useDisableDt + ", useGb=" + useGb
-				+ ", verNum=" + verNum + ", regMemberVO=" + regMemberVO
-				+ ", chgMemberVO=" + chgMemberVO
-				+ ", appSchema=" + appSchema
+		return
+
+		"AppVO [appSeq=" + appSeq + ", appContentsAmt=" + appContentsAmt + ", appContentsGb=" + appContentsGb
+				+ ", appName=" + appName + ", app_resultCode=" + app_resultCode + ", appSize=" + appSize + ", chgDt="
+				+ chgDt + ", chgText=" + chgText + ", chgUserGb=" + chgUserGb + ", chgUserId=" + chgUserId
+				+ ", chgUserSeq=" + chgUserSeq + ", completGb=" + completGb + ", couponGb=" + couponGb + ", couponNum="
+				+ couponNum + ", descriptionText=" + descriptionText + ", distrGb=" + distrGb + ", fileName=" + fileName
+				+ ", iconOrgFile=" + iconOrgFile + ", iconSaveFile=" + iconSaveFile + ", limitDt=" + limitDt
+				+ ", limitGb=" + limitGb + ", memDownAmt=" + memDownAmt + ", memDownCnt=" + memDownCnt
+				+ ", memDownEndDt=" + memDownEndDt + ", memDownGb=" + memDownGb + ", memDownStartDt=" + memDownStartDt
+				+ ", nonmemDownAmt=" + nonmemDownAmt + ", nonmemDownCnt=" + nonmemDownCnt + ", nonmemDownEndDt="
+				+ nonmemDownEndDt + ", nonmemDownGb=" + nonmemDownGb + ", nonmemDownStarDt=" + nonmemDownStarDt
+				+ ", ostype=" + ostype + ", regDt=" + regDt + ", regGb=" + regGb + ", regUserGb=" + regUserGb
+				+ ", regUserId=" + regUserId + ", regUserSeq=" + regUserSeq + ", storeBundleId=" + storeBundleId
+				+ ", provisionGb=" + provisionGb + ", templateName=" + templateName + ", templateSeq=" + templateSeq
+				+ ", useAvailDt=" + useAvailDt + ", useDisableDt=" + useDisableDt + ", useGb=" + useGb + ", verNum="
+				+ verNum + ", regMemberVO=" + regMemberVO + ", chgMemberVO=" + chgMemberVO+ ", appSchema=" + appSchema
 				+ ", appHost=" + appHost + "]";
 	}
 }
