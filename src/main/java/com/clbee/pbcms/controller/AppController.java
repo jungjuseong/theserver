@@ -812,8 +812,6 @@ public class AppController
 			// bundle id�� �Ȱ��� ������ ���� �ش� ���� ����ߴ��ϱ� ������ ����
 			// Sorting�ɶ� �̾�����Ʈ�� �ι�° ������Ʈ���� �ؿ� �������ߵǱ� ������ ���� ������Ʈ�� ��
 			
-			System.out.println("여기1 "+isCompleteNoToYes +", "+appVOForBundleIdList.size());
-			
 			if("UPDATEOTHERYES".equals(isCompleteNoToYes) && appVOForBundleIdList.size() != 0){
 				System.out.println("@@@@@@@@@@@ UPDATEOTHERYES!!!!");
 				AppHistoryVO appHistoryVOForHashMap = new AppHistoryVO(appVOForBundleIdList.get(0));

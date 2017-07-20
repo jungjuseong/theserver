@@ -121,7 +121,6 @@ public class DownloadController  {
 			}
 		}
 		//비활성화는 param.getKey("searchChk") null
-		//System.out.println("여기"+param.getKey("searchChk"));
 		
 		param.setValue("searchType", mapList.getSearchType());
 		param.setValue("searchValue", mapList.getSearchValue());
@@ -138,6 +137,7 @@ public class DownloadController  {
 		//maplist = (MapList) appService.getSelectList(param, maplist);
 
 		mav.addObject("path",  messageSource.getMessage("file.path.app.file", null, localeResolver.resolveLocale(req)));
+		mav.addObject("pathIos",  messageSource.getMessage("file.path.ios.down.file", null, localeResolver.resolveLocale(req)));
 		mav.addObject("DownList", downList);
 		mav.addObject("MapList", mapList);
 		mav.addObject("ToChk", toChk);

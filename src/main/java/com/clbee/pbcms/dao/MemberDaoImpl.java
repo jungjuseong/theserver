@@ -148,7 +148,6 @@ public class MemberDaoImpl implements MemberDao {
 				return 1;
 			}
 		}catch (Exception e) {
-			System.out.println("여기6 ");
 			if(tx != null) tx.rollback();
 			e.printStackTrace();
 			return 2;

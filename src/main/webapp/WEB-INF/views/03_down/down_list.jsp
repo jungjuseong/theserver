@@ -136,11 +136,10 @@ $(document).ready(function(){
 				}
 				if("Android" == spVal[5]){
 					//앱인 경우
-					
 					//2는 현재 일반다운로드
 					downloadCounting('2', spVal);
 					if("apk" == spVal[13]){
-						/*$.ajax({
+						$.ajax({
 						    type: 'HEAD',
 						    url: "${path}android/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".apk",
 						    success: function() {
@@ -148,14 +147,14 @@ $(document).ready(function(){
 								console.log("${path}android/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".apk")
 						    },  
 						    error: function() {
-						        alert('<spring:message code='down.list.030' />');
+						        alert("${path}android/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".apk");
 						    }
-						});*/
-						window.location.href="${path}android/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".apk";
-						console.log("${path}android/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".apk")
+						});
+						//window.location.href="${path}android/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".apk";
+						//console.log("${path}android/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".apk")
 					}
 					else{ 
-						/*$.ajax({
+						$.ajax({
 						    type: 'HEAD',
 						    url: "${path}contents/"+spVal[1]+"/contents.zip",
 						    success: function() {
@@ -165,27 +164,27 @@ $(document).ready(function(){
 						    error: function() {
 						        alert('<spring:message code='down.list.030' />');
 						    }
-						});*/
-						window.location.href="${path}contents/"+spVal[1]+"/contents.zip";
-						console.log("${path}contents/"+spVal[1]+"/contents.zip")
+						});
+						//window.location.href="${path}contents/"+spVal[1]+"/contents.zip";
+						//console.log("${path}contents/"+spVal[1]+"/contents.zip")
 					}
 
 				}else {
 					//2는 현재 일반다운로드 라는 뜻
 					downloadCounting('2', spVal);
-					/*$.ajax({
+					$.ajax({
 						    type: 'HEAD',
-						    url: "${path}ios/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".ipa",
+						    url: "${pathIos}"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".ipa",
 						    success: function() {
-						    	window.location.href="${path}ios/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".ipa";
-								console.log("${path}ios/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".ipa")
+						    	window.location.href="${pathIos}"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".ipa";
+								console.log("${pathIos}"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".ipa")
 						    },  
 						    error: function() {
-						        alert('<spring:message code='down.list.030' />');
+						    	alert('<spring:message code='down.list.030' />');
 						    }
-					});*/
-					window.location.href="${path}ios/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".ipa";
-					console.log("${path}ios/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".ipa")
+					});
+					/*window.location.href="${path}ios/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".ipa";
+					console.log("${path}ios/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".ipa")*/
 				}
 			}else{
 
