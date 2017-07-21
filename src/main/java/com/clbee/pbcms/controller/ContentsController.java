@@ -167,6 +167,7 @@ public class ContentsController {
 			}
 		}
 
+	
 		modelAndView.addObject("currentPage", page);
 		modelAndView.addObject("formattedDownInfo",formattedDownInfo);
 		modelAndView.addObject("formattedDate",formattedDate);

@@ -52,6 +52,7 @@ $(document).ready(function(){
 			$('input[name^=checkChkVal]:checkbox').prop('checked', true);
 			$("#toChk").val(',1,2,3,4,');
 			$("#toChk_").val('1,2,3,4');
+			$("#page").val("1");
 			$("#sortForm").submit();
 		}
 	});
@@ -81,7 +82,7 @@ $(document).ready(function(){
 		to_Chk = to_Chk.replace(/^.(\s+)?/, ""); 
 		to_Chk = to_Chk.replace(/(\s+)?.$/, "");
 		$("#toChk_").val(to_Chk);	
-		
+		$("#page").val("1");
 		$("#sortForm").submit();
 		/* goToSearch();
 		 */
@@ -111,7 +112,7 @@ $(document).ready(function(){
 		
 		
 		$("#toChk_").val(to_Chk);
-
+		$("#page").val("1");
 		$("#sortForm").submit();
 	});
 	
@@ -246,6 +247,7 @@ $(document).ready(function(){
 			to_Chk = to_Chk.replace(/^.(\s+)?/, ""); 
 			to_Chk = to_Chk.replace(/(\s+)?.$/, "");
 
+			$("#page").val("1");
 			$("#toChk_").val(to_Chk);
 
 			$("#sortForm").submit();
@@ -332,17 +334,31 @@ function downloadCounting(isCoupon, downCnt, downSeq, sort){
       	      }
   });
 }
-
-
-
-function goToSearch(){
+function goToPage(page){
 	
-	/* $("#SORT").val(SORT); */
-	//alert("[SORT] = " + SORT);
-	//alert($("#toChk").val());
-	//alert(toChkVal);		
+	toChkVal = "";
+	var chkYN = $('input[name^=checkChkVal]:checked');
+	if(chkYN.length == 3){
+		$('#all').prop('checked', this.checked);
+	}
+	$('input[name^=checkChkVal]:checked').each(function() {
+		toChkVal += ","+$(this).val();
+	});
+
+	toChkVal = toChkVal.replace(",,",',');
+	if(chkYN.length == 0){
+		$("#toChk").val(',1,2,3,4,');
+	}else{
+		$("#toChk").val(toChkVal+",");
+	}
 	
-	/* $("#sortForm").submit(); */
+	var to_Chk = $("#toChk").val();
+	to_Chk = to_Chk.replace(/^.(\s+)?/, ""); 
+	to_Chk = to_Chk.replace(/(\s+)?.$/, "");
+	
+	$("#page").val(page);
+	$("#toChk_").val(to_Chk);
+	$("#sortForm").submit();
 }
 
 function goToModify(contentsSeq){
@@ -538,16 +554,16 @@ app.inapp.list.text16=개
 				<!--페이징-->
 				<div class="paging">
 					<c:if test="${contentList.startPage != 1 }">
-					<a href="/contents/list.html?page=${contentList.startPage-memberList.pageSize}" class="paging_btn"><img src="/images/icon_arrow_prev_page.png" alt="<spring:message code='contents.list.031' />"></a>
+					<a href="#" onclick="goToPage(${contentList.startPage-10})" class="paging_btn"><img src="/images/icon_arrow_prev_page.png" alt="<spring:message code='contents.list.031' />"></a>
 					</c:if>
 					<c:forEach var="i" begin="${contentList.startPage }" end="${contentList.endPage}">
 						    <c:if test="${param.page==i }"><span class="current"><c:out value="${i}"/></span></c:if>
-						    <c:if test="${param.page!=i }"> <a href="/contents/list.html?page=${i}"><c:out value="${i}"/></a></c:if>
+						    <c:if test="${param.page!=i }"> <a href="#" onclick="goToPage(${i})"><c:out value="${i}"/></a></c:if>
 	<%-- 					    <c:out value="${i}"/>
 						    <c:if test="${param.page==i }"></strong></c:if> --%>
 					</c:forEach>
 					<c:if test="${contentList.endPage*contentList.maxResult < contentList.totalCount}">
-					<a href="/contents/list.html?page=${contentList.endPage+1}" class="paging_btn"><img src="/images/icon_arrow_next_page.png" alt="<spring:message code='contents.list.032' />"></a>
+					<a href="#" onclick="goToPage(${contentList.endPage+1})" class="paging_btn"><img src="/images/icon_arrow_next_page.png" alt="<spring:message code='contents.list.032' />"></a>
 					</c:if>
 				</div>
 				<!--//페이징-->
