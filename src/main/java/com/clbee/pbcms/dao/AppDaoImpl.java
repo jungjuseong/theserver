@@ -1103,7 +1103,7 @@ public class AppDaoImpl extends AbstractDAO implements AppDao {
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		AppVO appVO  = null;
-		
+		System.out.println("test!!!!!!");
 		try {
 			tx = session.beginTransaction();
 			
@@ -1126,6 +1126,10 @@ public class AppDaoImpl extends AbstractDAO implements AppDao {
 					Restrictions.eq("ostype", "4")
 				);
 			}
+			cr.addOrder( Order.desc("verNum") );
+			//cr.setFirstResult(1);
+			cr.setFirstResult(0);
+			cr.setMaxResults(1);
 			appVO = (AppVO)cr.uniqueResult();
 			
 			Hibernate.initialize(appVO.getAppSubVO());

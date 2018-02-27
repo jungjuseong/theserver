@@ -6,16 +6,16 @@ import java.util.List;
 
 
 public class MemberList {
-	private List<MemberVO> list;	// 1ÆäÀÌÁö ºĞ·®
-	private int pageSize;			// ÇÑ¹ø¿¡ º¸¿©ÁÙ ÃÖ´ë ÆäÀÌÁö°³¼ö
-	private int maxResult;			// ÆäÀÌÁö´ç ¸®½ºÆ® °¹¼ö
-	private int totalCount;			// ÀüÃ¼ °³¼ö
-	private int totalPage;			// ÀüÃ¼ ÆäÀÌÁö
-	private int currentPage;		// ÇöÀç ÆäÀÌÁö
-	private int startNo;			// ½ÃÀÛ ±Û¹øÈ£
-	private int endNo;				// ³¡±Û¹øÈ£
-	private int startPage;			// ½ÃÀÛ ÆäÀÌÁö ¹øÈ£
-	private int endPage;			// ¸¶Áö¸· ÆäÀÌÁö ¹øÈ£
+	private List<MemberVO> list;	// 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ğ·ï¿½
+	private int pageSize;			// ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private int maxResult;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+	private int totalCount;			// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
+	private int totalPage;			// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private int currentPage;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private int startNo;			// ï¿½ï¿½ï¿½ï¿½ ï¿½Û¹ï¿½È£
+	private int endNo;				// ï¿½ï¿½ï¿½Û¹ï¿½È£
+	private int startPage;			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+	private int endPage;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
 	
 	public MemberList(int pageSize, int totalCount, int currentPage, int maxResult) {
 		this.pageSize = pageSize;
@@ -25,7 +25,7 @@ public class MemberList {
 		calc();
 	}
 	
-	// ³ª¸ÓÁö º¯¼öµé °è»êÇÏ±â
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	private void calc(){
 		totalPage = (totalCount-1)/maxResult + 1;
 		currentPage = currentPage>totalPage ? totalPage : currentPage;

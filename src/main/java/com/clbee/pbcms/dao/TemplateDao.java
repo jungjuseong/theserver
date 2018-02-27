@@ -28,4 +28,7 @@ public interface TemplateDao {
 	public void updateTemplateFile(TemplateVO tempVo);
 	int getListCount(TemplateVO temVO, MemberVO memberVO,TemplateList templateList);
 	List selectList(TemplateVO temVO, MemberVO memberVO, TemplateList templateList, String flagForAll);
+	
+	//20180219 : lsy - templateDelete
+	void deleteTemplate(int thisSeq);
 } 

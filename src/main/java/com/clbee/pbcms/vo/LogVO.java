@@ -65,6 +65,15 @@ public class LogVO implements Serializable {
 	@Column(name="data")
 	private String data;
 
+	@NotFound(action = NotFoundAction.IGNORE)
+	@ManyToOne(optional = true)
+	@JoinColumn(nullable = true, name = "reg_user_seq", referencedColumnName = "user_seq", insertable = false, updatable = false)
+	private MemberVO regMemberVO;
+
+	@NotFound(action = NotFoundAction.IGNORE)
+	@ManyToOne(optional = true)
+	@JoinColumn(nullable = true, name = "inapp_seq", referencedColumnName = "inapp_seq", insertable = false, updatable = false)
+	private InappVO inappVO;
 	
 	public Integer getLogSeq() {
 		return logSeq;
@@ -138,8 +147,20 @@ public class LogVO implements Serializable {
 	public void setStoreBundleId(String storeBundleId) {
 		this.storeBundleId = storeBundleId;
 	}
+
+	public MemberVO getRegMemberVO() {
+		return regMemberVO;
+	}
+
+	public void setRegMemberVO(MemberVO regMemberVO) {
+		this.regMemberVO = regMemberVO;
+	}
+
+	public InappVO getInappVO() {
+		return inappVO;
+	}
+
+	public void setInappVO(InappVO inappVO) {
+		this.inappVO = inappVO;
+	}
 }
-
-
-
-

@@ -789,4 +789,29 @@ public class TemplateDaoImpl implements TemplateDao {
 		}
 		return list;	
 	}
+
+	//20180219 : lsy - deleteTemplate
+	@Override
+	public void deleteTemplate(int thisSeq) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		
+		try {
+			tx = session.beginTransaction();
+			
+			Criteria cr = session.createCriteria(TemplateVO.class);
+			cr.add(
+				Restrictions.eq("templateSeq", thisSeq)
+			);
+			TemplateVO templateVO = (TemplateVO)cr.uniqueResult();
+			session.delete(templateVO);	
+			
+			tx.commit();
+		}catch (Exception e) {
+			if(tx != null) tx.rollback();
+			e.printStackTrace();	
+		}finally {
+			session.close();
+		}
+	}
 }

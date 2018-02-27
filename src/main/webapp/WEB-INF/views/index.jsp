@@ -26,7 +26,7 @@
     })(jQuery);
     
     
-$(document).ready(function(){	
+$(document).ready(function(){
 	$('.sh_id').click(function(){
 		validate(1);			
 	});	

@@ -30,10 +30,12 @@ import com.clbee.pbcms.vo.InappSubVO;
 import com.clbee.pbcms.vo.InappVO;
 import com.clbee.pbcms.vo.InappcategoryVO;
 import com.clbee.pbcms.vo.LogList;
+import com.clbee.pbcms.vo.LogVO;
 import com.clbee.pbcms.vo.MemberVO;
 import com.clbee.pbcms.vo.ProvisionVO;
 import com.clbee.pbcms.vo.TemplateList;
 import com.clbee.pbcms.vo.TemplateVO;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -155,7 +157,7 @@ public class AppController
 			appList = appService.selectList(activeUser.getMemberVO(), appList);
 			modelMap.addAttribute("appList", appList);
 			modelMap.addAttribute("authority", authority);
-		
+
 			return "01_app/app_list";
 		}
 	}
@@ -195,7 +197,7 @@ public class AppController
 
 		if(templateList.getCurrentPage()==null||"".equals(templateList.getCurrentPage())){templateList.setCurrentPage(1);}
 			
-		System.out.println("changedOsTypeGb = " + temVO.getOstypeGb());
+		//System.out.println("changedOsTypeGb = " + temVO.getOstypeGb());
 
 		templateList = templateService.selectList(temVO, activeUser.getMemberVO(), templateList, "Paging");
 		modelMap.addAttribute("templateList", templateList);
@@ -650,6 +652,32 @@ public class AppController
       mav.setViewName("01_app/log_list");
       
       return mav;
+    }  	
+
+  	@RequestMapping(value = "app/log/dataView.html", method = RequestMethod.POST)
+    public ModelAndView logView(String startDate, String endDate, HttpSession session, HttpServletRequest request)
+      throws Exception
+    {
+      ModelAndView mav = new ModelAndView();
+      int log_seq = Integer.parseInt(paramSet(request, "log_seq"));
+
+      LogVO logData = this.logService.selectLogInfo(log_seq);
+/*      
+      HashMap<String, Object> rs = new ObjectMapper().readValue(logData.getData(), HashMap.class) ;
+      
+      System.out.println("==hashmap 출력==") ;
+      System.out.println(rs) ;
+       
+      System.out.println() ;
+       
+      String gender = (String)rs.get("gender") ;
+      boolean verified = (Boolean)rs.get("verified") ;
+       
+      HashMap<String, Object> name = (HashMap)rs.get("name") ;
+*/ 
+      mav.addObject("logData", logData);
+      mav.setViewName("01_app/log_data");
+      return mav;
     }
   	
   	@RequestMapping(value = "app/deleteApp.html", method = RequestMethod.POST)
@@ -699,7 +727,7 @@ public class AppController
 			}else {
 				activeUser = (myUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			}
-			System.out.println("modify appSeq"+appVO.getAppSeq());
+			//System.out.println("modify appSeq"+appVO.getAppSeq());
 			appVO = appService.selectForUpdate(appVO, activeUser.getMemberVO());
 			if(appVO==null){
 				//throw new Exception("�߸��� �����Դϴ�.");
@@ -712,7 +740,6 @@ public class AppController
 			vo.setCaptureGb("1");
 			vo.setBoardSeq(appVO.getAppSeq());
 			captureList = captureService.selectListByBoardSeqWithGb(vo);
-			//System.out.println(appVO.toString());
 
 
 			if(appVO.getTemplateSeq() != null)
@@ -742,6 +769,7 @@ public class AppController
 		modelMap.addAttribute("captureList", captureList);
 		modelMap.addAttribute("templateVO", templateVO);
     	return "01_app/app_modify";
+		//return "09_test/index";
     }
 
 	@SuppressWarnings("unchecked")
@@ -805,7 +833,6 @@ public class AppController
 			param.setValue("OSTYPE", appVO.getOstype());
 			List<LinkedHashMap<Object, Object>> appVOForBundleIdList = appService.getRowIsCompletedByBundleId(param);
 			
-
 			// �� ������Ʈ�� �ι�° ������Ʈ���� ���� ��������
 			// Sorting�Ҷ� ���� �������� ������Ʈ�� ������� Sorting�ϱ� ����
 			// �׸��� �� ������Ʈ�����, �ι�° ������Ʈ�� �ϼ� = '�ƴϿ�'�϶� '��'�� �������
@@ -971,7 +998,7 @@ public class AppController
 			String url = "redirect:/app/list.html";
 			String parameters = "?currentPage=1&searchValue="+"&isAvailable="+isAvailable;
 				 /*"&appSeq="+appVO.getAppSeq()+"&searchType="+appList.getSearchType()+"&searchValue="+appList.getSearchValue();*/
-			return "/inc/dummy";//"url + parameters";
+			return url + parameters;
 		}catch(Exception e){
 			e.printStackTrace();
 			String returnUrl = "/inc/dummy";

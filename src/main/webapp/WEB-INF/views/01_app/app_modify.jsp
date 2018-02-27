@@ -9,7 +9,7 @@
 <script src="/js/jquery.validate.js"></script>
 <script type="text/javascript">
 var provisionPopup;
-$(document).ready(function(){
+$(document).ready(function(){console.log(history.length);
 	<sec:authorize access="isAuthenticated()">  
 		<sec:authentication property="principal.authorities" var="userRole" />
 	</sec:authorize>
@@ -514,23 +514,18 @@ $(document).ready(function(){
 	});
 
 	$('input:radio[name=memDownGb]').change(function(){
-		//alert(1);
 		memDownGbStatus();
 	});
 
 	$('input:radio[name=nonmemDownGb]').change(function(){
-		//alert(2);
 		nomemDownGbStatus();
 	});
 
 	$('input:radio[name=couponGb]').change(function(){
-		//alert(2);
-		//couponNumStatus();
 		nomemCoupon('action');
 	});
 
 	$('input:radio[name=distrGb]').change(function(){
-		//alert(2);
 		nomemCoupon('action');
 	});
 
@@ -739,31 +734,44 @@ $(document).ready(function(){
 			$('[name=memDownGb]').prop('checked', false).attr('disabled', false).parents('span').find('input:text').val('').prop('readonly', true);
 			$('[name=memDownGb]').eq(0).prop('checked', true).attr('disabled', false).parents('span').find('input:text').eq(0).val('').prop('readonly', false);			
 		} */
-		if(distrGb=='2'&&couponGb=='1'){
+		if(distrGb=='2' && couponGb=='1'){/*비회원일 때, 쿠폰을 발행 할 경우*/
 			$('[name=memDownGb]').prop('checked', false).attr('disabled', 'disabled').parents('span').find('input:text').val('').prop('readonly', true);
-			if(!$("[name = couponNum]").val()){
-				$('input:radio[name=couponGb]').parents('span').find('input:text').prop('readonly', false);
-				if(type != 'load') setcoupNum();
-			}
-		}else if(distrGb=='1'&&couponGb=='1'){
-			if($('[name=memDownGb]:checked').size()==0){
-				$('[name=memDownGb]').prop('checked', false).attr('disabled', false).parents('span').find('input:text').val('').prop('readonly', true);
-				$('[name=memDownGb]').eq(0).prop('checked', true).attr('disabled', false).parents('span').find('input:text').eq(0).val('').prop('readonly', false);
-			}
+			//비회원용 쿠폰발행(초기화 후, 다운로드 횟수 default)
 			if($('[name=nonmemDownGb]:checked').size()==0){
 				$('[name=nonmemDownGb]').prop('checked', false).attr('disabled', false).parents('span').find('input:text').val('').prop('readonly', true);
 				$('[name=nonmemDownGb]').eq(0).prop('checked', true).attr('disabled', false).parents('span').find('input:text').eq(0).val('').prop('readonly', false);
 			}
+			//쿠폰번호 발행
 			if(!$("[name = couponNum]").val()){
 				$('input:radio[name=couponGb]').parents('span').find('input:text').prop('readonly', false);
 				if(type != 'load') setcoupNum();
 			}
-		}else if(couponGb=='2'){
-			$('[name=nonmemDownGb]').prop('checked', false).attr('disabled', 'disabled').parents('span').find('input:text').val('').prop('readonly', true);
-			$('input:radio[name=couponGb]').parents('span').find('input:text').val('').prop('readonly', true);	
+		}else if(distrGb=='1' && couponGb=='1'){/*배포범위:회원로그인 + 비회원 쿠폰발행 할 때*/
+			//배포 범위(초기화 후, 다운로드 횟수 default)
 			if($('[name=memDownGb]:checked').size()==0){
 				$('[name=memDownGb]').prop('checked', false).attr('disabled', false).parents('span').find('input:text').val('').prop('readonly', true);
 				$('[name=memDownGb]').eq(0).prop('checked', true).attr('disabled', false).parents('span').find('input:text').eq(0).val('').prop('readonly', false);
+			}
+			//비회원용 쿠폰발행(초기화 후, 다운로드 횟수 default)
+			if($('[name=nonmemDownGb]:checked').size()==0){
+				$('[name=nonmemDownGb]').prop('checked', false).attr('disabled', false).parents('span').find('input:text').val('').prop('readonly', true);
+				$('[name=nonmemDownGb]').eq(0).prop('checked', true).attr('disabled', false).parents('span').find('input:text').eq(0).val('').prop('readonly', false);
+			}
+			//비회원용 쿠폰번호 발행
+			if(!$("[name = couponNum]").val()){
+				$('input:radio[name=couponGb]').parents('span').find('input:text').prop('readonly', false);
+				if(type != 'load') setcoupNum();
+			}
+		}else if(couponGb=='2'){/*비회원용 쿠폰발행 "아니오"일때(배포범위 회원로그인/비회원 둘다) */
+			//"비회원용 쿠폰 발행 항목들 초기화"
+			$('[name=nonmemDownGb]').prop('checked', false).attr('disabled', 'disabled').parents('span').find('input:text').val('').prop('readonly', true);
+			//쿠폰번호 지우고 readonly로 바꿔주는역할"
+			$('input:radio[name=couponGb]').parents('span').find('input:text').val('').prop('readonly', true);	
+			//비회원인데 쿠폰발행 "예"->"아니오" 변경할때
+			if($('[name=memDownGb]:checked').size()==0){
+				//비회원인데 쿠폰 발행 안할경우, 배포 범위에서 설정하게 로직 구현
+				$('[name=memDownGb]').prop('checked', false).attr('disabled', false).parents('span').find('input:text').val('').prop('readonly', true);//alert("배포 범위 항목들초기화");
+				$('[name=memDownGb]').eq(0).prop('checked', true).attr('disabled', false).parents('span').find('input:text').eq(0).val('').prop('readonly', false);//alert("dafault로 다운로드횟수 칸 open");
 			}
 		}
 	}
@@ -1360,7 +1368,7 @@ function settemplateAppcontents(action){
 							<th><label class="title" for="template"><spring:message code='app.modify.text24' /></label></th>
 							<td>
 								<input type="hidden" name="templateSeq" value="${appVO.templateSeq }"/>
-								<input name="templateName" type="text" style="width:78%;" class="line_right" value="${appVO.templateName }">
+								<input name="templateName" type="text" style="width:78%;" class="line_right" value="${appVO.templateName } (${templateVO.verNum})">
 								<a id="templateNameBtn" href="#templateNameBtn_" class="btn btnL btn_gray_light line_left"><spring:message code='app.modify.text25' /></a>
 							</td>							
 						</tr>

@@ -165,7 +165,7 @@ FROM
 	     	AND (a.ostype = '1' OR a.ostype = '2' OR a.ostype = '3')
 	     </if>
 	     <if test="OSTYPE == 4">
-	     	AND a.use_gb = '4'
+	     	AND a.ostype = '4'
 	     </if>
 	ORDER BY a.use_Gb DESC
 	LIMIT 1;

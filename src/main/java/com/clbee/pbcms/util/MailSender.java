@@ -2,6 +2,7 @@ package com.clbee.pbcms.util;
 
 import java.io.Console;
 import java.util.Locale;
+import java.util.Properties;
 
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.context.MessageSource;
@@ -46,6 +47,12 @@ public class MailSender {
 	public JavaMailSender javaMailSender(){
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 
+		Properties props = new Properties();
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.auth", "true");
+		
+		mailSender.setJavaMailProperties(props);
+		
 		if(ConditionCompile.isJapan){
 			mailSender.setHost(messageSource().getMessage("send.email.domain", null, new Locale("ja")));
 			mailSender.setUsername(messageSource().getMessage("send.email.ID", null, new Locale("ja")));

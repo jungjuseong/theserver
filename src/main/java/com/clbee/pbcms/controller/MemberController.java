@@ -55,19 +55,13 @@ public class MemberController {
 	
 
 	@RequestMapping(value = "member/join/ok.html", method = RequestMethod.GET)
-	public ModelAndView memberJoinOk( HttpServletRequest request ) {
-		
-		/*request.getParameter(arg0)*/
-		
-		ModelAndView mav = new ModelAndView();
-		
-		
+	public ModelAndView memberJoinOk( HttpServletRequest request ) {		
+		ModelAndView mav = new ModelAndView();	
 		Random random = new Random();
-		
 		
 		String validId = request.getParameter("validId");
 		MemberVO memberVO = memberService.findByCustomInfo("emailChkSession", validId);
-		System.out.println(validId);
+//		System.out.println(validId);
 		
 		int limitUser =  Integer.parseInt(messageSource.getMessage("limit.user.count", null, localeResolver.resolveLocale(request)));
 
@@ -125,7 +119,6 @@ public class MemberController {
 
 	@RequestMapping(value = "member/join.html", method = RequestMethod.GET)
 	public String home( HttpServletRequest request ) {
-
 		return "07_member/member_join";
 	}
 
@@ -145,13 +138,13 @@ public class MemberController {
 		System.out.println("sending Email@@@@@@@@@@@@@@@@@@");
 		
 		String from=messageSource.getMessage("send.email.ID", null, localeResolver.resolveLocale(request));
-		//message : PageCreator ¸ÞÀÏ ÀÎÁõÀÔ´Ï´Ù.
+		//message : PageCreator ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
 		String subject = messageSource.getMessage("member.control.007", null, localeResolver.resolveLocale(request));
 			try {
 				MimeMessage message = mailSender.createMimeMessage();
 				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 				messageHelper.setTo(memberVO.getEmail());
-				//message : ÇØ´ç URL·Î Á¢±ÙÇÏ½Ã¸é ¸ÞÀÏ ÀÎÁõÀÌ ¿Ï·á µË´Ï´Ù.
+				//message : ï¿½Ø´ï¿½ URLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ ï¿½Ë´Ï´ï¿½.
 				messageHelper.setText(messageSource.getMessage("member.control.008", null, localeResolver.resolveLocale(request)) +"\n"+ "http://" + messageSource.getMessage("basic.Info.IP", null, localeResolver.resolveLocale(request))+":8080/member/join/ok.html?validId="+changeSHA256(memberVO.getUserId()));
 				messageHelper.setFrom(from);
 				messageHelper.setSubject(subject); 
@@ -164,18 +157,12 @@ public class MemberController {
 	
 	@RequestMapping(value={"/member/userIdValidation.html"}, method=RequestMethod.POST)
 	public @ResponseBody int userIdValidation( String inputUserId ){
-		System.out.println("Hello");
-		System.out.println(inputUserId);
 		return memberService.verifyIfExists("userId", inputUserId);
 	}
 	
 	
 	@RequestMapping(value={"/member/emailValidation.html"}, method=RequestMethod.POST)
 	public @ResponseBody int emailValidation( String inputEmail ){
-		/* ÀÌ ¸Þ¼Òµå ¾È¿¡´Â activeUse(·Î±×ÀÎ ÇßÀ»¶§ »ý¼ºµÇ´Â °´Ã¼ )r°¡ µé¾î°¡¸é¾ÈµË´Ï´Ù. 
-		 * È¸¿ø°¡ÀÔ ÆäÀÌÁö¿¡ ¾²ÀÌ±â ¶§¹®¿¡ */
-		System.out.println("Hello");
-		System.out.println(inputEmail);
 		return memberService.verifyIfExists("email", inputEmail);
 	}
 	
@@ -183,17 +170,17 @@ public class MemberController {
 	public @ResponseBody int userStatusValid( String userId, String userPw ){
 		
 	/*case 1 : 
-		//message : Å»ÅðÇÑ °èÂÄÀÔ´Ï´Ù.
+		//message : Å»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
 		alert("<spring:message code='page.index.009' />");
 		return;
 		break;
 	case 2 :
-		//message : ÀÌ¿ë Á¤ÁöµÈ °èÁ¤ÀÔ´Ï´Ù.
+		//message : ï¿½Ì¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
 		alert("<spring:message code='page.index.010' />");
 		return;
 		break;
 	case 3 : 
-		//message : °­Á¦ Å»ÅðµÈ °èÁ¤ÀÔ´Ï´Ù.
+		//message : ï¿½ï¿½ï¿½ï¿½ Å»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
 		alert("<spring:message code='page.index.011' />");
 		return;
 		break;
@@ -202,16 +189,16 @@ public class MemberController {
 		return;
 		break;
 	case 5 :
-		//message : ¸ÞÀÏ ÀÎÁõÈÄ »ç¿ë °¡´ÉÇÕ´Ï´Ù.
+		//message : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
 		alert("<spring:message code='page.index.012' />");
 		return;
 		break;
 	case 6 :
-		//message : ¾ÆÀÌµð ¶Ç´Â ºñ¹Ð¹øÈ£¸¦ ´Ù½Ã È®ÀÎÇÏ¼¼¿ä.
+		//message : ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½Ù½ï¿½ È®ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.
 		alert("<spring:message code='page.index.013' />");
 		return;
 		break;
-		//message : À¯È¿±â°£ÀÌ Áö³­ °èÁ¤ÀÔ´Ï´Ù.
+		//message : ï¿½ï¿½È¿ï¿½â°£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
 	case 7:
 		alert("<spring:message code='page.index.016' />");
 		break;*/
@@ -219,7 +206,7 @@ public class MemberController {
 		
 		MemberVO memberVO = memberService.findByUserName(userId);
 		if(memberVO == null) {
-			/*	¾ÆÀÌµð ¶Ç´Â ºñ¹Ð¹øÈ£¸¦ ´Ù½Ã È®ÀÎÇÏ¼¼¿ä.*/
+			/*	ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½Ù½ï¿½ È®ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.*/
 			
 			return 6;
 		}else if(!"".equals(userId) && !"".equals(userPw)) {
@@ -278,7 +265,7 @@ public class MemberController {
 		
 		myUserDetails activeUser = (myUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		/*modelAndView.addObject("memberVO", activeUser.getMemberVO());*/
-		/* password.html¿¡¼­ Æ÷½ºÆ®·Î º¸³Â´Ù¸é*/
+		/* password.htmlï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Â´Ù¸ï¿½*/
 		if("modify_password".equals(modify_gb)){	
 			if(activeUser.getPassword().equals(changeSHA256(formVO.getUserPw()))){
 				/*modelAndView.addObject("ReConfirmPassword", userPw);*/
@@ -292,7 +279,7 @@ public class MemberController {
 				modelAndView.setViewName("/inc/dummy");
 			}
 		}
-		/* modify.html¿¡¼­ Æ÷½ºÆ®·Î º¸³Â´Ù¸é..*/
+		/* modify.htmlï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Â´Ù¸ï¿½..*/
 		else{
 			
 			formVO.setUserPw(changeSHA256(formVO.getUserPw()));
@@ -300,13 +287,13 @@ public class MemberController {
 			if("5".equals(formVO.getUserStatus())) {
 				formVO.setEmailChkSession(changeSHA256(formVO.getUserId()));
 				String from=messageSource.getMessage("send.email.ID", null, localeResolver.resolveLocale(request));
-				//message : PageCreator ¸ÞÀÏ ÀÎÁõÀÔ´Ï´Ù.
+				//message : PageCreator ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
 				String subject=messageSource.getMessage("member.control.007", null, localeResolver.resolveLocale(request));
 					try {
 						MimeMessage message = mailSender.createMimeMessage();
 						MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 						messageHelper.setTo(formVO.getEmail());
-						//message : ÇØ´ç URL·Î Á¢±ÙÇÏ½Ã¸é ¸ÞÀÏ ÀÎÁõÀÌ ¿Ï·áµË´Ï´Ù.
+						//message : ï¿½Ø´ï¿½ URLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½Ë´Ï´ï¿½.
 						messageHelper.setText(messageSource.getMessage("member.control.008", null, localeResolver.resolveLocale(request)) + "\n"+ "http://"+messageSource.getMessage("basic.Info.IP", null, localeResolver.resolveLocale(request)) + ":8080/member/join/ok.html?validId="+changeSHA256(formVO.getUserId()));
 						messageHelper.setFrom(from);
 						messageHelper.setSubject(subject); 
@@ -338,17 +325,14 @@ public class MemberController {
 	
 	@RequestMapping(value="mypage/modifyCustom.html", method=RequestMethod.POST)
 	public @ResponseBody String mypaOST( String userPw ){
-		
-		
 		myUserDetails activeUser = (myUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		System.out.println("Hello");
 		
 		return activeUser.getMemberVO().getEmail();
 	}
 	
 	@RequestMapping(value="mypage/modify.html", method=RequestMethod.GET)
 	public String mypagePOST( String userPw ){
-		/* ¿Ã¹Ù¸£Áö ¾ÊÀº Á¢±ÙÀÔ´Ï´Ù. */
+		/* ï¿½Ã¹Ù¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½. */
 		
 		throw new ResourceNotFoundException();
 		/*return "06_mypage/mypage_modify";*/
@@ -357,7 +341,7 @@ public class MemberController {
 	
 	@RequestMapping(value="mypage/withDrawal.html", method=RequestMethod.GET)
 	public String mypageWithDrawal( String userPw ){
-		/* ¿Ã¹Ù¸£Áö ¾ÊÀº Á¢±ÙÀÔ´Ï´Ù. */
+		/* ï¿½Ã¹Ù¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½. */
 		
 		return "06_mypage/mypage_withdrawal";
 		/*return "06_mypage/mypage_modify";*/
@@ -365,29 +349,29 @@ public class MemberController {
 
 	@RequestMapping(value="mypage/withDrawal.html", method=RequestMethod.POST)
 	public @ResponseBody int mypageWithDrawalPOST( String userSeq, String companySeq ){
-		/* ¿Ã¹Ù¸£Áö ¾ÊÀº Á¢±ÙÀÔ´Ï´Ù. */
+		/* ï¿½Ã¹Ù¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½. */
 		
 		int intUserSeq = Integer.parseInt(userSeq);
 		int intCompanySeq = Integer.parseInt(companySeq);
 		int companyResult = 1;
 		
-		if(intCompanySeq != 0)/* ±â¾÷È¸¿øÀÌ¶ó´Â ÀÇ¹Ì */{
+		if(intCompanySeq != 0)/* ï¿½ï¿½ï¿½È¸ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ ï¿½Ç¹ï¿½ */{
 			CompanyVO updateComVO = new CompanyVO();
-			updateComVO.setCompanyStatus("1"); // Å»Åð
+			updateComVO.setCompanyStatus("1"); // Å»ï¿½ï¿½
 			updateComVO.setWithdrawalDt(new Date());
 			companyResult = companyService.updateCompanyInfo(updateComVO, intCompanySeq);
 		}
 		
 		MemberVO updateMemVO = new MemberVO();
-		updateMemVO.setUserStatus("1");	// Å»Åð¤Ó
+		updateMemVO.setUserStatus("1");	// Å»ï¿½ï¿½ï¿½
 		updateMemVO.setWithdrawalDt(new Date());
 		int memberResult = memberService.updateMemberInfo(updateMemVO, intUserSeq);
 
-		/* companyResult´Â companySeq°¡ 0ÀÌ¸é ±â¾÷ÀÌ ¾ø´Ù´Â ÀÇ¹Ì·Î
-		 * Ç×»ó °á°ú°¡ ÁÁ´Ù¶ó´Â ÀÇ¹ÌÀÎ 1À» ¸®ÅÏÇÑ´Ù 
-		 * memberResult´Â update¿¡ °á°ú¿¡ µû¶ó¼­ 0À»¸®ÅÏÇÏ°Å³ª 1À» ¸®ÅÏÇÑ´Ù.
-		 * ±×°á°ú¿¡ µû¶ó¼­ µÑ´Ù 1ÀÏ°æ¿ì 1À» ¸®ÅÏÇÏ°í
-		 * µÑÁß¿¡ ÇÏ³ª¶óµµ ¾÷µ¥ÀÌÆ®°¡ ÀßµÇÁö ¾Ê¾ÒÀ¸¸é 0À» ¸®ÅÏÇÑ´Ù.
+		/* companyResultï¿½ï¿½ companySeqï¿½ï¿½ 0ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù´ï¿½ ï¿½Ç¹Ì·ï¿½
+		 * ï¿½×»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¶ï¿½ï¿½ ï¿½Ç¹ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½ 
+		 * memberResultï¿½ï¿½ updateï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï°Å³ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+		 * ï¿½×°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½ 1ï¿½Ï°ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½
+		 * ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ßµï¿½ï¿½ï¿½ ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 		 * */
 		if(companyResult == 1 && memberResult == 1) {
 			return 1;
@@ -442,7 +426,7 @@ public class MemberController {
 		
 		if(memCnt == 1){			
 			String from=messageSource.getMessage("send.email.ID", null, localeResolver.resolveLocale(request));
-			//message : ¿äÃ»ÇÏ½Å ¾ÆÀÌµð ÀÔ´Ï´Ù.
+			//message : ï¿½ï¿½Ã»ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ô´Ï´ï¿½.
 			String subject=messageSource.getMessage("member.control.001", null, localeResolver.resolveLocale(request));			
 			//Random random = new Random();
 			//random.nextInt();
@@ -450,8 +434,8 @@ public class MemberController {
 				MimeMessage message = mailSender.createMimeMessage();
 				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 				messageHelper.setTo(memberRow.getEmail());
-				//message : ²²¼­ ¿äÃ»ÇÏ½Å ¾ÆÀÌµð´Â
-				//message : ÀÔ´Ï´Ù. °¨»çÇÕ´Ï´Ù.
+				//message : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½
+				//message : ï¿½Ô´Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
 				messageHelper.setText(memberRow.getLastName()+memberRow.getFirstName()+messageSource.getMessage("member.control.002", null, localeResolver.resolveLocale(request))+memberRow.getUserId()+messageSource.getMessage("member.control.003", null, localeResolver.resolveLocale(request)) );
 				messageHelper.setFrom(from);
 				messageHelper.setSubject(subject); 
@@ -462,7 +446,7 @@ public class MemberController {
 			
 			return "successTrue";
 		} else {
-			// ¸ÞÀÏ º¸³»±â
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			return "successFalse";
 		}		
 	}
@@ -490,18 +474,18 @@ public class MemberController {
 		memCnt = memberService.selectMemberCount_(memberVO);	
 		memberRow = memberService.selectMemberSuccessYn_(memberVO);
 		
-		System.out.println(memCnt+"=====");
+		//System.out.println(memCnt+"=====");
 		if(memCnt == 1){			
 			String from=messageSource.getMessage("send.email.ID", null, localeResolver.resolveLocale(request));
-			//message : ¿äÃ»ÇÏ½Å ºñ¹Ð¹øÈ£ ÀÔ´Ï´Ù.
+			//message : ï¿½ï¿½Ã»ï¿½Ï½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ ï¿½Ô´Ï´ï¿½.
 			String subject=messageSource.getMessage("member.control.004", null, localeResolver.resolveLocale(request));
 			
 			try {
 				MimeMessage message = mailSender.createMimeMessage();
 				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 				messageHelper.setTo(memberRow.getEmail());
-				//message : ²²¼­ ¿äÃ»ÇÏ½Å ºñ¹Ð¹øÈ£´Â
-				//message : ÀÔ´Ï´Ù. °¨»çÇÕ´Ï´Ù.
+				//message : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½Ï½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½
+				//message : ï¿½Ô´Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
 				messageHelper.setText(memberRow.getLastName()+memberRow.getFirstName()+messageSource.getMessage("member.control.005", null, localeResolver.resolveLocale(request))+ranStr+messageSource.getMessage("member.control.006", null, localeResolver.resolveLocale(request)) );
 				messageHelper.setFrom(from);
 				messageHelper.setSubject(subject); 
@@ -510,10 +494,10 @@ public class MemberController {
 			} catch(Exception e){
 				System.out.println(e);
 			}
-			// ¸ÞÀÏ º¸³»±â
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			return "True!";
 		} else {
-			// ¸ÞÀÏ º¸³»±â
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			return "False!";
 		}		
 	}	
@@ -595,9 +579,9 @@ public class MemberController {
 	     
 	     
 	    /**
-	     * ·£´ý ¹®ÀÚ¿­ »ý¼º.
-	     * @param length ¹®ÀÚ¿­ ±æÀÌ
-	     * @return ·£´ý ¹®ÀÚ¿­
+	     * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½.
+	     * @param length ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½
+	     * @return ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½
 	     */
 	    public String generateRandomString(int length) {
 	        boolean runExcludeChar = !isExcludedCharInLimitedChar();            

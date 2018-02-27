@@ -120,15 +120,15 @@ public class BundleDaoImpl implements BundleDao {
 				if(bundleList.size() == 1) {
 
 					if(vo.getOsType() == 4 && bundleList.get(0).getOsType()  == 4) {
-						// app_resgist.html¿¡¼­ ¿äÃ»ÇÑ ostypeÀÌ 4ÀÌ°í
-						// DB¿¡¼­ ¹ÞÀº bundle¿¡ µî·ÏµÇ¾îÀÖ´Â ostypeµµ 4ÀÌ¸é µî·Ï ºÒ°¡´É
+						// app_resgist.htmlï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ostypeï¿½ï¿½ 4ï¿½Ì°ï¿½
+						// DBï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ bundleï¿½ï¿½ ï¿½ï¿½ÏµÇ¾ï¿½ï¿½Ö´ï¿½ ostypeï¿½ï¿½ 4ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½ï¿½ï¿½
 						return 1;
 					}else if( vo.getOsType() != 4  && bundleList.get(0).getOsType() != 4){
-						// app_resgist.html¿¡¼­ ¿äÃ»ÇÑ ostypeÀÌ 4°¡ ¾Æ´Ï°í ( iOS )
-						// DB¿¡¼­ ¹ÞÀº bundle¿¡ µî·ÏµÇ¾îÀÖ´Â ostypeµµ 4°¡¾Æ´Ï¸é µî·ÏºÒ°¡´É ( iOS )
+						// app_resgist.htmlï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ostypeï¿½ï¿½ 4ï¿½ï¿½ ï¿½Æ´Ï°ï¿½ ( iOS )
+						// DBï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ bundleï¿½ï¿½ ï¿½ï¿½ÏµÇ¾ï¿½ï¿½Ö´ï¿½ ostypeï¿½ï¿½ 4ï¿½ï¿½ï¿½Æ´Ï¸ï¿½ ï¿½ï¿½ÏºÒ°ï¿½ï¿½ï¿½ ( iOS )
 						return 1;
 					}
-					// ±×¿Ü ¼­·Î ´Ù¸¥ OSTYPEÀÌ¸é µî·Ï °¡´É
+					// ï¿½×¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ OSTYPEï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 					else return 0;
 				}
 				return bundleList.size();

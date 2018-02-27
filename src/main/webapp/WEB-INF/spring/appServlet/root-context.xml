@@ -107,7 +107,7 @@
     <bean id="dataSourceForReadWrite" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://127.0.0.1:3306/pbcms_test"/>
-        <!-- <property name="url" value="jdbc:mysql://192.168.10.190:3306/pbcms_test"/> --> 
+        <!-- <property name="url" value="jdbc:mysql://192.168.10.190:3306/pbcms_test"/> -->
         <property name="username" value="pbadmin"/>
         <property name="password" value="vpdlwlqlfejCMS2014"/>
         <property name="maxActive" value="-1"/>

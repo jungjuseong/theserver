@@ -26,4 +26,7 @@ public interface MemberService {
 	int selectCountWithPermisionUserByCompanySeq( int companySeq);
 	List<MemberVO> getUserList(  int companySeq, String[] useS, String searchValue, String searchType  );
 	List<MemberVO> getPermitList( int companySeq, String[] useS );
+
+	//20180213 - lsy : user delete
+	int deleteMemberInfo(int userNum);
 }

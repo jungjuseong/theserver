@@ -94,8 +94,7 @@ function goToSearch(){
 }
 
 function outputToCsv(){
-
-$("#searchValue").val(encodeURI($("#tempSearch").val()));
+	$("#searchValue").val(encodeURI($("#tempSearch").val()));
 	
 	var mySearchType = "${param.searchType}";
 	$("#searchType").val(mySearchType);
@@ -103,7 +102,14 @@ $("#searchValue").val(encodeURI($("#tempSearch").val()));
 	document.noticeFrm.action='/outputToCsv.html';
 	document.noticeFrm.method="POST";
 	document.noticeFrm.submit();
+}
 
+function jsonDataView(log_seq){
+	$("#log_seq").val(log_seq);
+
+	document.noticeFrm.action='/app/log/dataView.html';
+	document.noticeFrm.method="POST";
+	document.noticeFrm.submit();
 }
 
 </script>
@@ -133,6 +139,8 @@ $("#searchValue").val(encodeURI($("#tempSearch").val()));
 					<input type="hidden" name="startDate" id="startDate" value="${startDate }"/>
 					<input type="hidden" name="endDate" id="endDate" value="${endDate }"/>
 					<input type="hidden" name="dateIsCheck" id ="dateIsCheck" value="${param.dateIsCheck }"/>
+					<!-- 20170104 : lsy - Add logData View -->
+					<input type="hidden" name="log_seq" id="log_seq" value="1">
 				</form>
 				<div class="con_header clfix">
 					<div class="result fLeft">
@@ -167,6 +175,8 @@ $("#searchValue").val(encodeURI($("#tempSearch").val()));
 								<col style="width:130px">
 								<col style="width:130px">
 								<col style="width:130px">
+								<!-- 20170104 : lsy - Add logData View -->
+								<col style="width:30px">
 							</colgroup>
 							<tr>
 								<c:if test="${'1' eq isSingle }">
@@ -176,11 +186,14 @@ $("#searchValue").val(encodeURI($("#tempSearch").val()));
 								<th scope="col">pageGb</th>
 								<th scope="col">dataGb</th>
 								<th scope="col"><spring:message code='app.list.table.col8' /></th>
+								<!-- 20170104 : lsy - Add logData View -->
+								<th scope="col">dataView</th>
 							</tr>
 							<c:choose>
 								<c:when test="${empty logList.list}">
 								<tr>
-									<td align="center" colspan="9" > <spring:message code='extend.local.094' /></td>
+									<!-- 20170104 : lsy - Add logData View -->
+									<td align="center" colspan="10" > <spring:message code='extend.local.094' /></td>
 								</tr>
 								</c:when>
 							<c:otherwise>
@@ -193,6 +206,8 @@ $("#searchValue").val(encodeURI($("#tempSearch").val()));
 										<td>${logList.list[i].pageGb }</td>
 										<td>${logList.list[i].dataGb }</td>
 										<td><fmt:formatDate value="${logList.list[i].regDt}" pattern="yyyy-MM-dd"/></td>
+										<!-- 20170104 : lsy - Add logData View -->
+										<td><a href="javascript:jsonDataView('${logList.list[i].logSeq }')">view</a></td>
 									</tr>
  								</c:forEach>
 							</c:otherwise>
@@ -217,7 +232,7 @@ $("#searchValue").val(encodeURI($("#tempSearch").val()));
 				</div>
 				<div class="btn_area_bottom fRight clfix" style="margin-top:-42px;">
 					<%-- <a class="btn btnL btn_gray_light" href="#"><spring:message code='user.list.024' /></a> --%>
-					<a class="btn btnL btn_red" href="javascript:outputToCsv()"><spring:message code='extend.local.093' /></a>
+					<!-- <a class="btn btnL btn_red" href="javascript:outputToCsv()"><spring:message code='extend.local.093' /></a> -->
 				</div>
 			</div>
 		</div>

@@ -135,7 +135,7 @@ public class DownloadController  {
 
 		System.out.println(mapList + "========================================================================");
 		//maplist = (MapList) appService.getSelectList(param, maplist);
-
+System.out.println("test==>"+messageSource.getMessage("file.path.ios.down.file", null, localeResolver.resolveLocale(req)));
 		mav.addObject("path",  messageSource.getMessage("file.path.app.file", null, localeResolver.resolveLocale(req)));
 		mav.addObject("pathIos",  messageSource.getMessage("file.path.ios.down.file", null, localeResolver.resolveLocale(req)));
 		mav.addObject("DownList", downList);
@@ -267,7 +267,7 @@ public class DownloadController  {
 	@RequestMapping(value="/down/couponOk" ,method={RequestMethod.GET, RequestMethod.POST})
 	public @ResponseBody Entity downLoadCouponOk(HttpSession session, HttpServletRequest req, MapList mapList) throws Exception{
 
-		//ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView();
 		Entity param = new Entity();
 		String couponNum;
 		couponNum = "";
@@ -278,7 +278,7 @@ public class DownloadController  {
 
 		param.setValue("TotalCnt", downList.size());
 		param.setValue("DownList", downList);
-		//mav.setViewName("/03_down/down_pop_coupon");
+		mav.setViewName("/03_down/down_pop_coupon");
 		//return mav;
 		return param;
 	}

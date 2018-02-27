@@ -260,7 +260,7 @@ $(document).ready(function(){
 		var filename = $(this).val();
 		var dot = filename.lastIndexOf(".");
 		var ext = filename.substring(dot+1).toLowerCase();
-		//alert('['+ext+']');
+		
 		if(!(ext=='zip'||ext=='ZIP')){
 			alert('<spring:message code='template.modify.042' />');
 			$(this).val('');
@@ -268,12 +268,26 @@ $(document).ready(function(){
 	});
 	
 	$("#fm_app_contents_amt").focusout(function(){
-
 		if( !($(this).is('[readonly]')) && (parseInt($("#fm_app_contents_amt").val()) < 2 || $("#fm_app_contents_amt").val() == "")){
 			//message : 2 이상 숫자를 입력해 주십시오.
 			alert("<spring:message code='template.modify.044' />");
 			$("#fm_app_contents_amt").val('2');
 		}
+	});
+
+	//20180219 : lsy - downloadTemplate
+	$('#uploadSaveName').click(function () {
+		$.ajax({
+		    type: 'HEAD',
+		    url: "${path}${tempView.uploadSaveFile}",
+		    success: function() {
+		    	window.location.href="${path}${tempView.uploadSaveFile}";
+				console.log("${path}${tempView.uploadSaveFile}");
+		    },  
+		    error: function() {
+		        alert('<spring:message code='down.list.030' />');
+		    }
+		});
 	});
 });	
 
@@ -288,6 +302,14 @@ function popup(){
   	 //frm.method  = "post";
   	 //frm.action  = "/template/user_pop.html";
   	 //frm.submit();
+}
+
+//20180219 : lsy - deleteTemplate
+function templateDelete(){
+	if(confirm("<spring:message code='user.list.027' />")){
+		document.frmModify.action='/template/deleteTemplate.html';//single app 삭제
+		document.frmModify.submit();
+	}
 }
 
 </script>
@@ -347,7 +369,7 @@ function popup(){
 									<option value="4" <c:if test="${tempView.ostypeGb == 4}">selected="selected"</c:if>><spring:message code='template.modify.007' /></option>
 								</select>
 							</td>
-							<th style="text-align:right; width:150px;" scope="row"><label class="title" for="fm_ver_num"><em>*</em> <spring:message code='template.modify.011' /></label></th>
+							<th style="text-align:center; width:150px;" scope="row"><label class="title" for="fm_ver_num"><em>*</em> <spring:message code='template.modify.011' />&nbsp;</label></th>
 							<td>
 								<input id="fm_ver_num" name="fm_ver_num" type="text" value="${tempView.verNum}" style="width:80%;">
 							</td>
@@ -384,19 +406,23 @@ function popup(){
 						</tr>
 						<tr>
 							<th scope="row"><label class="title" for="fm_file"><spring:message code='template.modify.017' /></label></th>
-							<td colspan="3" i>
+							<td>
 								<div class="thumb_area" id="uploadInput">
 									<c:if test="${empty tempView.uploadSaveFile}">
-									<input id="zipFile" name="zipFile" type="file">
+										<input id="zipFile" name="zipFile" type="file">
 									</c:if>
 									<c:if test="${not empty tempView.uploadSaveFile}">
 										<input id="zipFile"  name="zipFile"     type="file" style="display: none;">
 										<input type="hidden" name="zipOrgFile"  value="${tempView.uploadOrgFile}"/>
 										<input type="hidden" name="zipSaveFile" value="${tempView.uploadSaveFile}"/>
-										<span id="uploadSaveName">${tempView.uploadSaveFile}</span>						<!--message : 아이콘 썸네일 이미지 닫기  -->
+										<span id="uploadSaveName" class="template_down">${tempView.uploadSaveFile}</span>						<!--message : 아이콘 썸네일 이미지 닫기  -->
 										<a class="removeImgBtn2" href="#remove_img"><img src="/images/btn_close_s.png" alt="<spring:message code='template.modify.045' />"></a>
 									</c:if>
 								</div>															
+							</td>
+							<th style="text-align:center; width:150px;" scope="row"><label class="title" ><spring:message code='template.modify.046' /></label></th>
+							<td>
+								${tempView.templateSeq}
 							</td>
 						</tr>
 						<tr>
@@ -456,6 +482,7 @@ function popup(){
 				<div class="btn_area_bottom tCenter">
 					<a href="#" class="btn btnL btn_red" id="btnModify"><spring:message code='template.modify.033' /></a>
 					<a href="/template/list.html" class="btn btnL btn_gray_light"><spring:message code='template.modify.034' /></a>
+					<a href="javascript:templateDelete();" class="btn btnL btn_red" ><spring:message code='template.modify.047' /></a>
 				</div>
 			</div>
 			

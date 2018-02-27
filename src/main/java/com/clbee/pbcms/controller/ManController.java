@@ -405,8 +405,8 @@ public class ManController {
 		String[] formattedDate;
 		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
 
-		System.out.println("searchType = "+searchType);
-		System.out.println("searchValue = "+searchValue);
+		//System.out.println("searchType = "+searchType);
+		//System.out.println("searchValue = "+searchValue);
 
 		myUserDetails activeUser = (myUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>)SecurityContextHolder.getContext().getAuthentication().getAuthorities();
@@ -415,57 +415,57 @@ public class ManController {
 		GrantedAuthority element = authorities.iterator().next();
 		authority = element.getAuthority();
 
-		System.out.println("[AFTER]Authority = " + authority);
-			if("ROLE_COMPANY_MEMBER".equals(authority)) {
-				MemberList memberList =  memberService.getListMember(Integer.parseInt(page), activeUser.getMemberVO().getCompanySeq(), 10, searchType, searchValue, isAvailable, true);
-				CompanyVO companyVO = companyService.findByCustomInfo("companySeq", activeUser.getMemberVO().getCompanySeq());
-				
-				formattedDate = new String[memberList.getList().size()];
-				  
-				for( int i = 0; i < memberList.getList().size() ; i++){
-					formattedDate[i] = format.format(memberList.getList().get(i).getRegDt());
-				}
-				
-				modelAndView.addObject("currentPage", page);
-				modelAndView.addObject("formattedDate",formattedDate);
-				modelAndView.addObject("companyName", companyVO.getCompanyName());
-				modelAndView.addObject("memberList", memberList);
-				modelAndView.setViewName("05_admin/user_list");
-			}else if("ROLE_ADMIN_SERVICE".equals(authority)) {
-				MemberList memberList =  memberService.getListMember(Integer.parseInt(page), activeUser.getMemberVO().getCompanySeq(), 10, searchType, searchValue, isAvailable, false);
-				formattedDate = new String[memberList.getList().size()];
-
-				for( int i = 0; i < memberList.getList().size() ; i++){
-					formattedDate[i] = format.format(memberList.getList().get(i).getRegDt());
-				}
-
-				modelAndView.addObject("currentPage", page);
-				modelAndView.addObject("formattedDate",formattedDate);
-				modelAndView.addObject("memberList", memberList);
-				modelAndView.setViewName("05_admin/user_list");
-			}else {
-				MemberList memberList =  memberService.getListMember(Integer.parseInt(page), activeUser.getMemberVO().getCompanySeq(), 10, searchType, searchValue, isAvailable, true);
-				CompanyVO companyVO = companyService.findByCustomInfo("companySeq", activeUser.getMemberVO().getCompanySeq());
-				
-				formattedDate = new String[memberList.getList().size()];
-				  
-				for( int i = 0; i < memberList.getList().size() ; i++){
-					formattedDate[i] = format.format(memberList.getList().get(i).getRegDt());
-				}
-				
-				modelAndView.addObject("currentPage", page);
-				modelAndView.addObject("formattedDate",formattedDate);
-				modelAndView.addObject("companyName", companyVO.getCompanyName());
-				modelAndView.addObject("memberList", memberList);
-				modelAndView.setViewName("05_admin/user_list");
+		//System.out.println("[AFTER]Authority = " + authority);
+		if("ROLE_COMPANY_MEMBER".equals(authority)) {
+			MemberList memberList =  memberService.getListMember(Integer.parseInt(page), activeUser.getMemberVO().getCompanySeq(), 10, searchType, searchValue, isAvailable, true);
+			CompanyVO companyVO = companyService.findByCustomInfo("companySeq", activeUser.getMemberVO().getCompanySeq());
+			
+			formattedDate = new String[memberList.getList().size()];
+			  
+			for( int i = 0; i < memberList.getList().size() ; i++){
+				formattedDate[i] = format.format(memberList.getList().get(i).getRegDt());
 			}
+			
+			modelAndView.addObject("currentPage", page);
+			modelAndView.addObject("formattedDate",formattedDate);
+			modelAndView.addObject("companyName", companyVO.getCompanyName());
+			modelAndView.addObject("memberList", memberList);
+			modelAndView.setViewName("05_admin/user_list");
+		}else if("ROLE_ADMIN_SERVICE".equals(authority)) {
+			MemberList memberList =  memberService.getListMember(Integer.parseInt(page), activeUser.getMemberVO().getCompanySeq(), 10, searchType, searchValue, isAvailable, false);
+			formattedDate = new String[memberList.getList().size()];
+
+			for( int i = 0; i < memberList.getList().size() ; i++){
+				formattedDate[i] = format.format(memberList.getList().get(i).getRegDt());
+			}
+
+			modelAndView.addObject("currentPage", page);
+			modelAndView.addObject("formattedDate",formattedDate);
+			modelAndView.addObject("memberList", memberList);
+			modelAndView.setViewName("05_admin/user_list");
+		}else {
+			MemberList memberList =  memberService.getListMember(Integer.parseInt(page), activeUser.getMemberVO().getCompanySeq(), 10, searchType, searchValue, isAvailable, true);
+			CompanyVO companyVO = companyService.findByCustomInfo("companySeq", activeUser.getMemberVO().getCompanySeq());
+			
+			formattedDate = new String[memberList.getList().size()];
+			  
+			for( int i = 0; i < memberList.getList().size() ; i++){
+				formattedDate[i] = format.format(memberList.getList().get(i).getRegDt());
+			}
+			
+			modelAndView.addObject("currentPage", page);
+			modelAndView.addObject("formattedDate",formattedDate);
+			modelAndView.addObject("companyName", companyVO.getCompanyName());
+			modelAndView.addObject("memberList", memberList);
+			modelAndView.setViewName("05_admin/user_list");
+		}
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "man/user/modify.html", method = RequestMethod.GET)
 	public ModelAndView manUserModify( String userSeq, HttpServletRequest request, HttpSession session){
 		ModelAndView modelAndView = new ModelAndView();
-		System.out.println("userSeq = " + userSeq);
+		//System.out.println("userSeq = " + userSeq);
 		MemberVO memberVO = memberService.findByCustomInfo("userSeq", Integer.parseInt(userSeq));
 		myUserDetails activeUser = (myUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
@@ -485,12 +485,11 @@ public class ManController {
 	@RequestMapping(value = "man/user/modify.html", method = RequestMethod.POST)
 	public ModelAndView manUserModifyPOST( MemberVO formMemVO, HttpServletRequest request, HttpSession session){
 		ModelAndView modelAndView = new ModelAndView();
-		System.out.println("i'm in modify [POST]");
-		System.out.println("user Sequence is " + formMemVO.getUserSeq());
-
+		String page = request.getParameter("page"), searchType = request.getParameter("searchType"), searchValue = request.getParameter("searchValue"), isAvailable = request.getParameter("isAvailable");
+		
 		formMemVO.setUserPw(changeSHA256(formMemVO.getUserPw()));
 
-		System.out.println("@@@@@@@@@@@@@@@ TwoDepartmentSeq" + formMemVO.getTwodepartmentSeq());
+		//System.out.println("@@@@@@@@@@@@@@@ TwoDepartmentSeq" + formMemVO.getTwodepartmentSeq());
 		if("5".equals(formMemVO.getUserStatus())) {
 			formMemVO.setEmailChkSession(changeSHA256(formMemVO.getUserId()));
 			String from=messageSource.getMessage("send.email.ID", null, localeResolver.resolveLocale(request));
@@ -516,7 +515,7 @@ public class ManController {
 
 		modelAndView.addObject("modifySuccess", true);
 		modelAndView.addObject("memberVO", dbMemberVO);
-		modelAndView.setViewName("redirect:/man/user/list.html?page=1");
+		modelAndView.setViewName("redirect:/man/user/list.html?page="+page+"&searchType="+searchType+"&searchValue="+searchValue+"&isAvailable="+isAvailable);
 	
 		return modelAndView;
 	}
@@ -533,19 +532,17 @@ public class ManController {
 		ModelAndView modelAndView = new ModelAndView();
 		int limitUser =  Integer.parseInt(messageSource.getMessage("limit.user.count", null, localeResolver.resolveLocale(request)));
 		int permitUser = memberService.selectCountWithPermisionUserByCompanySeq(memberVO.getCompanySeq());
+		String page = request.getParameter("page"), searchType = request.getParameter("searchType"), searchValue = request.getParameter("searchValue"), isAvailable = request.getParameter("isAvailable");
 		
-		
-		try{
-			
+		try{	
 			if("".equals(memberVO.getEmail())) {
 				if( permitUser >= limitUser ){
 					modelAndView.addObject("msg", messageSource.getMessage("extend.local.088", null, localeResolver.resolveLocale(request)));
 					modelAndView.addObject("type", "href");
-					modelAndView.addObject("url", "/man/user/list.html?page=1");
+					modelAndView.addObject("url", "/man/user/list.html?page="+page+"&searchType="+searchType+"&searchValue="+searchValue+"&isAvailable="+isAvailable);
 					modelAndView.setViewName("inc/dummy");
 				}
-				
-				
+
 				memberVO.setRegDt(new Date());
 				memberVO.setRegIp(request.getRemoteAddr());
 				memberVO.setEmailChkSession(changeSHA256(memberVO.getUserId()));
@@ -553,7 +550,7 @@ public class ManController {
 				memberVO.setUserPw(changeSHA256(memberVO.getUserPw()));
 				memberService.addMember(memberVO);
 				CompanyVO companyVO = companyService.findByCustomInfo("companySeq", memberVO.getCompanySeq());
-				modelAndView.setViewName("redirect:/man/user/list.html?page=1");
+				modelAndView.setViewName("redirect:/man/user/list.html?page="+page+"&searchType="+searchType+"&searchValue="+searchValue+"&isAvailable="+isAvailable);
 				return modelAndView;
 			}
 			memberVO.setRegDt(new Date());
@@ -563,7 +560,7 @@ public class ManController {
 			memberVO.setUserPw(changeSHA256(memberVO.getUserPw()));
 			memberService.addMember(memberVO);
 			CompanyVO companyVO = companyService.findByCustomInfo("companySeq", memberVO.getCompanySeq());
-			System.out.println("CurrentCommpanyName" + companyVO.getCompanyName());
+			//System.out.println("CurrentCommpanyName" + companyVO.getCompanyName());
 			MimeMessage message = javaMailSender.createMimeMessage();
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 			messageHelper.setTo(memberVO.getEmail());
@@ -574,14 +571,14 @@ public class ManController {
 			messageHelper.setSubject(messageSource.getMessage("member.control.007", null, localeResolver.resolveLocale(request))); 
 			javaMailSender.send(message);
 
-			modelAndView.setViewName("redirect:list.html?page=1");
+			modelAndView.setViewName("redirect:/man/user/list.html?page=1&searchType="+searchType+"&searchValue="+searchValue+"&isAvailable="+isAvailable);
 		}catch( Exception e) {
 			e.printStackTrace();
 			//������ message : [����]����� ��� ����
 			//������ message : �˼����� ���� �߻�
 			modelAndView.addObject("msg", messageSource.getMessage("man.control.003", null, localeResolver.resolveLocale(request)));
 			modelAndView.addObject("type", "href");
-			modelAndView.addObject("url", "/man/user/list.html?page=1");
+			modelAndView.addObject("url", "/man/user/list.html?page="+page+"&searchType="+searchType+"&searchValue="+searchValue+"&isAvailable="+isAvailable);
 			modelAndView.setViewName("inc/dummy");
 		}
 
@@ -741,6 +738,8 @@ public class ManController {
 		prop.setProperty("file.path.provision.file", "/_upload/provision/");
 		prop.setProperty("file.path.pdf.file", "/_upload/data/pdf/");
 		prop.setProperty("file.path.request.file", "/Users/Shared/FTPInput/Q/");
+		//20180208 : lsy - download tab modify(property add)
+		prop.setProperty("file.path.ios.down.file", "/_upload/Volumes/Data/data/server/newcms/data/app/ios/");
 		prop.store(output, null);
 
 		
@@ -1083,27 +1082,26 @@ public class ManController {
 		return mav;
 	}
 
-	/*@RequestMapping(value="/man/log/list.html" , method=RequestMethod.GET )
-	public ModelAndView manLogListGET( String page, String searchType, String searchValue,  HttpSession session, HttpServletRequest req) throws Exception{
-		ModelAndView mav = new ModelAndView();
-		myUserDetails activeUser = (myUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		
-		String decodeValue ="";
-		
-		if(searchValue != null)
-		 decodeValue = URLDecoder.decode(searchValue, "UTF-8");
+	//20180213 - lsy : user recover
+	@RequestMapping(value = "man/user/recover.html", method = RequestMethod.POST)
+	public @ResponseBody int manRecoverPost( String userSeq, HttpServletRequest request, HttpSession session){
 
-		LogList addList = logService.selectLogList( Integer.parseInt(page));
-
-		mav.addObject("searchValue", decodeValue);
-		mav.addObject("logList", addList);
-		mav.setViewName("05_admin/log_list");
-
-		return mav;
+		int numUserSeq = Integer.parseInt(userSeq);
+		MemberVO memberVO = new MemberVO();
+		/* ���� Ż�� */
+		memberVO.setUserStatus("4");
+		/* ����1, ���� 0*/
+		return memberService.updateMemberInfo(memberVO, numUserSeq);
 	}
-*/
-	
-	
+
+	//20180213 - lsy : user delete
+	@RequestMapping(value = "man/user/eliminate.html", method = RequestMethod.POST)
+	public @ResponseBody int manEleminatePost( String userSeq, HttpServletRequest request, HttpSession session){
+
+		int numUserSeq = Integer.parseInt(userSeq);
+
+		return memberService.deleteMemberInfo(numUserSeq);
+	}
 	
 	private String paramSet(HttpServletRequest req, String targetName) {
 		String value = "";

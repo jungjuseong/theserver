@@ -71,7 +71,7 @@ public class TemplateServiceImpl implements TemplateService {
 			System.out.println(vo.size());
 			
 		}catch(Exception e){
-			System.out.println("¿¡·¯");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½");
 			e.printStackTrace();
 		}
 			
@@ -192,9 +192,15 @@ public class TemplateServiceImpl implements TemplateService {
 			List<TemplateVO> vo = dao.selectList(temVO, memberVO, templateList, flagForAll);
 			templateList.setList(vo);
 		}catch(Exception e){
-			System.out.println("¿¡·¯");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½");
 			e.printStackTrace();		}
 			
 			return templateList;
+	}
+
+	//20180219 : lsy - deleteTemplate
+	@Override
+	public void deleteTemplate(int thisSeq) {
+		dao.deleteTemplate(thisSeq);			
 	}
 }

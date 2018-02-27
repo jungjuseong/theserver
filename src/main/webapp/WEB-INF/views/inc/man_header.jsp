@@ -10,11 +10,11 @@
 		<ul>
 			<sec:authorize access="hasAnyRole('ROLE_COMPANY_MIDDLEADMIN','ROLE_COMPANY_MEMBER')">
 			<!--messsage : 사용자  -->
-				<li <c:if test="${fn:containsIgnoreCase(curi, '/user/')}">class="current last"</c:if>><a href="/man/user/list.html?page=1&isAvailable=false"><spring:message code='man.header.001' /></a></li>
+				<li <c:if test="${fn:containsIgnoreCase(curi, '/user/')}">class="current last"</c:if>><a href="/man/user/list.html?page=1&searchType=&searchValue=&isAvailable=false"><spring:message code='man.header.001' /></a></li>
 			</sec:authorize>
 			<sec:authorize access="hasRole('ROLE_ADMIN_SERVICE')">
 			<!--message : 회원  -->
-				<li <c:if test="${fn:containsIgnoreCase(curi, '/user/')}">class="current last"</c:if>><a href="/man/user/list.html?page=1&isAvailable=false"><spring:message code='man.header.002' /></a></li>
+				<li <c:if test="${fn:containsIgnoreCase(curi, '/user/')}">class="current last"</c:if>><a href="/man/user/list.html?page=1&searchType=&searchValue=&isAvailable=false"><spring:message code='man.header.002' /></a></li>
 			</sec:authorize>
 			<sec:authorize access="hasAnyRole('ROLE_COMPANY_MIDDLEADMIN','ROLE_COMPANY_MEMBER')">
 				<li <c:if test="${fn:containsIgnoreCase(curi, '/department/')}">class="current last"</c:if>><a href="/man/department/management.html"> <spring:message code='extend.local.073' /></a></li>

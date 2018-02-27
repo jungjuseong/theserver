@@ -130,7 +130,7 @@ function goToSearch(page){
 							<c:otherwise>
 								<c:forEach var="result" items="${templateList.list}" varStatus="status">
 									<tr id="${result.templateSeq }">										
-										<td><a class="getDetail" href="#getDetail_">${result.templateName}</a></td>
+										<td><a class="getDetail" href="#getDetail_">${result.templateName} (${result.verNum })</a></td>
 										<td>
 											<c:choose>
 												<c:when test="${'1' eq result.ostypeGb }">Universal</c:when>

@@ -635,10 +635,8 @@ public class MemberDaoImpl implements MemberDao {
 			if(isAvailable != null && "false".equals(isAvailable)){
 				query.setParameter("userStatus1", "4").setParameter("userStatus2", "5");
 			}
-			
-			
+						
 			list = (List<MemberVO>)query.list();
-	
 			
 			tx.commit();
 		}catch (Exception e) {
@@ -696,11 +694,11 @@ public class MemberDaoImpl implements MemberDao {
 							.setParameter("userStatus2", "5");
 					}else {
 						query = session.createQuery("FROM MemberVO E "
-								+ "WHERE (E.companySeq = :companySeq AND E.userId like :userId )"
+								+ "WHERE (E.companySeq = :companySeq AND concat(E.lastName, E.firstName) like :fullName )"
 								+ " AND (E.userGb = '1' OR E.userGb = '5' OR E.userGb = '21' OR E.userGb = '29')"
 								+ " ORDER BY E.regDt DESC ")
 								.setParameter("companySeq", companySeq)
-								.setParameter("userId", "%"+searchValue+"%");
+								.setParameter("fullName", "%"+searchValue+"%");
 					}
 				}else if("onedepartmentName".equals(searchType)){
 
@@ -1039,6 +1037,29 @@ public class MemberDaoImpl implements MemberDao {
 			session.close();
 		}
 		return list;
+	}
+
+	@Override
+	public int deleteMemberInfo(int userNum ) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		
+		try {
+			tx = session.beginTransaction();
+	
+			MemberVO memberVO = (MemberVO)session.get(MemberVO.class, userNum);
+	
+			session.delete(memberVO);
+			tx.commit();
+			return 1;
+		}catch (Exception e) {
+			if(tx != null) tx.rollback();
+			e.printStackTrace();	
+			return 0;
+		}finally {
+			session.close();
+		}
 	}
 
 }

@@ -19,8 +19,8 @@ public class SessionLocaleController {
 			  ModelMap map, HttpServletRequest request, HttpServletResponse response) {
 			  HttpSession session = request.getSession();
 			    Locale locales = null;
-			  // ³Ñ¾î¿Â ÆÄ¶ó¹ÌÅÍ¿¡ ko°¡ ÀÖÀ¸¸é LocaleÀÇ ¾ð¾î¸¦ ÇÑ±¹¾î·Î ¹Ù²ãÁØ´Ù.
-			  // ±×·¸Áö ¾ÊÀ» °æ¿ì ¿µ¾î·Î ¼³Á¤ÇÑ´Ù.
+			  // ï¿½Ñ¾ï¿½ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½Í¿ï¿½ koï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Localeï¿½ï¿½ ï¿½ï¿½î¸¦ ï¿½Ñ±ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½Ø´ï¿½.
+			  // ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 			   if(ConditionCompile.isJapan){
 				  if (locale.matches("ko")) {
 				   locales = Locale.JAPAN;
@@ -37,9 +37,9 @@ public class SessionLocaleController {
 				  } 
 			   }
 			  
-			  // ¼¼¼Ç¿¡ Á¸ÀçÇÏ´Â LocaleÀ» »õ·Î¿î ¾ð¾î·Î º¯°æÇØÁØ´Ù.
+			  // ï¿½ï¿½ï¿½Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Localeï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 			  session.setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, locales);
-			  // ÇØ´ç ÄÁÆ®·Ñ·¯¿¡°Ô ¿äÃ»À» º¸³½ ÁÖ¼Ò·Î µ¹¾Æ°£´Ù.
+			  // ï¿½Ø´ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼Ò·ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½.
 			  return "redirect:/index.html";
 	}
 }

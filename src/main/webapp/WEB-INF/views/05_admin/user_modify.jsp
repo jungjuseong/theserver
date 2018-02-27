@@ -448,7 +448,10 @@ $(document).ready(function(){
 
 
 function cancelMethod(){
-	window.location.href="/man/user/list.html?page=<c:out value='${param.page}'/>&searchType=<c:out value='${param.searchType}'/>&searchValue=<c:out value='${param.searchValue}'/>";
+	//message : 지금까지 입력한 자료가 사라집니다. 취소하시겠습니까?
+	if(confirm("<spring:message code='user.write.046' />")){
+		window.location.href="/man/user/list.html?page=<c:out value='${param.page}'/>&searchType=<c:out value='${param.searchType}'/>&searchValue=<c:out value='${param.searchValue}'/>&isAvailable=<c:out value='${param.isAvailable}'/>";
+	}
 }
 
 </script>
@@ -471,8 +474,8 @@ function cancelMethod(){
 			<c:set var="curi" value="${requestScope['javax.servlet.forward.request_uri']}" />
 			<!-- man header -->
 			<form method="post" name="frmCate" id="frmCate" action="return ture;">
-				<input type="hidden" name="categorySeq1" id="categorySeq1"  value="" />		
-				<input type="hidden" name="toUse"       id="toUse"			value="true"/>
+				<input type="hidden" name="categorySeq1" id="categorySeq1" value="" />		
+				<input type="hidden" name="toUse" id="toUse" value="true"/>
 			</form>
 			
 			
@@ -480,11 +483,11 @@ function cancelMethod(){
 				<ul>
 					<sec:authorize access="hasRole('ROLE_COMPANY_MEMBER')">
 					<!--messsage : 사용자  -->
-						<li <c:if test="${fn:containsIgnoreCase(curi, '/user/')}">class="current last"</c:if>><a href="/man/user/list.html?page=1"><spring:message code='man.header.001' /></a></li>
+						<li <c:if test="${fn:containsIgnoreCase(curi, '/user/')}">class="current last"</c:if>><a href="/man/user/list.html?page=1&searchType=&searchValue=&isAvailable=false"><spring:message code='man.header.001' /></a></li>
 					</sec:authorize>
 					<sec:authorize access="hasRole('ROLE_ADMIN_SERVICE')">
 					<!--message : 회원  -->
-						<li <c:if test="${fn:containsIgnoreCase(curi, '/user/')}">class="current last"</c:if>><a href="/man/user/list.html?page=1"><spring:message code='man.header.002' /></a></li>
+						<li <c:if test="${fn:containsIgnoreCase(curi, '/user/')}">class="current last"</c:if>><a href="/man/user/list.html?page=1&searchType=&searchValue=&isAvailable=false"><spring:message code='man.header.002' /></a></li>
 					</sec:authorize>
 				</ul>
 			</div>
@@ -495,7 +498,7 @@ function cancelMethod(){
 			<sec:authorize access="hasRole('ROLE_ADMIN_SERVICE')">
 				<h2><spring:message code='user.modify.018' /></h2>
 			</sec:authorize>
-			<form action="/man/user/modify.html?userSeq=${memberVO.userSeq}" method="POST" id="user_modify_f">
+			<form action="/man/user/modify.html?userSeq=${memberVO.userSeq}&page=${param.page}&searchType=${param.searchType}&searchValue=${param.searchValue}&isAvailable=${param.isAvailable}" method="POST" id="user_modify_f">
 			<div class="section fisrt_section">
 				<div class="table_area">
 					<table class="rowtable writetable">

@@ -147,7 +147,7 @@ $(document).ready(function(){
 								console.log("${path}android/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".apk")
 						    },  
 						    error: function() {
-						        alert("${path}android/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".apk");
+						        alert('<spring:message code='down.list.030' />');
 						    }
 						});
 						//window.location.href="${path}android/"+spVal[1]+spVal[3]+"/"+spVal[6]+spVal[3]+".apk";

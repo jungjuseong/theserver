@@ -6,9 +6,6 @@
 </head>
 
 <script>
-
-
-
 $(document).ready(function(){
 	$("#searchValue").keypress(function(event){
 		 if (event.keyCode == 13) {
@@ -27,77 +24,178 @@ $(document).ready(function(){
 		$("#twodepartment").attr("selected", "selected");
 	}
 	
-	
-	
 	if("${param.isAvailable}" == "false") {
 		$("#all").prop("checked", false);
 		$("#isAvailable").val("false");
-	}
-	else {
+	}else {
 		$("#all").prop("checked", true);
 		$("#isAvailable").val("true");
 	}
 
 	$("#all").click(function(){
-		if($("#isAvailable").val() == "false") $("#isAvailable").val("true");
-		else $("#isAvailable").val("false");
-		var searchType = $('#comboBox :selected').text();
+		if($("#isAvailable").val() == "false"){
+			$("#isAvailable").val("true");
+		}else{
+			$("#isAvailable").val("false");
+		}
+		
+		var searchType = $('#comboBox :selected').attr('id');
 		var searchValue = $('#searchValue').val();
 		var isAvailable = $("#isAvailable").val();
-		
-		window.location.href="/man/user/list.html?page=<c:out value='${param.page}'/>&searchType="+searchType+"&searchValue="+searchValue+"&isAvailable="+isAvailable;
+
+		window.location.href="/man/user/list.html?page=1&searchType="+searchType+"&searchValue="+searchValue+"&isAvailable="+isAvailable;
 	});
 	
 });
-
-
-	function customDelete(userSeq, currentPage){
-		//message : 정말 삭제하시겠습니까?
-		if(confirm("<spring:message code='user.list.027' />")){
-			$.ajax({
-				url:"/man/user/delete.html",
-				type:"POST",
-				data:{
-					"userSeq":userSeq
-				},
-				success:function(result){
-					switch(result){
-						case 0 : 
-							//message : [DB에러] 삭제 실패
-							alert("<spring:message code='user.list.035' />");
-							break;
-						case 1 : 
-							window.location.replace("/man/user/list.html?page="+currentPage);	
-							break;
-					}
+//계정 탈퇴
+function customDelete(userSeq, currentPage){
+	var searchType = $('#comboBox :selected').text();
+	var searchValue = $('#searchValue').val();
+	var isAvailable = $('#isAvailable').val();
+	
+	if(searchType == "<spring:message code='user.list.003' />"){
+		searchType = 'userId';
+	}else if(searchType == "<spring:message code='user.list.004' />"){
+		searchType = 'userName';
+	}else if(searchType == "<spring:message code='extend.local.048' />1"){
+		searchType ='onedepartmentName';
+	}else if(searchType == "<spring:message code='extend.local.048' />2"){
+		searchType ='twodepartmentName';
+	}
+	//message : 정말 탈퇴하시겠습니까?
+	if(confirm("<spring:message code='user.list.041' />")){
+		$.ajax({
+			url:"/man/user/delete.html",
+			type:"POST",
+			data:{
+				"userSeq":userSeq
+			},
+			success:function(result){
+				switch(result){
+					case 0 : 
+						//message : [DB에러] 탈퇴 실패
+						alert("<spring:message code='user.list.042' />");
+						break;
+					case 1 : //page=1&searchType=&searchValue=&isAvailable=false
+						window.location.replace("/man/user/list.html?page="+currentPage+"&searchType="+searchType+"&searchValue="+searchValue+"&isAvailable="+isAvailable);
+						break;
 				}
-			});
-		}
+			}
+		});
+	}
+}
+//계정 복원
+function customRecover(userSeq, currentPage){
+	var searchType = $('#comboBox :selected').text();
+	var searchValue = $('#searchValue').val();
+	var isAvailable = $('#isAvailable').val();
+	
+	if(searchType == "<spring:message code='user.list.003' />"){
+		searchType = 'userId';
+	}else if(searchType == "<spring:message code='user.list.004' />"){
+		searchType = 'userName';
+	}else if(searchType == "<spring:message code='extend.local.048' />1"){
+		searchType ='onedepartmentName';
+	}else if(searchType == "<spring:message code='extend.local.048' />2"){
+		searchType ='twodepartmentName';
+	}
+	
+	//message : 정말 복원하시겠습니까?
+	if(confirm("<spring:message code='user.list.039' />")){
+		$.ajax({
+			url:"/man/user/recover.html",
+			type:"POST",
+			data:{
+				"userSeq":userSeq
+			},
+			success:function(result){
+				switch(result){
+					case 0 : 
+						//message : [DB에러] 복원 실패
+						alert("<spring:message code='user.list.040' />");
+						break;
+					case 1 : 
+						window.location.replace("/man/user/list.html?page="+currentPage+"&searchType="+searchType+"&searchValue="+searchValue+"&isAvailable="+isAvailable);
+						break;
+				}
+			}
+		});
+	}
+}
+//계정 완전 삭제
+function customEliminate(userSeq, currentPage){
+	var searchType = $('#comboBox :selected').text();
+	var searchValue = $('#searchValue').val();
+	var isAvailable = $('#isAvailable').val();
+	
+	if(searchType == "<spring:message code='user.list.003' />"){
+		searchType = 'userId';
+	}else if(searchType == "<spring:message code='user.list.004' />"){
+		searchType = 'userName';
+	}else if(searchType == "<spring:message code='extend.local.048' />1"){
+		searchType ='onedepartmentName';
+	}else if(searchType == "<spring:message code='extend.local.048' />2"){
+		searchType ='twodepartmentName';
+	}
+	
+	//message : 정말 삭제하시겠습니까?
+	if(confirm("<spring:message code='user.list.027' />")){
+		$.ajax({
+			url:"/man/user/eliminate.html",
+			type:"POST",
+			data:{
+				"userSeq":userSeq
+			},
+			success:function(result){
+				switch(result){
+					case 0 : 
+						//message : [DB에러] 삭제 실패
+						alert("<spring:message code='user.list.035' />");
+						break;
+					case 1 : 
+						window.location.replace("/man/user/list.html?page=1&searchType="+searchType+"&searchValue="+searchValue+"&isAvailable="+isAvailable);
+						break;
+				}
+			}
+		});
+	}
+}
+
+function goToModify(userSeq){
+	var searchType = $('#comboBox :selected').text();
+	var searchValue = $('#searchValue').val();
+	var isAvailable = $('#isAvailable').val();
+	
+	if(searchType == "<spring:message code='user.list.003' />"){
+		searchType = 'userId';
+	}else if(searchType == "<spring:message code='user.list.004' />"){
+		searchType = 'userName';
+	}else if(searchType == "<spring:message code='extend.local.048' />1"){
+		searchType ='onedepartmentName';
+	}else if(searchType == "<spring:message code='extend.local.048' />2"){
+		searchType ='twodepartmentName';
 	}
 
-	function goToModify(userSeq){
-		var searchType = $('#comboBox :selected').text();
-		var searchValue = $('#searchValue').val();
+	window.location.href="/man/user/modify.html?page=<c:out value='${param.page}'/>&searchType="+searchType+"&searchValue="+searchValue+"&isAvailable="+isAvailable+"&userSeq="+userSeq;
+}
 
-		window.location.href="/man/user/modify.html?page=<c:out value='${param.page}'/>&userSeq="+userSeq+"&searchType=<c:out value='${param.searchType}'/>&searchValue=<c:out value='${param.searchValue}'/>";
+function goToSearch(){
+	var searchType = $('#comboBox :selected').text();
+	var searchValue = $('#searchValue').val();
+	var isAvailable = $('#isAvailable').val();
+	
+	if(searchType == "<spring:message code='user.list.003' />"){
+		searchType = 'userId';
+	}else if(searchType == "<spring:message code='user.list.004' />"){
+		searchType = 'userName';
+	}else if(searchType == "<spring:message code='extend.local.048' />1"){
+		searchType ='onedepartmentName';
+	}else if(searchType == "<spring:message code='extend.local.048' />2"){
+		searchType ='twodepartmentName';
 	}
 
-	function goToSearch(){
-		var searchType = $('#comboBox :selected').text();
-		var searchValue = $('#searchValue').val();
-
-		
-		if(searchType == "<spring:message code='user.list.003' />") searchType = 'userId';
-		else if(searchType == "<spring:message code='user.list.004' />") searchType = 'userName';
-		else if(searchType == "<spring:message code='extend.local.048' />1") searchType ='onedepartmentName';
-		else if(searchType == "<spring:message code='extend.local.048' />2") searchType ='twodepartmentName';
-
-		window.location.href="/man/user/list.html?page=<c:out value='${param.page}'/>&searchType="+searchType+"&searchValue="+searchValue;
-		/* if("<c:out value='${param.search}'/>".length){
-			alert("Heelo");
-		}
-		window.location.href="/man/user/modify.html?userSeq="+userSeq; */
-	}
+	window.location.href="/man/user/list.html?page=1&searchType="+searchType+"&searchValue="+searchValue+"&isAvailable="+isAvailable;
+}
 
 </script>
 <body>
@@ -131,24 +229,24 @@ $(document).ready(function(){
 						<spring:message code='app.inapp.list.text15' /> ${memberList.totalCount}<spring:message code='template.write.028_2' />
 					</div>
 					<div class="form_area fRight">
-							<fieldset>
-							<div class="checkbox_area">
+						<fieldset>
+							<div class="checkbox_area_userlist">
+								<span class="userlist_tooltip"><spring:message code='user.list.043' /></span>
 								<input name="checkChkVal_0" id="all" class="checkChkVal" type="checkbox" value="0">
 								<label for="all">All</label>
 							</div>
-								<select id="comboBox" name="">
-									<option id="userId"><spring:message code='user.list.003' /></option>
-									<option id="userName"><spring:message code='user.list.004' /></option>
-									<sec:authorize access="hasRole('ROLE_COMPANY_MEMBER')">
-										<option id ="onedepartment"><spring:message code='extend.local.048' />1</option>
-										<option id ="twodepartment"><spring:message code='extend.local.048' />2</option>
-									</sec:authorize>
-								</select>
-								
-								<input name="" id="searchValue" type="text" value="${param.searchValue }">
-								<a href="javascript:goToSearch();" class="btn btnM"><spring:message code='user.list.026' /></a>
-							</fieldset>
-						</form>
+							<select id="comboBox" name="">
+								<option id="userId"><spring:message code='user.list.003' /></option>
+								<option id="userName"><spring:message code='user.list.004' /></option>
+								<sec:authorize access="hasRole('ROLE_COMPANY_MEMBER')">
+									<option id ="onedepartment"><spring:message code='extend.local.048' />1</option>
+									<option id ="twodepartment"><spring:message code='extend.local.048' />2</option>
+								</sec:authorize>
+							</select>
+							
+							<input name="" id="searchValue" type="text" value="${param.searchValue }">
+							<a href="javascript:goToSearch();" class="btn btnM"><spring:message code='user.list.026' /></a>
+						</fieldset>
 					</div>
 				</div>
 				<!-- table_area -->
@@ -165,9 +263,9 @@ $(document).ready(function(){
 							<sec:authorize access="hasRole('ROLE_ADMIN_SERVICE')">
 							<col style="width:100px">
 							</sec:authorize>
-							<col style="width:110px">
-							<col style="width:50px">
-							<col style="width:50px">
+							<col style="width:85px">
+							<col style="width:55px">
+							<col style="width:70px">
 						</colgroup>
 						<caption></caption>
 						<tr>
@@ -253,7 +351,17 @@ $(document).ready(function(){
 													<img src="/images/icon_circle_yellow.png" alt=""> <spring:message code='user.list.034' /></c:when>
 											</c:choose>
 										</td>
-										<td><a href="#del" id="del" onclick="customDelete('${memberList.list[i].userSeq}','${param.page}')" class="btn btnXS"><spring:message code='user.list.011' /><!-- user.list.011 --></a></td>
+										<td>
+ 											<c:choose>
+												<c:when test="${memberList.list[i].userStatus == '1' or memberList.list[i].userStatus == '2' or memberList.list[i].userStatus == '3' }">
+													<a href="#recover" id="recover" onclick="customRecover('${memberList.list[i].userSeq}','${param.page}')" class="btn btnXXS"><spring:message code='user.list.038' /></a>
+													<a href="#eliminate" id="#eliminate" onclick="customEliminate('${memberList.list[i].userSeq}','${param.page}')" class="btn btnXXS"><spring:message code='user.list.011' /></a>
+												</c:when>
+												<c:when test="${memberList.list[i].userStatus == '4' or memberList.list[i].userStatus == '5' }">
+													<a href="#del" id="del" onclick="customDelete('${memberList.list[i].userSeq}','${param.page}')" class="btn btnXXS"><spring:message code='user.list.030' /></a>
+												</c:when>
+											</c:choose>
+										</td>
 									</tr>
  								</c:forEach>
 							</c:otherwise>
@@ -263,17 +371,17 @@ $(document).ready(function(){
 				<div class="paging">
 					<c:if test="${memberList.startPage != 1 }">
 					<!--message : 이전 페이지로 이동  -->
-					<a href="/man/user/list.html?page=${memberList.startPage-memberList.pageSize}&searchType=${param.searchType}&searchValue=${param.searchValue}" class="paging_btn"><img src="/images/icon_arrow_prev_page.png" alt="<spring:message code='user.list.036' />"></a>
+					<a href="/man/user/list.html?page=${memberList.startPage-memberList.pageSize}&searchType=${param.searchType}&searchValue=${param.searchValue}&isAvailable=${param.isAvailable}" class="paging_btn"><img src="/images/icon_arrow_prev_page.png" alt="<spring:message code='user.list.036' />"></a>
 					</c:if>
 					<c:forEach var="i" begin="${memberList.startPage }" end="${memberList.endPage}">
 						    <c:if test="${param.page==i }"><span class="current"><c:out value="${i}"/></span></c:if>
-						    <c:if test="${param.page!=i }"> <a href="/man/user/list.html?page=${i}&searchType=${param.searchType}&searchValue=${param.searchValue}"><c:out value="${i}"/></a></c:if>
+						    <c:if test="${param.page!=i }"> <a href="/man/user/list.html?page=${i}&searchType=${param.searchType}&searchValue=${param.searchValue}&isAvailable=${param.isAvailable}"><c:out value="${i}"/></a></c:if>
 	<%-- 					    <c:out value="${i}"/>
 						    <c:if test="${param.page==i }"></strong></c:if> --%>
 					</c:forEach>
 					<c:if test="${memberList.endPage != 1 && memberList.endPage*memberList.maxResult < memberList.totalCount}">
 					<!--message : 다음 페이지로 이동  -->
-					<a href="/man/user/list.html?page=${memberList.endPage+1}&searchType=${param.searchType}&searchValue=${param.searchValue}" class="paging_btn"><img src="/images/icon_arrow_next_page.png" alt="<spring:message code='user.list.037' />"></a>
+					<a href="/man/user/list.html?page=${memberList.endPage+1}&searchType=${param.searchType}&searchValue=${param.searchValue}&isAvailable=${param.isAvailable}" class="paging_btn"><img src="/images/icon_arrow_next_page.png" alt="<spring:message code='user.list.037' />"></a>
 					</c:if>
 				</div>
 				<!--페이징-->
@@ -281,7 +389,7 @@ $(document).ready(function(){
 				<sec:authorize access="hasRole('ROLE_COMPANY_MEMBER')">
 					<div class="btn_area_bottom fRight clfix" style="margin-top:-42px;">
 						<%-- <a class="btn btnL btn_gray_light" href="#"><spring:message code='user.list.024' /></a> --%>
-						<a class="btn btnL btn_red" href="write.html?page=${param.page}"><spring:message code='user.list.025' /></a>
+						<a class="btn btnL btn_red" href="write.html?page=${param.page}&searchType=${param.searchType}&searchValue=${param.searchValue}&isAvailable=${param.isAvailable}"><spring:message code='user.list.025' /></a>
 					</div>
 				</sec:authorize>
 				<!-- //btn area -->

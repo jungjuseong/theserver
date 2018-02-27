@@ -170,7 +170,7 @@ public class HomeController {
 		int b = 16;
 		int c = a | b;
 
-		System.out.println("bit ¿¬»ê c = " + c);
+		System.out.println("bit ï¿½ï¿½ï¿½ï¿½ c = " + c);
 		return "index";
 	}
 

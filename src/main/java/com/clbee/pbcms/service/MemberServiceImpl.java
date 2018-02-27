@@ -219,19 +219,17 @@ public class MemberServiceImpl implements MemberService/*, UserDetailsService*/ 
 		int startNo = 0;
 			try{
 				totalCount = memberDao.getListMemberCount(companySeq, searchType, searchValue, isAvailable, isMember);
-				System.out.println("totalCount = " + totalCount);
+				//System.out.println("totalCount = " + totalCount);
 				
-				list = new MemberList(pageSize, totalCount, currentPage, maxResult);
-			
-				startNo = (currentPage-1) *maxResult;
+				startNo = (currentPage - 1) * maxResult;
 	
 				List<MemberVO> vo = memberDao.getListMember(startNo, companySeq, maxResult, searchType, searchValue, isAvailable, isMember);
-				
+
+				list = new MemberList(pageSize, totalCount, currentPage, maxResult);
 				list.setList(vo);
 				
-				System.out.println("[ListService] - selectList method");
+				//System.out.println("[ListService] - selectList method");
 				System.out.println("selectList[] " + vo.size());
-				System.out.println(vo.size());
 			}catch(Exception e){
 				System.out.println("����");
 				e.printStackTrace();
@@ -257,7 +255,6 @@ public class MemberServiceImpl implements MemberService/*, UserDetailsService*/ 
 	}
 	@Override
 	public int selectCountWithPermisionUserByCompanySeq( int companySeq){
-
 		return memberDao.selectCountWithPermisionUserByCompanySeq(companySeq); 
 	}
 	
@@ -272,5 +269,11 @@ public class MemberServiceImpl implements MemberService/*, UserDetailsService*/ 
 	public List<MemberVO> getPermitList(int companySeq, String[] useS) {
 		// TODO Auto-generated method stub
 		return memberDao.getPermitList(companySeq, useS);
+	}
+	
+	//20180213 - lsy : user delete
+	@Override
+	public int deleteMemberInfo(int value) {
+		return memberDao.deleteMemberInfo(value);
 	}
 }

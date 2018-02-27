@@ -27,4 +27,7 @@ public interface TemplateService {
 	void updateTemplateFile(TemplateVO tempVo);
 	TemplateList selectList(TemplateVO temVO, MemberVO memberVO, TemplateList templateList, String flagForAll);
 	/*List<TemplateVO> selectListForAvailable( String availableUserId );*/
+	
+	//20180219 : lsy - templateDelete
+	void deleteTemplate(int thisSeq);
 }

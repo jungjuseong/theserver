@@ -74,13 +74,13 @@ public class TemplateController {
 		String shField   = this.paramSet(req, "sh_field");
 		String shKeyword = this.paramSet(req, "sh_keyword"); 
 
-		// ·Î±×ÀÎ Verifiy°¡ È®ÀÎµÇ¸é µ¥ÀÌÅÍº£ÀÌ½º¿¡¼­ ±× À¯Àú¿¡ ´ëÇÑ ¸ðµç Á¤º¸µéÀ» °¡Á®¿Â´Ù.
+		// ï¿½Î±ï¿½ï¿½ï¿½ Verifiyï¿½ï¿½ È®ï¿½ÎµÇ¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½.
 		MemberVO memberVO =  memberService.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
 		session.setAttribute("memberInfo", memberVO);	
 		session.setAttribute("currentPage", currentPage);
 
-		//ÀÌ ¸Þ¼ÒµåÀÇ 0Àº 0°ú »ó°ü¾øÀÌ ÇØ´ç ¾ÆÀÌµð¿¡ ÀÏÄ¡ÇÏ´Â ¸ðµç Record°ªÀ» °¡Á®¿È
-		//¿©±â¼± ±×³É ÆäÀÌÁö ³Ñ¹ö¸¦ ÀÇ¹ÌÇÔ
+		//ï¿½ï¿½ ï¿½Þ¼Òµï¿½ï¿½ï¿½ 0ï¿½ï¿½ 0ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½Ä¡ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ Recordï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		//ï¿½ï¿½ï¿½â¼± ï¿½×³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½Ç¹ï¿½ï¿½ï¿½
 		templateList = templateService.selectList(activeUser.getMemberVO(), templateList ,shField ,shKeyword);
 		mav.addObject("shField", shField);
 		mav.addObject("shKeyword", shKeyword);
@@ -115,23 +115,23 @@ public class TemplateController {
 		try{
 			map = uploadFile2(map, file, req);	
 	
-			tempVo.setUploadOrgFile(map.get("orgFileName"));//¿øº»ÆÄÀÏ¸í
-			//tempVo.setDistrProfile(map.get("fileExt"));//ÆÄÀÏÈ®ÀåÀÚ
-			tempVo.setUploadSaveFile(map.get("saveFileName"));//ÀúÀåÆÄÀÏ¸í
+			tempVo.setUploadOrgFile(map.get("orgFileName"));//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½
+			//tempVo.setDistrProfile(map.get("fileExt"));//ï¿½ï¿½ï¿½ï¿½È®ï¿½ï¿½ï¿½ï¿½
+			tempVo.setUploadSaveFile(map.get("saveFileName"));//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½
 
 				
 		String templateName, ostypeGb, verNum, templateTypeGb, appContentsAmt, appContentsGb, descriptionText, useGb, useUserGb;
 		templateName = ostypeGb = verNum = templateTypeGb = appContentsAmt = appContentsGb = descriptionText = useGb = useUserGb = "";
 		
-		templateName 		= this.paramSet(req, "fm_template_name");    //ÅÛÇÃ¸´¸í
-		ostypeGb 			= this.paramSet(req, "fm_ostype_gb"); 		 //OS±¸ºÐ 1:Universal 2:iPhone 3:iPad 4:Android
-		verNum 				= this.paramSet(req, "fm_ver_num"); 		 //¹öÀü
-		templateTypeGb 		= this.paramSet(req, "fm_template_type_gb"); //ÅÛÇÃ¸´ ±¸ºÐ 1:¼­°¡¾Û 2:´ÜÀÏ¾Û
-		appContentsAmt 		= this.paramSet(req, "fm_app_contents_amt"); //ÄÜÅÙÃ÷¼ö·®
-		appContentsGb	 	= this.paramSet(req, "fm_app_contents_gb");  //ÄÜÅÙÃ÷¼ö·®±¸ºÐ
-		descriptionText 	= this.paramSet(req, "fm_description_text"); //¼³¸í
-		useGb 				= this.paramSet(req, "fm_use_gb"); 			 //»ç¿ë¿©ºÎ±¸ºÐ 1:¿¹ 2:¾Æ´Ï¿À
-		useUserGb	 		= this.paramSet(req, "fm_use_user_gb"); 	 //»ç¿ëÈ¸¿ø 1:ALL 2:Æ¯Á¤È¸¿ø
+		templateName 		= this.paramSet(req, "fm_template_name");    //ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½
+		ostypeGb 			= this.paramSet(req, "fm_ostype_gb"); 		 //OSï¿½ï¿½ï¿½ï¿½ 1:Universal 2:iPhone 3:iPad 4:Android
+		verNum 				= this.paramSet(req, "fm_ver_num"); 		 //ï¿½ï¿½ï¿½ï¿½
+		templateTypeGb 		= this.paramSet(req, "fm_template_type_gb"); //ï¿½ï¿½ï¿½Ã¸ï¿½ ï¿½ï¿½ï¿½ï¿½ 1:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 2:ï¿½ï¿½ï¿½Ï¾ï¿½
+		appContentsAmt 		= this.paramSet(req, "fm_app_contents_amt"); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		appContentsGb	 	= this.paramSet(req, "fm_app_contents_gb");  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		descriptionText 	= this.paramSet(req, "fm_description_text"); //ï¿½ï¿½ï¿½ï¿½
+		useGb 				= this.paramSet(req, "fm_use_gb"); 			 //ï¿½ï¿½ë¿©ï¿½Î±ï¿½ï¿½ï¿½ 1:ï¿½ï¿½ 2:ï¿½Æ´Ï¿ï¿½
+		useUserGb	 		= this.paramSet(req, "fm_use_user_gb"); 	 //ï¿½ï¿½ï¿½È¸ï¿½ï¿½ 1:ALL 2:Æ¯ï¿½ï¿½È¸ï¿½ï¿½
 		
 		
 		System.out.println("Template GB@@@@@@@@@@@@@@@@@@@@@@@@ = " + appContentsGb);
@@ -166,17 +166,17 @@ public class TemplateController {
 		int templateSeq = templateService.insertTemplate(tempVo);
 		//tempVo.setTemplateSeq(templateSeq);
 		
-		//ÀÌ¹ÌÁö Ã³·¯
+		//ï¿½Ì¹ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 		String tempPath = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(req)) + messageSource.getMessage("file.upload.path.temp.images.file", null, localeResolver.resolveLocale(req));
 		String toPath = "";
 		//String toPath = messageSource.getMessage("file.upload.path.app.icon.file", null, localeResolver.resolveLocale(request));				
-		//¾ÆÀÌÄÜÀÌ¹ÌÁö
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½
 		//String iconOrgFile = appVO.getIconOrgFile();
 		//String iconSaveFile = appVO.getIconSaveFile();
 		//if(FileUtil.movefile(iconSaveFile, tempPath, toPath)){
-			//....Äõ¸®
+			//....ï¿½ï¿½ï¿½ï¿½
 		//}
-		//Ä¸ÃÄÀÌ¹ÌÁö Ã³¸®
+		//Ä¸ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 		String[] imgOrgFileArr = req.getParameterValues("imgOrgFile");
 		String[] imgSaveFileArr = req.getParameterValues("imgSaveFile");
 		String imgOrgFile = null;
@@ -187,7 +187,7 @@ public class TemplateController {
 				imgOrgFile = imgOrgFileArr[i];				 
 				imgSaveFile = imgSaveFileArr[i];				 
 				if(FileUtil.movefile(imgSaveFile, tempPath, toPath)){
-					//....Äõ¸® tb_capture
+					//....ï¿½ï¿½ï¿½ï¿½ tb_capture
 					CaptureVO captureVO = new CaptureVO();
 					captureVO.setCaptureGb("4");
 					captureVO.setBoardSeq(templateSeq);
@@ -205,7 +205,7 @@ public class TemplateController {
 			System.out.println("templateFilePath==="+templateFilePath);
 			deleteFile(templateFilePath);
 			HashMap mv = new HashMap();
-			//message : ÀÔ·ÂÁ¤º¸°¡ Àß¸øµÇ¾ú½À´Ï´Ù.
+			//message : ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß¸ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
 			mv.put("msg", messageSource.getMessage("temp.control.001", null, localeResolver.resolveLocale(req)));
 			mv.put("type", "href");
 			mv.put("url", "/template/list.html");
@@ -254,7 +254,7 @@ public class TemplateController {
 	}
 
 	/**
-	 * ¾ÆÀÌÄÜÀÌ¹ÌÁö ¾÷·Îµå
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½
 	 */
 	@RequestMapping(value = "/template/iconfileupload.html", method = RequestMethod.POST)
 	public @ResponseBody HashMap<Object, Object> app_icon_file_upload(HttpServletRequest request, HttpSession session, @RequestParam("iconFile") MultipartFile file) throws Exception{
@@ -271,7 +271,7 @@ public class TemplateController {
 	}
 
 	/**
-	 * Ä¸ÃÄ ÀÌ¹ÌÁö ¾÷·Îµå
+	 * Ä¸ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½
 	 */
 	@RequestMapping(value = "/template/deletetmpimg.html", method = RequestMethod.POST)
 	public @ResponseBody HashMap<Object, Object> app_delete_temp_img(HttpServletRequest request, HttpSession session){
@@ -283,13 +283,13 @@ public class TemplateController {
 			String savePath = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(request)) + messageSource.getMessage("file.upload.path.temp.images.file", null, localeResolver.resolveLocale(request));
 			File file = new File(savePath+saveFileName);
 			if(!FileUtil.delete(file)){
-				//message : »èÁ¦ Áß ¿À·ù°¡ ¹ß»ýÇß½À´Ï´Ù.
+				//message : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.
 				map.put("error", messageSource.getMessage("temp.control.002", null, localeResolver.resolveLocale(request)));
 				return map;
 			}	
 			map.put("error", "none");
 		}catch(Exception e){
-			//message : »èÁ¦ Áß ¿À·ù°¡ ¹ß»ýÇß½À´Ï´Ù.
+			//message : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.
 			map.put("error", messageSource.getMessage("temp.control.002", null, localeResolver.resolveLocale(request)));
 			return map;			
 		}
@@ -323,12 +323,12 @@ public class TemplateController {
 					String mimeType = upLoadFile.getContentType();
 	
 					if (!("image/jpeg".equals(mimeType)||"image/gif".equals(mimeType)||"image/png".equals(mimeType)||"image/jpg".equals(mimeType))) {
-						//message : µî·ÏÇÒ ¼ö ¾ø´Â ÆÄÀÏ ÇüÅÂÀÔ´Ï´Ù.
+						//message : ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
 						map.put("error", messageSource.getMessage("temp.control.003", null, localeResolver.resolveLocale(request)));
 						outputStream.close();
 						inputStream.close();
 						return map;
-						//throw new Exception("µî·ÏÇÒ ¼ö ¾ø´Â ÆÄÀÏÇüÅÂÀÔ´Ï´Ù.");
+						//throw new Exception("ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 					}
 	
 					String savePath = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(request)) + messageSource.getMessage("file.upload.path.temp.images.file", null, localeResolver.resolveLocale(request));
@@ -342,17 +342,17 @@ public class TemplateController {
 					while ((readBytes = inputStream.read(buffer, 0 , 8192)) != -1) {
 						outputStream.write(buffer, 0, readBytes);
 					}
-					//ÆÄÀÏ ºñÀ²°Ë¼ö ¹× ¸®»çÀÌÁî 
+					//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ë¼ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 					BufferedImage uploadImages = ImageIO.read(new File(savePath + saveFileName));
 					int orgHeight = uploadImages.getHeight();
 					int orgWidth = uploadImages.getWidth();
 
-					//¾ÆÀÌÄÜÀÏ¶§
+					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½
 					int toBeWidth = 300;
 					int toBeHeight = 300;
 					if ("iconFile".equals(map.get("fileType"))) {
 						if(orgHeight!=orgWidth){
-							//message : ÀÌ¹ÌÁö ºñÀ²ÀÌ ¸ÂÁö ¾Ê½À´Ï´Ù. ¾ÆÀÌÄÜ ÀÌ¹ÌÁö´Â Á¤»ç°¢Çü¸¸ µî·ÏÀÌ °¡´ÉÇÕ´Ï´Ù.
+							//message : ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ç°¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
 							map.put("error", messageSource.getMessage("temp.control.004", null, localeResolver.resolveLocale(request)));
 							outputStream.close();
 							inputStream.close();
@@ -362,7 +362,7 @@ public class TemplateController {
 					if ("captureFile".equals(map.get("fileType"))) {
 						/*
 						if(orgHeight!=orgWidth){
-							map.put("error", "ÀÌ¹ÌÁö ºñÀ²ÀÌ ¸ÂÁö ¾Ê½À´Ï´Ù.");
+							map.put("error", "ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.");
 							outputStream.close();
 							inputStream.close();
 							return map;						
@@ -383,7 +383,7 @@ public class TemplateController {
 
 					map.put("webPath", webPath+saveFileName);
 					map.put("error", "none");
-					//ÆÄÀÏ ºñÀ²°Ë¼ö ¹× ¸®»çÀÌÁî 
+					//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ë¼ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 					outputStream.close();
 					inputStream.close();
 					outputStream = null;
@@ -392,13 +392,13 @@ public class TemplateController {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			//message : ¾÷·Îµå Áß ¾Ë ¼ö ¾ø´Â ¿¡·¯°¡ ¹ß»ýÇß½À´Ï´Ù.
+			//message : ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.
 			map.put("error", messageSource.getMessage("temp.control.005", null, localeResolver.resolveLocale(request)));		}
 		return map;
 	}
 
 	/**
-	 * Ä¸ÃÄ ÀÌ¹ÌÁö ¾÷·Îµå
+	 * Ä¸ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½
 	 */
 	@RequestMapping(value = "/template/capturefileupload.html", method = RequestMethod.POST)
 	public @ResponseBody HashMap<Object, Object> app_capture_file_upload(HttpServletRequest request, HttpSession session, @RequestParam("captureFile") MultipartFile file){
@@ -461,7 +461,7 @@ public class TemplateController {
 		// TODO Auto-generated method stub
 		File file = new File(provisionFilePath);
 		if(!FileUtil.delete(file)){
-			System.out.println("ÆÄÀÏ»èÁ¦½ÇÆä");
+			System.out.println("ï¿½ï¿½ï¿½Ï»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		}		
 	}
 
@@ -500,6 +500,11 @@ public class TemplateController {
 		mav.addObject("useSelVal", useVal);
 		mav.addObject("UserList", UserList);
 		mav.addObject("captureList",captureList);
+		
+		//20180219 : lsy - template download
+		mav.addObject("path",messageSource.getMessage("file.path.template.file", null, localeResolver.resolveLocale(req)));
+		//20180219 : lsy - template download - end
+				
 		mav.setViewName("04_template/template_modify");
 		return mav;
 	}
@@ -530,33 +535,33 @@ public class TemplateController {
 		String templateSeq, templateName, ostypeGb, verNum, templateTypeGb, appContentsAmt, appContentsGb, descriptionText, useGb, useUserGb, limitGb, useS, repUseS, zipOrgFile, zipSaveFile;
 		templateSeq = templateName = ostypeGb = verNum = templateTypeGb = appContentsAmt = appContentsGb = descriptionText = useGb = useUserGb = limitGb = useS = repUseS = zipOrgFile = zipSaveFile = "";
 
-		templateSeq 		= this.paramSet(req, "templateSeq");    	 //ÅÛÇÃ¸´SEQ
-		templateName 		= this.paramSet(req, "fm_template_name");    //ÅÛÇÃ¸´¸í
-		ostypeGb 			= this.paramSet(req, "fm_ostype_gb"); 		 //OS±¸ºÐ 1:ALL 2:IOS 3:IOS(PAD) 4:Android
-		verNum 				= this.paramSet(req, "fm_ver_num"); 		 //¹öÀü
-		templateTypeGb 		= this.paramSet(req, "fm_template_type_gb"); //ÅÛÇÃ¸´ ±¸ºÐ 1:¼­°¡¾Û 2:´ÜÀÏ¾Û
-		appContentsAmt 		= this.paramSet(req, "fm_app_contents_amt"); //ÄÜÅÙÃ÷¼ö·®
-		appContentsGb	 	= this.paramSet(req, "fm_app_contents_gb");  //ÄÜÅÙÃ÷¼ö·®±¸ºÐ
-		descriptionText 	= this.paramSet(req, "fm_description_text"); //¼³¸í
-		useGb 				= this.paramSet(req, "fm_use_gb"); 			 //»ç¿ë¿©ºÎ±¸ºÐ 1:¿¹ 2:¾Æ´Ï¿À
-		useUserGb	 		= this.paramSet(req, "fm_use_user_gb"); 	 //»ç¿ëÈ¸¿ø 1:ALL 2:Æ¯Á¤È¸¿ø
-		limitGb	 			= this.paramSet(req, "fm_limit_gb"); 	 	 //Á¦ÇÑ¿©ºÎ
-		useS	 			= this.paramSet(req, "useS"); 				 //Æ¯Á¤È¸¿ø
+		templateSeq 		= this.paramSet(req, "templateSeq");    	 //ï¿½ï¿½ï¿½Ã¸ï¿½SEQ
+		templateName 		= this.paramSet(req, "fm_template_name");    //ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½
+		ostypeGb 			= this.paramSet(req, "fm_ostype_gb"); 		 //OSï¿½ï¿½ï¿½ï¿½ 1:ALL 2:IOS 3:IOS(PAD) 4:Android
+		verNum 				= this.paramSet(req, "fm_ver_num"); 		 //ï¿½ï¿½ï¿½ï¿½
+		templateTypeGb 		= this.paramSet(req, "fm_template_type_gb"); //ï¿½ï¿½ï¿½Ã¸ï¿½ ï¿½ï¿½ï¿½ï¿½ 1:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 2:ï¿½ï¿½ï¿½Ï¾ï¿½
+		appContentsAmt 		= this.paramSet(req, "fm_app_contents_amt"); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		appContentsGb	 	= this.paramSet(req, "fm_app_contents_gb");  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		descriptionText 	= this.paramSet(req, "fm_description_text"); //ï¿½ï¿½ï¿½ï¿½
+		useGb 				= this.paramSet(req, "fm_use_gb"); 			 //ï¿½ï¿½ë¿©ï¿½Î±ï¿½ï¿½ï¿½ 1:ï¿½ï¿½ 2:ï¿½Æ´Ï¿ï¿½
+		useUserGb	 		= this.paramSet(req, "fm_use_user_gb"); 	 //ï¿½ï¿½ï¿½È¸ï¿½ï¿½ 1:ALL 2:Æ¯ï¿½ï¿½È¸ï¿½ï¿½
+		limitGb	 			= this.paramSet(req, "fm_limit_gb"); 	 	 //ï¿½ï¿½ï¿½Ñ¿ï¿½ï¿½ï¿½
+		useS	 			= this.paramSet(req, "useS"); 				 //Æ¯ï¿½ï¿½È¸ï¿½ï¿½
 		zipOrgFile			= this.paramSet(req, "zipOrgFile");
 		zipSaveFile			= this.paramSet(req, "zipSaveFile");
 
 		if(file.getSize() > 0){
 			map = uploadFile2(map, file,req);			
-			tempVo.setUploadOrgFile(map.get("orgFileName"));//¿øº»ÆÄÀÏ¸í
-			//tempVo.setDistrProfile(map.get("fileExt"));//ÆÄÀÏÈ®ÀåÀÚ
-			tempVo.setUploadSaveFile(map.get("saveFileName"));//ÀúÀåÆÄÀÏ¸í
+			tempVo.setUploadOrgFile(map.get("orgFileName"));//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½
+			//tempVo.setDistrProfile(map.get("fileExt"));//ï¿½ï¿½ï¿½ï¿½È®ï¿½ï¿½ï¿½ï¿½
+			tempVo.setUploadSaveFile(map.get("saveFileName"));//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½
 		}else{
-			tempVo.setUploadOrgFile(null);  //temp¿øº»ÆÄÀÏ¸í
-			tempVo.setUploadSaveFile(null);//tempÀúÀåÆÄÀÏ¸í
+			tempVo.setUploadOrgFile(null);  //tempï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½
+			tempVo.setUploadSaveFile(null);//tempï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½
 		}
 		if(file.getSize() == 0 && !"".equals(zipOrgFile) && !"".equals(zipSaveFile)){
-			tempVo.setUploadOrgFile(zipOrgFile);  //temp¿øº»ÆÄÀÏ¸í
-			tempVo.setUploadSaveFile(zipSaveFile);//tempÀúÀåÆÄÀÏ¸í
+			tempVo.setUploadOrgFile(zipOrgFile);  //tempï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½
+			tempVo.setUploadSaveFile(zipSaveFile);//tempï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½
 		}
 
 		tempVo.setTemplateSeq(Integer.parseInt(templateSeq));		
@@ -590,18 +595,18 @@ public class TemplateController {
 		templateService.updateTemplate(tempVo);
 		//tempVo.setTemplateSeq(templateSeq);
 		
-		//ÀÌ¹ÌÁö Ã³·¯
+		//ï¿½Ì¹ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 		String tempPath = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(req)) + messageSource.getMessage("file.upload.path.temp.images.file", null, localeResolver.resolveLocale(req));
 		String toPath = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(req)) + messageSource.getMessage("file.upload.path.template.capture.file", null, localeResolver.resolveLocale(req));	
 		
 		//String toPath = messageSource.getMessage("file.upload.path.app.icon.file", null, localeResolver.resolveLocale(request));				
-		//¾ÆÀÌÄÜÀÌ¹ÌÁö
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½
 		//String iconOrgFile = appVO.getIconOrgFile();
 		//String iconSaveFile = appVO.getIconSaveFile();
 		//if(FileUtil.movefile(iconSaveFile, tempPath, toPath)){
-			//....Äõ¸®
+			//....ï¿½ï¿½ï¿½ï¿½
 		//}
-		//Ä¸ÃÄÀÌ¹ÌÁö Ã³¸®
+		//Ä¸ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 		String[] captureSeqArr = req.getParameterValues("captureSeq");
 		String[] imgOrgFileArr = req.getParameterValues("imgOrgFile");
 		String[] imgSaveFileArr = req.getParameterValues("imgSaveFile");
@@ -616,7 +621,7 @@ public class TemplateController {
 				imgOrgFile = imgOrgFileArr[i];				 
 				imgSaveFile = imgSaveFileArr[i];	
 				if("0".equals(captureSeq)&&FileUtil.movefile(imgSaveFile, tempPath, toPath)){
-					//....Äõ¸® tb_capture
+					//....ï¿½ï¿½ï¿½ï¿½ tb_capture
 					CaptureVO captureVO = new CaptureVO();
 					captureVO.setCaptureGb("4");
 					captureVO.setBoardSeq(Integer.parseInt(templateSeq));
@@ -628,7 +633,7 @@ public class TemplateController {
 				}				
 			}
 		}
-		//±âÁ¸ÆÄÀÏ»èÁ¦
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï»ï¿½ï¿½ï¿½
 		//captureSeq
 /*			var html = '<input typd="hidden" name="deleteFileSeq" value="'+captureSeq+'"/>';
 		html += '<input typd="hidden" name="deleteSaveFileName" value="'+saveFileName+'"/>';
@@ -645,7 +650,7 @@ public class TemplateController {
 				deleteFileSeq = Integer.parseInt(deleteFileSeqArr[i]);
 				deleteSaveFileName = deleteSaveFileNameArr[i];				 
 				deleteFileType = deleteFileTypeArr[i];		
-				if("capture".equals(deleteFileType)){//ÄÎÃÄÆÄÀÏ »èÁ¦
+				if("capture".equals(deleteFileType)){//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 					deleteFilePath = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(req)) + messageSource.getMessage("file.upload.path.template.capture.file", null, localeResolver.resolveLocale(req));
 					if(FileUtil.delete(new File(deleteFilePath+deleteSaveFileName))){
 						CaptureVO captureVO = new CaptureVO();
@@ -671,7 +676,7 @@ public class TemplateController {
 			}
 		}
 
-		//message : Á¤º¸°¡ ¼öÁ¤ µÇ¾ú½À´Ï´Ù.
+		//message : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
 		mv.put("msg", messageSource.getMessage("temp.control.007", null, localeResolver.resolveLocale(req)));
 		mv.put("type", "href");
 		mv.put("url", "/template/list.html");
@@ -683,7 +688,7 @@ public class TemplateController {
 			String templateFilePath = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(req)) + messageSource.getMessage("file.path.template.file",null, localeResolver.resolveLocale(req))+tempVo.getUploadSaveFile();
 			System.out.println("templateFilePath==="+templateFilePath);
 			deleteFile(templateFilePath);
-			//message : ÀÔ·Â Á¤º¸°¡ Àß¸øµÇ¾ú½À´Ï´Ù.
+			//message : ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß¸ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
 			mv.put("msg", messageSource.getMessage("temp.control.001", null, localeResolver.resolveLocale(req)));
 			mv.put("type", "href");
 			mv.put("url", "/template/list.html");
@@ -706,7 +711,7 @@ public class TemplateController {
 			String savePath = messageSource.getMessage("file.path.basic.URL", null, localeResolver.resolveLocale(req)) + messageSource.getMessage("file.path.template.file", null, localeResolver.resolveLocale(req));
 			File file = new File(savePath+saveFileName);
 			if(!FileUtil.delete(file)){
-				//message : »èÁ¦ Áß ¿À·ù°¡ ¹ß»ýÇß½À´Ï´Ù.
+				//message : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.
 				map.put("error", messageSource.getMessage("temp.control.002", null, localeResolver.resolveLocale(req)));
 				return map;
 			}
@@ -714,7 +719,7 @@ public class TemplateController {
 			templateService.updateTemplateFile(tempVo);
 			map.put("error", "none");
 		}catch(Exception e){
-			//message : »èÁ¦ Áß ¿À·ù°¡ ¹ß»ýÇß½À´Ï´Ù.
+			//message : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.
 			map.put("error", messageSource.getMessage("temp.control.002", null, localeResolver.resolveLocale(req)));
 			return map;			
 		}
@@ -727,5 +732,26 @@ public class TemplateController {
 		
 		return value;
 	}
+
+	//20180219 : lsy - deleteTemplate
+	@RequestMapping(value="/template/deleteTemplate.html" ,method={RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView templateDeleteOk(HttpSession session, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+  		int templateSeq = Integer.parseInt(paramSet(request, "templateSeq"));
+  		
+  		try{
+  			templateService.deleteTemplate(templateSeq);
+  			
+  			mav.setViewName("redirect:/template/list.html");
+  		}catch(Exception e){
+  			e.printStackTrace();
+  			
+  			mav.setViewName("/inc/dummy");
+  	  		mav.addObject("msg", messageSource.getMessage("app.control.001", null, localeResolver.resolveLocale(request)));
+  	  		mav.addObject("type", "-1");
+  		}
+  		return mav;
+	}
+	
 }
 

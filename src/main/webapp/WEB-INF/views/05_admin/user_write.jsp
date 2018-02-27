@@ -429,7 +429,7 @@ $(document).ready(function(){
 function cancelResist(){
 	//message : 지금까지 입력한 자료가 사라집니다. 취소하시겠습니까?
 	if(confirm("<spring:message code='user.write.046' />")){
-		window.location.href="/man/user/list.html?page=1";
+		window.location.href="/man/user/list.html?page=<c:out value='${param.page}'/>&searchType=<c:out value='${param.searchType}'/>&searchValue=<c:out value='${param.searchValue}'/>&isAvailable=<c:out value='${param.isAvailable}'/>";
 	}
 }
 
@@ -455,11 +455,11 @@ function cancelResist(){
 				<ul>
 					<sec:authorize access="hasRole('ROLE_COMPANY_MEMBER')">
 					<!--messsage : 사용자  -->
-						<li <c:if test="${fn:containsIgnoreCase(curi, '/user/')}">class="current last"</c:if>><a href="/man/user/list.html?page=1"><spring:message code='man.header.001' /></a></li>
+						<li <c:if test="${fn:containsIgnoreCase(curi, '/user/')}">class="current last"</c:if>><a href="/man/user/list.html?page=1&searchType=&searchValue=&isAvailable=false"><spring:message code='man.header.001' /></a></li>
 					</sec:authorize>
 					<sec:authorize access="hasRole('ROLE_ADMIN_SERVICE')">
 					<!--message : 회원  -->
-						<li <c:if test="${fn:containsIgnoreCase(curi, '/user/')}">class="current last"</c:if>><a href="/man/user/list.html?page=1"><spring:message code='man.header.002' /></a></li>
+						<li <c:if test="${fn:containsIgnoreCase(curi, '/user/')}">class="current last"</c:if>><a href="/man/user/list.html?page=1&searchType=&searchValue=&isAvailable=false"><spring:message code='man.header.002' /></a></li>
 					</sec:authorize>
 				</ul>
 			</div>
@@ -467,7 +467,7 @@ function cancelResist(){
 				<input type="hidden" name="categorySeq1" id="categorySeq1"  value="" />		
 			</form>
 			<h2><spring:message code='user.write.001' /></h2>
-			<form action="write.html" method="post" name="user_write_f" id="user_write_f" class="user_write_f">
+			<form action="write.html?page=${param.page}&searchType=${param.searchType}&searchValue=${param.searchValue}&isAvailable=${param.isAvailable}" method="post" name="user_write_f" id="user_write_f" class="user_write_f">
 			<div class="section fisrt_section">
 				<div class="table_area">
 					<table class="rowtable writetable">

@@ -118,9 +118,9 @@ public class LogDaoImpl implements LogDao
     {
       tx = session.beginTransaction();
       
-      Criteria cr = session.createCriteria(LogVO.class);
-      cr.createAlias("regMemberVO", "memberVO", JoinType.LEFT_OUTER_JOIN);
-      cr.createAlias("inappVO", "inappVO", JoinType.LEFT_OUTER_JOIN);
+      Criteria cr = session.createCriteria(LogVO.class, "logVO");
+      cr.createAlias("logVO.regMemberVO", "memberVO", JoinType.LEFT_OUTER_JOIN);
+      cr.createAlias("logVO.inappVO", "inappVO", JoinType.LEFT_OUTER_JOIN);
       
       cr.setFirstResult(startNo).add(
         Restrictions.and(
@@ -189,9 +189,9 @@ public class LogDaoImpl implements LogDao
     {
       tx = session.beginTransaction();
       
-      Criteria cr = session.createCriteria(LogVO.class);
-      cr.createAlias("regMemberVO", "memberVO", JoinType.LEFT_OUTER_JOIN);
-      cr.createAlias("inappVO", "inappVO", JoinType.LEFT_OUTER_JOIN);
+      Criteria cr = session.createCriteria(LogVO.class, "logVO");
+      cr.createAlias("logVO.regMemberVO", "memberVO", JoinType.LEFT_OUTER_JOIN);
+      cr.createAlias("logVO.inappVO", "inappVO", JoinType.LEFT_OUTER_JOIN);
       
 
       cr.add(
