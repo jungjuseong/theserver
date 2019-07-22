@@ -33,7 +33,5 @@
 	<mapping class="com.clbee.pbcms.vo.NoticeSubVO" />
 	<mapping class="com.clbee.pbcms.vo.NoticeappSubVO" />
 	<mapping class="com.clbee.pbcms.vo.NoticeVO" />
-
-
 </session-factory>
 </hibernate-configuration>

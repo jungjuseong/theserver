@@ -84,9 +84,6 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 /*import com.notnoop.apns.APNS;
 import com.notnoop.apns.ApnsService;*/
 
-
-
-
 @Controller
 public class HomeController {
 
